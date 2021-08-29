@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+![swrpgc banner](https://user-images.githubusercontent.com/17935770/131261369-477cff64-39e5-462a-81bf-3f55944e512e.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+This application acts as a companion for the D&D game: **Star Wars: Edge of the Empire**. The companion app allows you to keep track of and store your in-game characters. You may also connect and communicate with your friends and party up so that everyone can witness the dice rolls that will unfold the story in their legendary campaign.
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![feaures](https://user-images.githubusercontent.com/17935770/131262008-e0fb73fa-3967-41bb-852d-6fd1f71b45a7.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ - User can register an account
+ - User may create a new character that contains their information, characteristics, features
+ - All of your characters can be seen in one place
+ - Dice rolls can be be configured with actual dice animation
+ - User and friends can see a live dice log and the dice rolls
+ - Friendlists where you can see if they are online and are able to chat with
+ - Make a party with all of your friends
 
-### `npm test`
+![Installation](https://user-images.githubusercontent.com/17935770/131262041-39ba027b-0d4e-44a6-b599-8f1543ae5c6c.png)Clone the project and install dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```szh 
+git clone git@github.com:SWRPG-Capstone/swrpg-fe.git
+cd swrpg-fe
+npm install 
+npm start
+```
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![preview](https://user-images.githubusercontent.com/17935770/131262055-e0e0afc1-09f9-4730-9f02-8cd4d7a2be09.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Screenshots of the wireframe](https://user-images.githubusercontent.com/17935770/131262115-72dfe9c0-5bae-4c05-b65c-319b952bda52.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Future Additions](https://user-images.githubusercontent.com/17935770/131262136-88628fd2-2b64-41d9-ae44-8f8f32bd03e0.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Compendium of all species, dice, skills, and other game rules
+- Turn Order
+- Native application
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![tect stack](https://user-images.githubusercontent.com/17935770/131262694-59d17a22-b9e8-4396-b130-cd33d7754e0f.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<div align="center">  
+<img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat-square" alt="React Badge">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat-square" alt="JavaScript Badge">
+<img src="https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat-square" alt="CSS3 Badge">
+<img src="https://img.shields.io/badge/Sass-C69?logo=sass&logoColor=fff&style=flat-square" alt="Sass Badge"> 
+<img src="https://img.shields.io/badge/Apollo%20GraphQL-311C87?logo=apollographql&logoColor=fff&style=flat-square" alt="Apollo GraphQL Badge">
+<img src="https://img.shields.io/badge/GraphQL-E434AA?logo=graphql&logoColor=fff&style=flat-square" alt="GraphQL Badge"> 
+<img src="https://img.shields.io/badge/Cypress-17202C?logo=cypress&logoColor=fff&style=flat-square" alt="Cypress Badge"> 
+<img src="https://img.shields.io/badge/Heroku-430098?logo=heroku&logoColor=fff&style=flat-square" alt="Heroku Badge"> 
+</div> 
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Our Stories](https://user-images.githubusercontent.com/17935770/131262209-52b60891-6ae5-4546-ae3e-72f9230de3ce.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+<img align='right' alt="Rachael's github stats" src="https://github-readme-stats.vercel.app/api?username=LKessell&hide=stars&show_icons=true&theme=cobalt">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### <div align=center> **Lauren Kessell** </div>
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+[Github](https://www.github.com/LKessell)
+&
+[Linkedin](https://www.linkedin.com/in/lauren-kessell/)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+**Learning goals:**  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque exercitationem repudiandae ad vitae. Recusandae iure facere autem officia alias ea voluptate maxime? Hic, doloremque itaque.
+**Challenges:** Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque exercitationem repudiandae ad vitae. Recusandae iure facere autem officia alias ea voluptate maxime? Hic, doloremque itaque.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+<img align='left' alt="Andrew's's github stats" src="https://github-readme-stats.vercel.app/api?username=andrewvallejo&hide=stars&show_icons=true&theme=ayu-mirage"> 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### <div align=center> **Andrew Vallejo** </div>
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Github](https://www.github.com/andrewvallejo)
+&
+[Linkedin](https://www.linkedin.com/in/andrewvallejo/)
+
+
+**Learning goals:** Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque exercitationem repudiandae ad vitae. Recusandae iure facere autem officia alias ea voluptate maxime? Hic, doloremque itaque.
+
+**Challenges:** Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque exercitationem repudiandae ad vitae. Recusandae iure facere autem officia alias ea voluptate maxime? Hic, doloremque itaque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque exercitationem repudiandae ad vitae. Recusandae iure facere autem officia alias ea voluptate maxime? Hic, doloremque itaque.
+
+---
+
+ <div align='center'><sub>May the force be with you</div></div>
+
