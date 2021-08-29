@@ -1,19 +1,15 @@
 ![swrpgc banner](https://user-images.githubusercontent.com/17935770/131261369-477cff64-39e5-462a-81bf-3f55944e512e.png)
 
 
-This application acts as a companion for the D&D game: **Star Wars: Edge of the Empire**. The companion app allows you to keep track of and store your in-game characters. You may also connect and communicate with your friends and party up so that everyone can witness the dice rolls that will unfold the story in their legendary campaign.
+This application acts as a companion for the tabletop rpg game: **Star Wars: Edge of the Empire**. The companion app allows you to keep track of and store your in-game characters. You may also connect and communicate with your friends and party up so that everyone can witness the dice rolls that will unfold the story in their legendary campaign.
 
 
 
 ![feaures](https://user-images.githubusercontent.com/17935770/131262008-e0fb73fa-3967-41bb-852d-6fd1f71b45a7.png)
 
- - User can register an account
  - User may create a new character that contains their information, characteristics, features
- - All of your characters can be seen in one place
  - Dice rolls can be be configured with actual dice animation
- - User and friends can see a live dice log and the dice rolls
- - Friendlists where you can see if they are online and are able to chat with
- - Make a party with all of your friends
+ - All of your characters can be seen in one place
 
 ![Installation](https://user-images.githubusercontent.com/17935770/131262041-39ba027b-0d4e-44a6-b599-8f1543ae5c6c.png)Clone the project and install dependencies
 
@@ -36,6 +32,10 @@ npm start
 - Compendium of all species, dice, skills, and other game rules
 - Turn Order
 - Native application
+- User can register an account
+- User and friends can see a live dice log and the dice rolls
+- Friendlists where you can see if they are online and are able to chat with
+- Make a party with all of your friends
 
 ![tect stack](https://user-images.githubusercontent.com/17935770/131262694-59d17a22-b9e8-4396-b130-cd33d7754e0f.png)
 
@@ -55,7 +55,7 @@ npm start
 ![Our Stories](https://user-images.githubusercontent.com/17935770/131262209-52b60891-6ae5-4546-ae3e-72f9230de3ce.png)
 
 
-<img align='right' alt="Rachael's github stats" src="https://github-readme-stats.vercel.app/api?username=LKessell&hide=stars&show_icons=true&theme=cobalt">
+<img align='right' alt="Lauren's github stats" src="https://github-readme-stats.vercel.app/api?username=LKessell&hide=stars&show_icons=true&theme=cobalt">
 
 ### <div align=center> **Lauren Kessell** </div>
 
