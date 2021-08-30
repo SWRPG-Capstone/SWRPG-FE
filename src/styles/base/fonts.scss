@@ -3,7 +3,10 @@
 ========================================================================== */
 
 @mixin fonts($font-type, $weight: $font-weight-regular) {
-  @if $font-type == giant {
+  @if $font-type == massive {
+    font-size: $font-size-massive;
+    font-weight: $weight;
+  } @else if $font-type == giant {
     font-size: $font-size-giant; 
     font-weight: $weight;
   } @else if $font-type == large {
