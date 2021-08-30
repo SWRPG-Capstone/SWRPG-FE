@@ -1,4 +1,4 @@
-{
+export const sampleData = {
     "data": {
         "id": "1",
         "type": "user",
@@ -9,7 +9,7 @@
             "character":  {
                 "name":  "Vaergh Somis",
                 "species":  "Kaleesh",
-                "career":  "Bounty Hunter"
+                "career":  "Bounty Hunter",
                 "specialization": "Martial Artist",
                 "characteristics": {
                     "agility": 2,
@@ -18,9 +18,9 @@
                     "intellect": 3,
                     "willpower": 3,
                     "cunning": 2, 
-                }
+                },
                 "skills": {
-                    "astrogation": 0
+                    "astrogation": 0,
                     "athletics": 2,
                     "charm": 4,
                     "coercion": 0,
@@ -53,7 +53,7 @@
                     "outer_rim": 1,
                     "underworld": 2,
                     "xenology": 0,
-                }
+                },
             }
         }
     }
