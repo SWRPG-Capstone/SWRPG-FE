@@ -5,12 +5,14 @@
 .body {
   @include fonts(medium);
   font-family: $font-primary;
+  text-transform: uppercase;
   color: $color-tertiary;
 }
 
 :is(h1, h2, h3, h4) { 
   @include fonts(medium);
   font-family: $font-primary;
+  text-transform: uppercase;
   color: $color-tertiary;
 }
 
