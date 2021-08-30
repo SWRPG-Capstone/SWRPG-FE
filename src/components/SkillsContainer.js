@@ -7,9 +7,9 @@ export const SkillsContainer = () => {
   
   const skillBars = Object.keys(skills).map(skill => {
     const ranks = sampleData.data.attributes.character.skills[skill];
-    return <SkillBar skillName={skill} ranks={ranks}/>
+    return <SkillBar key={skill} skillName={skill} ranks={ranks}/>
   });
-  
+
   return (
     <section>
       <h2>Skills</h2>
