@@ -1,0 +1,32 @@
+/* ==========================================================================
+  Elements - Typography
+========================================================================== */
+
+.body {
+  @include fonts(medium);
+  font-family: $font-primary;
+  color: $color-tertiary;
+}
+
+:is(h1, h2, h3, h4) { 
+  @include fonts(medium);
+  font-family: $font-primary;
+  color: $color-tertiary;
+}
+
+h1 {
+  @include fonts(giant, $font-weight-bold)
+}
+
+h2 {
+  @include fonts(large)
+}
+
+h3 {
+  @include fonts(medium)
+}
+
+p {
+  @include fonts(medium)
+}
+
