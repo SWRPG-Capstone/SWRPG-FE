@@ -33,7 +33,7 @@ p {
 }
 
 label {
-  @include fonts(medium)
+  @include fonts(small);
   font-family: $font-primary;
   text-transform: uppercase;
 }
