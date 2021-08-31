@@ -9,7 +9,7 @@
   color: $color-tertiary;
 }
 
-:is(h1, h2, h3, h4) { 
+:is(h1, h2, h3, h4, p) { 
   @include fonts(medium);
   font-family: $font-primary;
   text-transform: uppercase;
