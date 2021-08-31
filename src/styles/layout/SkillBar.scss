@@ -1,0 +1,41 @@
+.skill-meter {
+  overflow: hidden;
+  border: $border-primary;
+  border-radius: $border-radius-primary;
+  height: 1.125rem;
+  width: 14rem;
+  background-image: linear-gradient(
+    90deg, 
+    $color-white 20%, 
+    $color-secondary 20%,
+    $color-secondary 40%,
+    $color-white 40%,
+    $color-white 60%,
+    $color-secondary 60%,
+    $color-secondary 80%,
+    $color-white 80%,
+    $color-white 100%
+  );
+
+  &::-webkit-progress-bar {
+    background-color: $color-white;
+    color: $color-accent-primary;
+    mix-blend-mode: multiply;
+  }
+  &::-webkit-progress-value {
+    background-color: $color-accent-primary;
+    mix-blend-mode: multiply;
+  }
+  &::-moz-progress-bar {
+    background-color: $color-accent-primary;
+    mix-blend-mode: multiply;
+  }
+}
+
+.skill-element {
+  @include flex(row, space-between)
+}
+
+label {
+  font-family: $font-primary;
+}

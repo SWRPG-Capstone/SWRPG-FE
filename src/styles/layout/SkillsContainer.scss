@@ -1,0 +1,8 @@
+.skills-container {
+  padding: .25rem;
+}
+
+.skill-headings {
+  @include flex(row, space-between);
+  padding: 0 1.5rem;
+}
