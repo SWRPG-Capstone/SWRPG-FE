@@ -35,7 +35,3 @@
 .skill-element {
   @include flex(row, space-between)
 }
-
-label {
-  font-family: $font-primary;
-}
