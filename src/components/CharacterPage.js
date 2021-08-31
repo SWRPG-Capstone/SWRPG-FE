@@ -1,5 +1,6 @@
 import React from "react";
 import { InfoField } from "./InfoField";
+import { Characteristics } from "./Characteristics";
 import { sampleData } from "../mock-data";
 
 export const CharacterPage = () => {
@@ -15,6 +16,8 @@ export const CharacterPage = () => {
   return (
     <section>
       {characterInfo}
+      <h2>Characteristics</h2>
+      <Characteristics characteristics={character.characteristics}/>
     </section>
   )
 }
