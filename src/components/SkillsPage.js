@@ -2,12 +2,12 @@ import React from "react";
 import { SkillBar } from "./SkillBar";
 import { sampleData } from "../mock-data";
 
-export const SkillsContainer = () => {
+export const SkillsPage = () => {
   const skills = sampleData.data.attributes.character.skills;
   
   const skillBars = Object.keys(skills).map(skill => {
     const ranks = sampleData.data.attributes.character.skills[skill];
-    return <SkillBar key={skill} skillName={skill} ranks={ranks}/>
+    return <SkillBar key={skill} skill={skill} ranks={ranks}/>
   });
 
   return (
