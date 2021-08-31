@@ -1,11 +1,11 @@
 import React from "react";
 import { formatName } from "../utilities";
 
-export const SkillBar = ({ skillName, ranks }) => {
+export const SkillBar = ({ skill, ranks }) => {
   return (
     <div className="skill-element">
-      <label htmlFor={skillName}>{formatName(skillName)}</label>
-      <progress className="skill-meter" htmlFor={skillName} id={skillName} value={ranks} min="0" max="5" />
+      <label htmlFor={skill}>{formatName(skill)}</label>
+      <progress className="skill-meter" htmlFor={skill} id={skill} value={ranks} min="0" max="5" />
     </div>
   );
 }
