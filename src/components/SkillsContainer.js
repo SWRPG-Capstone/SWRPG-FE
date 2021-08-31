@@ -11,9 +11,11 @@ export const SkillsContainer = () => {
   });
 
   return (
-    <section>
-      <h2>Skills</h2>
-      <h2>Ranks</h2>
+    <section className="skills-container">
+      <div className="skill-headings">
+        <h2>Skills</h2>
+        <h2>Ranks</h2>
+      </div>
       {skillBars}
     </section>
   );
