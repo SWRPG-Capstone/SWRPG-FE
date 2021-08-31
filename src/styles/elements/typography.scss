@@ -32,3 +32,8 @@ p {
   @include fonts(medium)
 }
 
+label {
+  @include fonts(medium)
+  font-family: $font-primary;
+  text-transform: uppercase;
+}
