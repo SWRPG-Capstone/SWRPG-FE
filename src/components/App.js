@@ -1,12 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import { Header } from './Header'
 import { SkillsPage } from "./SkillsPage";
 import { CharacterPage } from "./CharacterPage";
 
 export const App = () => {
   return (
     <>
-      <h1>Star Wars RPG Companion</h1>
+      <Header />
       <Route path="/character">
         <CharacterPage />
       </Route>
