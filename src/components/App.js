@@ -3,10 +3,11 @@ import { Route } from "react-router-dom";
 import { Header } from './Header'
 import { SkillsPage } from "./SkillsPage";
 import { CharacterPage } from "./CharacterPage";
+import { NavBar } from "./NavBar";
 
 export const App = () => {
   return (
-    <>
+    <main>
       <Header />
       <Route path="/character">
         <CharacterPage />
@@ -14,7 +15,8 @@ export const App = () => {
       <Route path="/skills">
         <SkillsPage />
       </Route>
-    </>
+      <NavBar />
+    </main>
   );
 }
 
