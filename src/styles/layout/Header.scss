@@ -1,6 +1,7 @@
 .main-header {
   @include flex(column, center);
   height: 4rem;
+  width: 100%;
   background: $color-header-primary;
   border-radius: $border-radius-secondary;
   box-shadow: $box-shadow-primary;
