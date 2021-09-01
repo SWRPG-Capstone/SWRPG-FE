@@ -2,11 +2,16 @@
 Settings - Misc
 ========================================================================== */
 
-$box-shadow-primary: 0px 4px 4px 0px $color-transparent-primary;
+$box-shadow-primary: 0px 4px 4px $color-transparent-primary;
 
 $border-primary: 2px solid $color-accent-primary;
 $border-secondary: 0.35px solid $color-accent-secondary;
+
 $border-radius-primary: 5px;
+$border-radius-secondary: 0 0 15px 15px;
 
 $blur-primary: blur(10px);
 $blur-secondary: blur(40px);
+
+$text-shadow: 1px 1px 9px $color-transparent-primary;
+$text-stroke: 0.5px $color-accent-primary;
