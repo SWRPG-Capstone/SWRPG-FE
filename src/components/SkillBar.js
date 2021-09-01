@@ -1,5 +1,5 @@
 import React from "react";
-import { formatName } from "../utilities";
+import { formatName } from "../utilities/utilities";
 
 export const SkillBar = ({ skill, ranks }) => {
   return (
