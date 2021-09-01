@@ -29,6 +29,7 @@ lll - Elements | Defaults & Semantic Elements
 lV - Layout | Specialized CSS 
 ========================================================================== */
 
+@import './layout/Header.scss';
 @import './layout/SkillBar.scss';
 @import './layout/SkillsContainer.scss';
 @import './layout/InfoField.scss';
