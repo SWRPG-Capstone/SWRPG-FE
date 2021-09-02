@@ -2,7 +2,6 @@ import React from "react";
 import { InfoField } from "./InfoField";
 import { Characteristics } from "./Characteristics";
 import { useQuery, gql } from "@apollo/client";
-import { sampleData } from "../mock-data";
 
 const CHARACTER = gql`
   query getCharacter {
@@ -12,30 +11,40 @@ const CHARACTER = gql`
       species
       specialization
       career
+      characteristics {
+        brawn
+        agility
+        cunning
+        intellect
+        willpower
+        charPresence
+      }
     } 
   }
 `
 
 export const CharacterPage = () => {
-  const characterSamp = sampleData.data.attributes.character;
   const { loading, error, data } = useQuery(CHARACTER);
 
   if (loading) return 'Loading your data...';
   if (error) return `Error! ${error.message}`;
 
+  const character = data.character;
+
   const characterInfo = (
     <>
-    <InfoField heading={Object.keys(data.character)[3]} info={data.character.name}/>
-    <InfoField heading={Object.keys(data.character)[5]} info={data.character.species}/>
-    <InfoField heading={Object.keys(data.character)[1]} info={data.character.career}/>
-    <InfoField heading={Object.keys(data.character)[4]} info={data.character.specialization}/>
+    <InfoField heading='name' info={character.name}/>
+    <InfoField heading='species' info={character.species}/>
+    <InfoField heading='career' info={character.career}/>
+    <InfoField heading='specialization' info={character.specialization}/>
     </>
   );
+
   return (
     <section>
       {characterInfo}
       <h2>Characteristics</h2>
-      <Characteristics characteristics={characterSamp.characteristics}/>
+      <Characteristics characteristics={character.characteristics[0]}/>
     </section>
   )
 }
