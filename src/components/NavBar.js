@@ -9,11 +9,11 @@ export const NavBar = () => {
     <footer>
       <div className='backdrop'/>
       <section className='nav-bar'>
-        <Orb icon={home} />
-        <Orb icon={character} />
-        <Orb icon={roll} />
-        <Orb icon={skills} />
-        <Orb icon={logout} />
+        <Orb pathway='/home' icon={home} size='small'/>
+        <Orb pathway='/character' icon={character} size='medium' />
+        <Orb pathway='/roll' icon={roll} size='large' />
+        <Orb pathway='/skills' icon={skills} size='medium' />
+        <Orb pathway='/home' icon={logout} size='small' />
       </section>
     </footer>
   )
