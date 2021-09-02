@@ -12,8 +12,9 @@ header {
 
 main {
   @include flex(column, space-between);
+  position: relative;
   width: 100vw;
-  height: 100vh
+  height: 100vh;
 }
 
 article {
@@ -23,4 +24,3 @@ article {
 form {
   @include flex(column, center)
 }
-
