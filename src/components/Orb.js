@@ -7,7 +7,7 @@ export const Orb = ({ pathway, icon, size }) => {
 
   return (
     <NavLink className={`button  ${size}`} to={pathway} >
-      <img className={`icon ${iconName}`}  src={icon} alt={`${iconName} icon.`} />
+      <img className={`icon ${iconName} ${size}`}  src={icon} alt={`${iconName} icon.`} />
       <div className={`orb ${size}`} />
     </NavLink>
   )
