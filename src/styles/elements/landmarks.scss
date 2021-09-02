@@ -17,6 +17,11 @@ main {
   height: 100vh;
 }
 
+footer {
+  position: relative;
+  width: 100%;
+}
+
 article {
   @include flex(column, center)
 }
