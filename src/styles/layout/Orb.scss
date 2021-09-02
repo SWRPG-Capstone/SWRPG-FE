@@ -1,34 +1,44 @@
-.button {
+.button   {
+  position: relative;
   @include flex(row, center);
   border-radius: $border-radius-tertiary;
-  
-  height: 3.5rem;
-  width: 3.5rem;
-
-
+  &.small {
+    margin: 0 .5rem;
+    min-width: 2rem;
+  } 
+  &.medium {
+    min-width: 3rem;
+    margin: 1rem 1rem;
+  }
+  &.large {
+    min-width: 4rem;
+    margin: 0 0rem 1rem;
+  }
   .icon {
-    width: 2rem;
-    height: auto;
-    
+    position: absolute;
+  }
+  .orb {
+    position: absolute;
+    z-index: -1;
+    mix-blend-mode: overlay;
+    box-shadow: $box-shadow-primary;
+    border-radius: $border-radius-tertiary;
+    backdrop-filter: blur(56.1257px);
+    &.small {
+      width: 3.5rem;
+      height: 3.5rem;
+    } 
+    &.medium {
+      width: 4rem;
+      height: 4rem;
+    }
+    &.large {
+      width: 5rem;
+      height: 5rem;
+    }
   }
 }
 
-.overlay {
-  position: absolute;
-  // z-index: -1;
-  border-radius: $border-radius-tertiary;
-  $box-shadow: $box-shadow-primary;
-  width: 3.5rem;
-  height: 3.5rem; 
-  .front {
-    border: 0.25px solid #223F5B;
-    background: #99B8CC;
-    mix-blend-mode: overlay;
-    // backdrop-filter: $blur-secondary;
-  }
-  .back {
-    border: 0.25px solid #223F5B;
-    background: #99B8CC;
-      mix-blend-mode: overlay;
-  }
+.roll {
+  background: red;
 }
