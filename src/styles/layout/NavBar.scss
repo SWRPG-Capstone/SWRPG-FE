@@ -1,8 +1,10 @@
 .nav-bar {
-  @include flex(row, space-around); 
-  z-index: 1;
+  @include flex(row, space-evenly); 
+  position: relative;
   width: 100%;
+  z-index: 1;
   height: 6rem;
+  padding: 0 .25rem;
 }
 
 .backdrop {
