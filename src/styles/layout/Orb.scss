@@ -1,33 +1,46 @@
-.button   {
-  position: relative;
+.button {
   @include flex(row, center);
+  position: relative;
+  transition: 500ms transform;
   border-radius: $border-radius-tertiary;
+  &.small:hover,
+  &.medium:hover {
+    transform: scale(1.2);
+  }
   &.small {
     margin: 0 .5rem;
     min-width: 2rem;
-  } 
+  }
   &.medium {
-    min-width: 3rem;
     margin: 1rem 1rem;
+    min-width: 3rem;
   }
   &.large {
-    min-width: 4rem;
+    transition-delay: 100ms;
     margin: 0 0rem 1rem;
+    min-width: 4.5rem;
+    &:hover {
+      transform: scale(1.2);
+      transition: 300ms transform ease-in-out;
+      filter: brightness(1.3);
+    }
   }
+
   .icon {
     position: absolute;
   }
+
   .orb {
     position: absolute;
-    z-index: -1;
-    mix-blend-mode: overlay;
-    box-shadow: $box-shadow-primary;
+    z-index: 1;
     border-radius: $border-radius-tertiary;
+    box-shadow: $box-shadow-primary;
+    mix-blend-mode: overlay;
     backdrop-filter: blur(56.1257px);
     &.small {
-      width: 3.5rem;
+      width: 3rem;
       height: 3.5rem;
-    } 
+    }
     &.medium {
       width: 4rem;
       height: 4rem;
@@ -35,10 +48,36 @@
     &.large {
       width: 5rem;
       height: 5rem;
+
     }
   }
 }
 
 .roll {
-  background: red;
+  animation: spin infinite 35s linear,
+    glow infinite alternate 5s;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes glow {
+  from {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.3)
+  }
+
+  to {
+    filter: brightness(1);
+  }
 }
