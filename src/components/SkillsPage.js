@@ -57,12 +57,14 @@ export const SkillsPage = () => {
   });
 
   return (
-    <section className="skills-container">
+    <section className="skills-sheet">
       <div className="skill-headings">
-        <h2>Skills</h2>
-        <h2>Ranks</h2>
+        <h2 className='heading'>Skills</h2>
+        <h2 className='heading'>Ranks</h2>
       </div>
+      <article className='skills-container'>
       {skillBars}
+      </article>
     </section>
   );
 }
