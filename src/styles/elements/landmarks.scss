@@ -23,7 +23,8 @@ footer {
 }
 
 article {
-  @include flex(column, center)
+  height: 100%;
+  width: 100%;
 }
 
 form {
