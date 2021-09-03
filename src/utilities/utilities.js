@@ -1,4 +1,4 @@
 export const formatName = (string) => {
-  return string.split("_").join(" ");
+  return string.replace(/[A-Z]/g, letter => ` ${letter.toLowerCase()}`);
 }
 
