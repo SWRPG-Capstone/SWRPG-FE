@@ -3,6 +3,13 @@ export const formatName = (string) => {
 }
 
 export const formReducer = (state, { field, value }) => {
+  if (field === 'age') {
+    return {
+      ...state,
+      [field]: parseInt(value)
+    }
+  }
+  
   return {
     ...state,
     [field]: value
