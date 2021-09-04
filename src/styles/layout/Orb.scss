@@ -3,6 +3,7 @@
   position: relative;
   transition: 500ms transform;
   border-radius: $border-radius-tertiary;
+
   &.small:hover,
   &.medium:hover {
     transform: scale(1.2);
@@ -37,6 +38,7 @@
     box-shadow: $box-shadow-primary;
     mix-blend-mode: overlay;
     backdrop-filter: blur(56.1257px);
+
     &.small {
       width: 3rem;
       height: 3.5rem;
@@ -48,8 +50,12 @@
     &.large {
       width: 5rem;
       height: 5rem;
-
     }
+  }
+  
+  &.disabled {
+    pointer-events: none;
+    transform:translateY(5rem);
   }
 }
 
