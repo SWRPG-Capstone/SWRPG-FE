@@ -12,7 +12,7 @@ export const reducer = (state, action) => {
       return token ?
         {
         ...state,
-        token: token,
+        isAuthorize: token,
       } : state
     default:
     return state
