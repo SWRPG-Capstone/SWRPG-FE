@@ -181,6 +181,10 @@ export const SkillsForm = () => {
         Xenology
         <input type='number' min='0' max='5' name='xenology' value={xenology} onChange={onChange}/>
       </label>
+      <button onClick={(event) => {
+        event.preventDefault()
+        console.log(state)
+        }}>Next</button>
     </form>
   )
 }
