@@ -14,7 +14,7 @@
     filter: $blur-tertiary;
     background-image: linear-gradient(to bottom,
         $color-background-primary 0%,
-        hsla(0, 0%, 0, 0) 40%,
+        hsla(0, 0%, 0, 0) 35%,
         hsla(0, 0%, 0, 0) 100%);
   }
 
@@ -51,6 +51,6 @@
     margin: 3rem 0;
     width: 100%;
     height: 100%;
-    padding: 1rem 1rem 0rem;
+    padding: 2rem 1rem 3.25rem;
   }
 }
