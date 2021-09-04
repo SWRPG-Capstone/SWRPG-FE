@@ -13,7 +13,7 @@ const initialState = {
   eyes: "",
 }
 
-export const FormCharDetails = ({ currentStep, setCurrentStep }) => {
+export const FormCharDetails = ({ currentStep, setCurrentStep, setCharId }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
   const onChange = (e) => {

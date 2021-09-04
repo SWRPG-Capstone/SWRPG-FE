@@ -36,7 +36,7 @@ const initialState = {
   xenology: 0,
 }
 
-export const FormSkills = ({ currentStep, setCurrentStep }) => {
+export const FormSkills = ({ charId, currentStep, setCurrentStep }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
   const onChange = (e) => {
