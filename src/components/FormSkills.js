@@ -36,7 +36,7 @@ const initialState = {
   xenology: 0,
 }
 
-export const FormSkills = () => {
+export const FormSkills = ({ currentStep, setCurrentStep }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
   const onChange = (e) => {
@@ -44,6 +44,10 @@ export const FormSkills = () => {
   }
 
   const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
+
+  if (currentStep !== 'skills') {
+    return null;
+  }
 
   return (
     <form>
@@ -177,8 +181,9 @@ export const FormSkills = () => {
       </label>
       <button onClick={(event) => {
         event.preventDefault()
+        setCurrentStep('details')
         console.log(state)
-        }}>Next</button>
+        }}>Submit</button>
     </form>
   )
 }

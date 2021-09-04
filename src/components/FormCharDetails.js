@@ -13,7 +13,7 @@ const initialState = {
   eyes: "",
 }
 
-export const FormCharDetails = () => {
+export const FormCharDetails = ({ currentStep, setCurrentStep }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
   const onChange = (e) => {
@@ -21,6 +21,10 @@ export const FormCharDetails = () => {
   }
 
   const { name, species, specialization, career, age, height, build, hair, eyes } = state;
+
+  if (currentStep !== 'details') {
+    return null;
+  }
 
   return (
     <form>
@@ -62,6 +66,7 @@ export const FormCharDetails = () => {
       </label>
       <button onClick={(event) => {
         event.preventDefault()
+        setCurrentStep('characteristics')
         console.log(state)
         }}>Next</button>
     </form>

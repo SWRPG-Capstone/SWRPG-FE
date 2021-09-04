@@ -10,7 +10,7 @@ const initialState = {
   willpower: 1,
 }
 
-export const FormCharacteristics = () => {
+export const FormCharacteristics = ({ currentStep, setCurrentStep }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
   const onChange = (e) => {
@@ -18,6 +18,10 @@ export const FormCharacteristics = () => {
   }
 
   const { agility, brawn, charPresence, cunning, intellect, willpower } = state;
+
+  if (currentStep !== 'characteristics') {
+    return null;
+  }
 
   return (
     <form>
@@ -45,6 +49,11 @@ export const FormCharacteristics = () => {
         willpower
         <input type='number' min='1' max='5' name='willpower' value={willpower} onChange={onChange}/>
       </label>
+      <button onClick={(event) => {
+        event.preventDefault()
+        setCurrentStep('skills')
+        console.log(state)
+        }}>Next</button>
     </form>
   )
 }
