@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import {gql, useMutation} from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
 
 const initialState = {
@@ -13,6 +14,28 @@ const initialState = {
   eyes: "",
 }
 
+const CREATE_DETAILS = gql`
+  mutation ($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!){
+    createCharacter(
+      input: {
+        userId: "1"
+        name: $name
+        species: $species
+        specialization: $specialization
+        career: $career
+        age: $age
+        height: $height
+        build: $build
+        hair: $hair
+        eyes: $eyes
+      }
+    ) {
+      id
+      name
+    }
+  }
+`;
+
 export const FormCharDetails = ({ currentStep, setCurrentStep, setCharId }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
@@ -22,9 +45,24 @@ export const FormCharDetails = ({ currentStep, setCurrentStep, setCharId }) => {
 
   const { name, species, specialization, career, age, height, build, hair, eyes } = state;
 
+  const [createCharDetails, { loading, error, data }] = useMutation(CREATE_DETAILS, {
+    variables: state
+  });
+
+  const handleCreate = (e) => {
+    e.preventDefault();
+    // setCurrentStep('characteristics');
+    createCharDetails();
+    console.log(state);
+  }
+
   if (currentStep !== 'details') {
     return null;
   }
+
+  if (loading) return 'Submitting...';
+  if (error) return `Submission error! ${error.message}`;
+  if (data) console.log(data)
 
   return (
     <form>
@@ -64,11 +102,7 @@ export const FormCharDetails = ({ currentStep, setCurrentStep, setCharId }) => {
         eyes
         <input type="text" name="eyes" value={eyes} onChange={onChange}/>
       </label>
-      <button onClick={(event) => {
-        event.preventDefault()
-        setCurrentStep('characteristics')
-        console.log(state)
-        }}>Next</button>
+      <button onClick={handleCreate}>Next</button>
     </form>
   )
 }
