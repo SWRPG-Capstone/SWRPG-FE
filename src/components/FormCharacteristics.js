@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import { formReducer } from "../utilities/utilities";
 
 const initialState = {
   agility: 1,
@@ -9,15 +10,8 @@ const initialState = {
   willpower: 1,
 }
 
-const reducer = (state, { field, value }) => {
-  return {
-    ...state,
-    [field]: value
-  }
-}
-
 export const FormCharacteristics = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(formReducer, initialState);
 
   const onChange = (e) => {
     dispatch({ field: e.target.name, value: parseInt(e.target.value) })
