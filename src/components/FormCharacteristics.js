@@ -10,7 +10,7 @@ const initialState = {
   willpower: 1,
 }
 
-export const FormCharacteristics = ({ currentStep, setCurrentStep }) => {
+export const FormCharacteristics = ({ charId, currentStep, setCurrentStep }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
   const onChange = (e) => {

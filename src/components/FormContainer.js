@@ -4,14 +4,14 @@ import { FormCharacteristics } from "./FormCharacteristics";
 import { FormCharDetails } from "./FormCharDetails";
 
 export const FormContainer = () => {
-  // const [charId, setCharId] = useState(null);
+  const [charId, setCharId] = useState(null);
   const [currentStep, setCurrentStep] = useState('details');
 
   return (
     <section>
-      <FormCharDetails currentStep={currentStep} setCurrentStep={setCurrentStep} />
-      <FormCharacteristics currentStep={currentStep} setCurrentStep={setCurrentStep} />
-      <FormSkills currentStep={currentStep} setCurrentStep={setCurrentStep} />
+      <FormCharDetails currentStep={currentStep} setCurrentStep={setCurrentStep} setCharId={setCharId} />
+      <FormCharacteristics charId={charId} currentStep={currentStep} setCurrentStep={setCurrentStep} />
+      <FormSkills charId={charId}currentStep={currentStep} setCurrentStep={setCurrentStep} />
     </section>
   )
 }
