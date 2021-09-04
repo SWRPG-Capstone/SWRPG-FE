@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import { formReducer } from "../utilities/utilities";
 
 const initialState = {
   name: "",
@@ -12,15 +13,8 @@ const initialState = {
   eyes: "",
 }
 
-const reducer = (state, { field, value }) => {
-  return {
-    ...state,
-    [field]: value
-  }
-}
-
 export const FormCharDetails = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(formReducer, initialState);
 
   const onChange = (e) => {
     dispatch({ field: e.target.name, value: e.target.value })
