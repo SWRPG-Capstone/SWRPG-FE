@@ -6,6 +6,7 @@ import { CharacterPage } from "./CharacterPage";
 import { NavBar } from "./NavBar";
 import { UserContext } from "../utilities/UserContext";
 import { reducer } from "../utilities/reducer";
+import { FormContainer } from "./FormContainer";
 
 const initialState = {
   isAuthorize: false
@@ -23,6 +24,9 @@ export const App = () => {
           </Route>
           <Route path="/skills">
             <SkillsPage />
+          </Route>
+          <Route path="/create">
+            <FormContainer />
           </Route>
         <NavBar />
       </main>
