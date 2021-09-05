@@ -2,24 +2,32 @@
   Elements - Landmarks
 ========================================================================== */
 
+html {
+  overflow: hidden;
+  width: 100%;
+  }
+
 body {
-  background: $color-background-primary;
+  position: fixed;  
+  overflow: hidden; 
 }
 
 header {
   @include flex(row, space-between);
+  
 }
 
 main {
   @include flex(column, space-between);
+  background: $color-background-primary;
   position: relative;
-  overflow: hidden;
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
 }
 
 footer {
-  position: relative;
+  position: fixed;
+  bottom: 0;
   width: 100%;
 }
 
