@@ -1,4 +1,5 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useLayoutEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { gql, useMutation } from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
 
@@ -116,8 +117,9 @@ const CREATE_SKILLS = gql`
   }
 `;
 
-export const FormSkills = ({ charId, currentStep, setCurrentStep }) => {
+export const FormSkills = ({ charId, currentStep, setCurrentStep, setCurrentChar }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
+  const history = useHistory();
 
   const onChange = (e) => {
     dispatch({ field: e.target.name, value: parseInt(e.target.value) })
@@ -133,7 +135,14 @@ export const FormSkills = ({ charId, currentStep, setCurrentStep }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createSkills();
+    history.push('/character');
   }
+
+  useLayoutEffect(() => {
+    return () => {
+      setCurrentChar(parseInt(charId));
+    }
+  }, [setCurrentChar, charId])
 
   if (currentStep !== 'skills') {
     return null;
