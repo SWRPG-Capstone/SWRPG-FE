@@ -32,8 +32,8 @@ export const HomePage = ({ currentChar, setCurrentChar }) => {
 
   return (
     <>
-    {charOptions}
-    <Link to='/create' className='home-link'>Create a New Character</Link>
+      {charOptions}
+      <Link to='/create' className='home-link'>Create a New Character</Link>
     </>
   )
 }
