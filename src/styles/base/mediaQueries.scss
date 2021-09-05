@@ -36,3 +36,16 @@
     }
   }
 }
+
+@mixin hover() {
+    @media(hover: hover) and (pointer: fine) {
+    &.small:hover,
+    &.medium:hover {
+      transform: scale(1.2);
+    }
+    &.large:hover {
+      transform: scale(1.2);
+      transition: 300ms transform ease-in-ou
+    }
+  }
+}
