@@ -1,6 +1,7 @@
+
 .button {
-  @include flex(row, center);
-  position: relative;
+  @include flex(column, center);
+  position: relative;  
   transition: 500ms transform;
   border-radius: $border-radius-tertiary;
 
@@ -17,23 +18,30 @@
     min-width: 3rem;
   }
   &.large {
+   @include hover;
     transition-delay: 100ms;
     margin: 0 0rem 1rem;
     min-width: 4.5rem;
-    &:hover {
-      transform: scale(1.2);
-      transition: 300ms transform ease-in-out;
-      filter: brightness(1.3);
-    }
   }
 
   .icon {
     position: absolute;
+    filter: brightness(1.3);
+    &.small {
+      transform: scale(.95);
+      animation: breath infinite 5s alternate;
+    }
+    &.medium {
+      transform: scale(.90);
+    }
   }
 
   .orb {
     position: absolute;
-    z-index: 1;
+    z-index: -1;
+    background: #fff;
+    opacity: .5;
+    border: $border-secondary;
     border-radius: $border-radius-tertiary;
     box-shadow: $box-shadow-primary;
     mix-blend-mode: overlay;
@@ -41,13 +49,14 @@
 
     &.small {
       width: 3rem;
-      height: 3.5rem;
+      height: 3rem;
     }
     &.medium {
       width: 4rem;
       height: 4rem;
     }
     &.large {
+      background: unset;
       width: 5rem;
       height: 5rem;
     }
@@ -65,25 +74,31 @@
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg)
-  }
-
   to {
     transform: rotate(360deg)
   }
 }
 
+@keyframes breath {
+  from { 
+    transform: scale(.8);
+  }
+  to {
+    transform: scale (1);
+  }
+}
+
+
 @keyframes glow {
   from {
-    filter: brightness(1);
+    filter: brightness(1.3);
   }
 
   50% {
-    filter: brightness(1.3)
+    filter: brightness(1.5)
   }
 
   to {
-    filter: brightness(1);
+    filter: brightness(1.3);
   }
 }
