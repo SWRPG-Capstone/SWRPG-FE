@@ -2,11 +2,18 @@ version: 2.1
 
 orbs:
   cypress: cypress-io/cypress@1
+  heroku: circleci/heroku@0
 
 workflows:
-  test:
+  test-and-deploy:
     jobs:
       - cypress/run:
           yarn: true
           start: npm start
           wait-on: 'http://localhost:3000'
+      - heroku/deploy-via-git:
+          requires:
+            - cypress/run
+          filters:
+            branches:
+              only: main
