@@ -39,10 +39,10 @@ const initialState = {
 }
 
 const CREATE_SKILLS = gql`
-  mutation ($astrogation: Int!, $athletics: Int!, $brawl: Int!, $charm: Int!, $coercion: Int!, $computers: Int!, $cool: Int!, $coordination: Int!, $coreWorlds: Int!, $deception: Int!, $discipline: Int!, $education: Int!, $gunnery: Int!, $leadership: Int!, $lore: Int!, $mechanics: Int!, $medicine: Int!, $melee: Int!, $negotiation: Int!, $outerRim: Int!, $perception: Int!, $piloting: Int!, $pilotingSpace: Int!, $rangedHeavy: Int!, $rangedLight: Int!, $resilience: Int!, $skulduggery: Int!, $stealth: Int!, $streetWise: Int!, $survival: Int!, $underworld: Int!, $vigilance: Int!, $xenology: Int!){ 
+  mutation ($characterId: Int!, $astrogation: Int!, $athletics: Int!, $brawl: Int!, $charm: Int!, $coercion: Int!, $computers: Int!, $cool: Int!, $coordination: Int!, $coreWorlds: Int!, $deception: Int!, $discipline: Int!, $education: Int!, $gunnery: Int!, $leadership: Int!, $lore: Int!, $mechanics: Int!, $medicine: Int!, $melee: Int!, $negotiation: Int!, $outerRim: Int!, $perception: Int!, $piloting: Int!, $pilotingSpace: Int!, $rangedHeavy: Int!, $rangedLight: Int!, $resilience: Int!, $skulduggery: Int!, $stealth: Int!, $streetWise: Int!, $survival: Int!, $underworld: Int!, $vigilance: Int!, $xenology: Int!){ 
     createSkill(
       input: {
-        characterId: 2
+        characterId: $characterId
         astrogation: $astrogation
         athletics: $athletics
         brawl: $brawl
@@ -124,14 +124,15 @@ export const FormSkills = ({ charId, currentStep, setCurrentStep }) => {
   }
 
   const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
+  state.characterId = parseInt(charId);
 
   const [createSkills] = useMutation(CREATE_SKILLS, {
     variables: state
   });
 
-  const handleCreate = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // createSkills();
+    createSkills();
   }
 
   if (currentStep !== 'skills') {
@@ -272,7 +273,7 @@ export const FormSkills = ({ charId, currentStep, setCurrentStep }) => {
         Xenology
         <input type='number' min='0' max='5' name='xenology' value={xenology} onChange={onChange}/>
       </label>
-      <button onClick={handleCreate}>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </form>
   )
 }
