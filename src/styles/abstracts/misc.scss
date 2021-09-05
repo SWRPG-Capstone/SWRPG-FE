@@ -11,9 +11,12 @@ $border-radius-primary: 5px;
 $border-radius-secondary: 0 0 15px 15px;
 $border-radius-tertiary: 100%;
 
+
 $blur-primary: blur(10px);
 $blur-secondary: blur(40px);
 $blur-tertiary: blur(1px);
+$blur-quaternary: blur(3px);
 
-$text-shadow: 1px 1px 9px $color-transparent-primary;
+$text-shadow-primary: 1px 1px 9px $color-transparent-primary;
+$text-shadow-secondary: 1px 3px 4px $color-transparent-primary;
 $text-stroke: 0.5px $color-accent-primary;
