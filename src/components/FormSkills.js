@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import { gql, useMutation } from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   computers: 0,
   cool: 0,
   coordination: 0,
+  coreWorlds: 0,
   deception: 0,
   discipline: 0,
   education: 0,
@@ -36,6 +38,84 @@ const initialState = {
   xenology: 0,
 }
 
+const CREATE_SKILLS = gql`
+  mutation ($astrogation: Int!, $athletics: Int!, $brawl: Int!, $charm: Int!, $coercion: Int!, $computers: Int!, $cool: Int!, $coordination: Int!, $coreWorlds: Int!, $deception: Int!, $discipline: Int!, $education: Int!, $gunnery: Int!, $leadership: Int!, $lore: Int!, $mechanics: Int!, $medicine: Int!, $melee: Int!, $negotiation: Int!, $outerRim: Int!, $perception: Int!, $piloting: Int!, $pilotingSpace: Int!, $rangedHeavy: Int!, $rangedLight: Int!, $resilience: Int!, $skulduggery: Int!, $stealth: Int!, $streetWise: Int!, $survival: Int!, $underworld: Int!, $vigilance: Int!, $xenology: Int!){ 
+    createSkill(
+      input: {
+        characterId: 2
+        astrogation: $astrogation
+        athletics: $athletics
+        brawl: $brawl
+        charm: $charm
+        coercion: $coercion
+        computers: $computers
+        cool: $cool
+        coordination: $coordination
+        coreWorlds: $coreWorlds
+        deception: $deception
+        discipline: $discipline
+        education: $education
+        gunnery: $gunnery
+        leadership: $leadership
+        lore: $lore
+        mechanics: $mechanics
+        medicine: $medicine
+        melee: $melee
+        negotiation: $negotiation
+        outerRim: $outerRim
+        perception: $perception
+        piloting: $piloting
+        pilotingSpace: $pilotingSpace
+        rangedHeavy: $rangedHeavy
+        rangedLight: $rangedLight
+        resilience: $resilience
+        skulduggery: $skulduggery
+        stealth: $stealth
+        streetWise: $streetWise
+        survival: $survival
+        underworld: $underworld
+        vigilance: $vigilance
+        xenology: $xenology
+      }
+    ) {							  
+        astrogation
+        athletics
+        brawl
+        charm
+        coercion
+        computers
+        cool
+        coordination
+        coreWorlds
+        deception
+        discipline
+        education
+        gunnery
+        id
+        leadership
+        lore
+        mechanics
+        medicine
+        melee
+        negotiation
+        outerRim
+        perception
+        piloting
+        pilotingSpace
+        rangedHeavy
+        rangedLight
+        resilience
+        skulduggery
+        stealth
+        streetWise
+        survival
+        underworld
+        vigilance
+        xenology
+    }
+  }
+`;
+
 export const FormSkills = ({ charId, currentStep, setCurrentStep }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
@@ -43,7 +123,16 @@ export const FormSkills = ({ charId, currentStep, setCurrentStep }) => {
     dispatch({ field: e.target.name, value: parseInt(e.target.value) })
   }
 
-  const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
+  const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
+
+  const [createSkills] = useMutation(CREATE_SKILLS, {
+    variables: state
+  });
+
+  const handleCreate = (e) => {
+    e.preventDefault();
+    // createSkills();
+  }
 
   if (currentStep !== 'skills') {
     return null;
@@ -82,6 +171,10 @@ export const FormSkills = ({ charId, currentStep, setCurrentStep }) => {
       <label htmlFor='coordination'>
         Coordination
         <input type='number' min='0' max='5' name='coordination' value={coordination} onChange={onChange}/>
+      </label>
+      <label htmlFor='coreWorlds'>
+        Core Worlds
+        <input type='number' min='0' max='5' name='coreWorlds' value={coreWorlds} onChange={onChange}/>
       </label>
       <label htmlFor='deception'>
         Deception
@@ -179,11 +272,7 @@ export const FormSkills = ({ charId, currentStep, setCurrentStep }) => {
         Xenology
         <input type='number' min='0' max='5' name='xenology' value={xenology} onChange={onChange}/>
       </label>
-      <button onClick={(event) => {
-        event.preventDefault()
-        setCurrentStep('details')
-        console.log(state)
-        }}>Submit</button>
+      <button onClick={handleCreate}>Submit</button>
     </form>
   )
 }
