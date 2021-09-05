@@ -3,8 +3,8 @@ import { SkillBar } from "./SkillBar";
 import { useQuery, gql } from "@apollo/client";
 
 const SKILLS = gql`
-  query getSkills {
-    character(id: 1) {
+  query getSkills ($id: ID!){
+    character(id: $id) {
       skills {
         astrogation
         athletics
@@ -42,8 +42,10 @@ const SKILLS = gql`
   }
 `
 
-export const SkillsPage = () => {
-  const { loading, error, data } = useQuery(SKILLS);
+export const SkillsPage = ({ currentChar }) => {
+  const { loading, error, data } = useQuery(SKILLS, {
+    variables: { id: currentChar }
+  });
 
   if (loading) return 'Loading your data...';
   if (error) return `Error! ${error.message}`;

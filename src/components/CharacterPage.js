@@ -4,8 +4,8 @@ import { Characteristics } from "./Characteristics";
 import { useQuery, gql } from "@apollo/client";
 
 const CHARACTER = gql`
-  query getCharacter {
-    character(id: 1){
+  query getCharacter ($id: ID!){
+    character(id: $id){
       id
       name
       species
@@ -23,8 +23,10 @@ const CHARACTER = gql`
   }
 `
 
-export const CharacterPage = () => {
-  const { loading, error, data } = useQuery(CHARACTER);
+export const CharacterPage = ({ currentChar }) => {
+  const { loading, error, data } = useQuery(CHARACTER, {
+    variables: { id: currentChar }
+  });
 
   if (loading) return 'Loading your data...';
   if (error) return `Error! ${error.message}`;
