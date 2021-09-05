@@ -1,7 +1,3 @@
-.top-bottom-bubbles {
-  @include flex(row, center)
-}
-
-.center-bubbles {
-  @include flex(row, space-between)
+.bubbles {
+  @include grid(triple);
 }
