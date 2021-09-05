@@ -1,5 +1,5 @@
-import React, { useReducer } from "react";
-import {gql, useMutation} from '@apollo/client';
+import React, { useEffect, useReducer } from "react";
+import { gql, useMutation } from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
 
 const initialState = {
@@ -51,10 +51,16 @@ export const FormCharDetails = ({ currentStep, setCurrentStep, setCharId }) => {
 
   const handleCreate = (e) => {
     e.preventDefault();
-    // setCurrentStep('characteristics');
     createCharDetails();
-    console.log(state);
   }
+
+  useEffect(() => {
+    if (data) {
+      console.log(data.createCharacter.id)
+      setCharId(data.createCharacter.id);
+      setCurrentStep('characteristics');
+    }
+  }, [data, setCharId, setCurrentStep])
 
   if (currentStep !== 'details') {
     return null;
@@ -62,7 +68,6 @@ export const FormCharDetails = ({ currentStep, setCurrentStep, setCharId }) => {
 
   if (loading) return 'Submitting...';
   if (error) return `Submission error! ${error.message}`;
-  if (data) console.log(data)
 
   return (
     <form>
