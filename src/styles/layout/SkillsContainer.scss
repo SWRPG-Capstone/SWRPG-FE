@@ -1,46 +1,25 @@
 .skills-sheet {
   position: relative;
-  margin-bottom: .2rem;
   width: 100%;
-  height: 80%;
-
+	height: 100%;
   &::before {
     content: '';
     position: absolute;
-    z-index: 0;
-    top: 1rem;
+    z-index: 1;
+    margin-top: 1rem;
     width: 100%;
-    height: 22rem;
-    filter: $blur-tertiary;
-    background-image: linear-gradient(to bottom,
-        $color-background-primary 0%,
-        hsla(0, 0%, 0, 0) 35%,
-        hsla(0, 0%, 0, 0) 100%);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    bottom: -4rem;
-    width: 100%;
-    height: 5rem;
+    height: 4rem;
+    background: $color-background-primary;
     filter: $blur-primary;
-    background-image: linear-gradient(to bottom,
-        hsla(0, 0%, 0, 0) 0%,
-        $color-background-primary 10%,
-        $color-background-primary 100%,
-      );
-  }
-
+    }
   .skill-headings {
     @include flex(row, space-between);
     position: absolute;
+    z-index: 1;
     width: 100%;
     padding: 0 2.5rem;
     .heading {
       @include fonts(giant, $font-weight-bold);
-      opacity: 1;
       color: $color-white;
     }
   }
@@ -50,7 +29,7 @@
     overflow-y: auto;
     margin: 3rem 0;
     width: 100%;
-    height: 100%;
-    padding: 2rem 1rem 3.25rem;
+    height: clamp(10%, 90vh, 100%);
+    padding: 2.5rem 1rem 15rem;
   }
 }
