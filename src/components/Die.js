@@ -5,7 +5,8 @@ export const Die = ({ die }) => {
 
 	const handleClick = (e, sign) => {
 		e.preventDefault()
-		sign === 'plus' ? setCount(count + 1) : setCount(count - 1)
+		sign === 'plus' && setCount(count + 1) 
+		sign === 'minus' && count > 0 && setCount(count - 1)
 	}
 
 	return (
