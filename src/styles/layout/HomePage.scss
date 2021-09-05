@@ -5,4 +5,11 @@
   border: $border-primary;
   border-radius: $border-radius-primary;
   padding: .2rem 1.5rem;
+  box-shadow: $box-shadow-primary;
+  transition: 500ms transform, 500ms color;
+
+  &:hover {
+    transform: scale(1.2);
+    color: $color-accent-secondary;
+  }
 }
