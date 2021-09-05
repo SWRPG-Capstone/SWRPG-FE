@@ -1,0 +1,79 @@
+.die-field {
+	@include flex(row, space-between);
+	width: 22rem;
+	.die-name {
+		@extend h2;
+	}
+	.dice-scale {
+		@include flex(row, space-between);
+		width: 8rem;
+
+		.scale {
+			position: relative;
+			transition: 500ms ease-in-out;
+			border-left: 1.5rem solid transparent;
+			border-right: 1.5rem solid transparent;
+			border-radius: $border-radius-secondary;
+			border-bottom: 2rem solid $color-primary;
+			cursor: pointer;
+			&:hover {
+				border-left: 1.5rem solid transparent;
+				border-right: 1.5rem solid transparent;
+				border-bottom: 2rem solid $color-accent-primary;
+			}
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0.15rem;
+				left: -1.25rem;
+				border-left: 1.25rem solid transparent;
+				border-right: 1.25rem solid transparent;
+				border-bottom: 1.8rem solid $color-primary;
+				z-index: 1;
+				border-radius: $border-radius-secondary;
+
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				top: .25rem;
+				left: -1.4rem;
+				z-index: 0;
+				border-left: 1.5rem solid transparent;
+				border-right: 1.5rem solid transparent;
+				border-bottom: 2rem solid $color-transparent-primary;
+				border-radius: $border-radius-secondary;
+				filter: $blur-quaternary;
+			}
+
+			&.down {
+				transform: rotate(180deg);
+				&::after {
+					content: '';
+					top: -.3rem;
+					left: -1.5rem;
+				}
+			}
+
+			.sign {
+				@include fonts(giant, $font-weight-bold);
+				position: absolute;
+				&.plus {
+					z-index: 3;
+					top: -.8rem;
+					left: -.7rem;
+				}
+				&.minus {
+					z-index: 3;
+					top: -.75rem;
+					left: -.45rem;
+				}
+			}
+		}
+
+		.dice-amount {
+			@include fonts(giant, $font-weight-bold);
+			text-shadow: $text-shadow-secondary;
+		}
+	}
+}
