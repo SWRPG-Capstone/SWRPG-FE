@@ -43,7 +43,7 @@ export const CharacterPage = ({ currentChar }) => {
   );
 
   return (
-    <section>
+    <section className='character-sheet'>
       {characterInfo}
       <h2>Characteristics</h2>
       <Characteristics characteristics={character.characteristics[0]}/>
