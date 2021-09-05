@@ -1,0 +1,1 @@
+export const dice = ['force', 'advantage', 'profeciency', 'boost', 'difficuly', 'challenge', 'setback']
