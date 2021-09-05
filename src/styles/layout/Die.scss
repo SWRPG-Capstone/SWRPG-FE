@@ -2,7 +2,7 @@
 	@include flex(row, space-between);
 	width: 22rem;
 	.die-name {
-		@extend h2;
+		@include fonts(large);
 	}
 	.dice-scale {
 		@include flex(row, space-between);
@@ -13,8 +13,8 @@
 			transition: 500ms ease-in-out;
 			border-left: 1.5rem solid transparent;
 			border-right: 1.5rem solid transparent;
-			border-radius: $border-radius-secondary;
 			border-bottom: 2rem solid $color-primary;
+			border-radius: $border-radius-secondary;
 			cursor: pointer;
 			&:hover {
 				border-left: 1.5rem solid transparent;
@@ -31,7 +31,6 @@
 				border-bottom: 1.8rem solid $color-primary;
 				z-index: 1;
 				border-radius: $border-radius-secondary;
-
 			}
 			&::after {
 				content: '';
