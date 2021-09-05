@@ -12,12 +12,12 @@ const initialState = {
 }
 
 const CREATE_CHARACTERISTICS = gql`
-  mutation ($agility: Int!, $brawn: Int!, $charPresence: Int!, $cunning: Int!, $intellect: Int!, $willpower: Int!){ 
+  mutation ($agility: Int!, $brawn: Int!, $characterId: Int!, $charPresence: Int!, $cunning: Int!, $intellect: Int!, $willpower: Int!){ 
     createCharacteristic(
       input: {
         agility: $agility
         brawn: $brawn
-        characterId: 2
+        characterId: $characterId
         charPresence: $charPresence
         cunning: $cunning
         intellect: $intellect
@@ -43,6 +43,7 @@ export const FormCharacteristics = ({ charId, currentStep, setCurrentStep }) => 
   }
 
   const { agility, brawn, charPresence, cunning, intellect, willpower } = state;
+  state.characterId = parseInt(charId);
 
   const [createCharacteristics] = useMutation(CREATE_CHARACTERISTICS, {
     variables: state
@@ -50,7 +51,7 @@ export const FormCharacteristics = ({ charId, currentStep, setCurrentStep }) => 
 
   const handleCreate = (e) => {
     e.preventDefault();
-    // createCharacteristics();
+    createCharacteristics();
     setCurrentStep('skills');
   }
 
