@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import { Header } from './Header'
 import { HomePage } from "./HomePage";
 import { SkillsPage } from "./SkillsPage";
@@ -21,18 +21,23 @@ export const App = () => {
     <UserContext.Provider value={{ state, dispatch }} >      
       <main>
         <Header />
-          <Route path="/home">
-            <HomePage currentChar={currentChar} setCurrentChar={setCurrentChar} />
-          </Route>
-          <Route path="/character">
-            <CharacterPage currentChar={currentChar} />
-          </Route>
-          <Route path="/skills">
-            <SkillsPage currentChar={currentChar} />
-          </Route>
-          <Route path="/create">
-            <FormContainer setCurrentChar={setCurrentChar} />
-          </Route>
+          <Switch>
+            <Route exact path="/home">
+              <HomePage currentChar={currentChar} setCurrentChar={setCurrentChar} />
+            </Route>
+            <Route exact path="/character">
+              <CharacterPage currentChar={currentChar} />
+            </Route>
+            <Route exact path="/skills">
+              <SkillsPage currentChar={currentChar} />
+            </Route>
+            <Route exact path="/create">
+              <FormContainer setCurrentChar={setCurrentChar} />
+            </Route>
+            <Route>
+              <Redirect to="/home" />
+            </Route>
+          </Switch>
         <NavBar />
       </main>
     </UserContext.Provider>    
