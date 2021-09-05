@@ -1,16 +1,19 @@
-.score-bubble {
-  @include fonts(massive);
-  background-color: $color-primary;
-  border: $border-primary;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  margin: .25rem 2rem;
-  text-align: center;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: $color-accent-primary;
+.bubble-wrapper{
+  @include flex(column, center);
+  .score-bubble {
+    @include fonts(massive);
+    border: $border-primary;
+    border-radius: 50%;
+    width: 4.75rem;
+    height: 4.75rem;
+    background-color: $color-primary;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: $color-accent-primary;
+  }
+  .characteristic-title {
+    padding-top: .25rem;
+    @include fonts(tiny);
+  }
 }
 
-.characteristic-title {
-  @include fonts(tiny);
-}
