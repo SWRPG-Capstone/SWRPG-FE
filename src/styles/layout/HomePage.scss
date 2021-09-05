@@ -1,0 +1,8 @@
+.home-link {
+  text-decoration: none;
+  @include fonts(small);
+  background-color: $color-primary;
+  border: $border-primary;
+  border-radius: $border-radius-primary;
+  padding: .2rem 1.5rem;
+}
