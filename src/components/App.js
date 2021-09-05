@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import { Route } from "react-router-dom";
 import { Header } from './Header'
 import { SkillsPage } from "./SkillsPage";
@@ -13,20 +13,21 @@ const initialState = {
 }
 
 export const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [currentChar, setCurrentChar] = useState(1)
   
   return (
     <UserContext.Provider value={{ state, dispatch }} >      
       <main>
         <Header />
           <Route path="/character">
-            <CharacterPage />
+            <CharacterPage currentChar={currentChar} />
           </Route>
           <Route path="/skills">
-            <SkillsPage />
+            <SkillsPage currentChar={currentChar} />
           </Route>
           <Route path="/create">
-            <FormContainer />
+            <FormContainer setCurrentChar={setCurrentChar} />
           </Route>
         <NavBar />
       </main>
