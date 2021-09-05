@@ -5,14 +5,14 @@
 @mixin grid($viewport) {
   display: grid;
   justify-items: center;
-  @if $viewport==mobile {
+  @if $viewport==single {
     grid-template-columns: repeat(1 , 1fr);
     gap: 1rem 1rem;
-  } @else if $viewport==tablet {
+  } @else if $viewport==double {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem 1rem;
-  } @else if $viewport==desktop{
+  } @else if $viewport==triple{
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem 1rem;
+    gap: .75rem 2.5rem;
   }
 }
