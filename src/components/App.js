@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from "react";
 import { Route } from "react-router-dom";
 import { Header } from './Header'
+import { HomePage } from "./HomePage";
 import { SkillsPage } from "./SkillsPage";
 import { CharacterPage } from "./CharacterPage";
 import { NavBar } from "./NavBar";
@@ -20,6 +21,9 @@ export const App = () => {
     <UserContext.Provider value={{ state, dispatch }} >      
       <main>
         <Header />
+          <Route path="/home">
+            <HomePage currentChar={currentChar} setCurrentChar={setCurrentChar} />
+          </Route>
           <Route path="/character">
             <CharacterPage currentChar={currentChar} />
           </Route>
