@@ -8,7 +8,7 @@ export const FormContainer = () => {
   const [currentStep, setCurrentStep] = useState('details');
 
   return (
-    <section>
+    <section className="form-container">
       <FormCharDetails currentStep={currentStep} setCurrentStep={setCurrentStep} setCharId={setCharId} />
       <FormCharacteristics charId={charId} currentStep={currentStep} setCurrentStep={setCurrentStep} />
       <FormSkills charId={charId}currentStep={currentStep} setCurrentStep={setCurrentStep} />
