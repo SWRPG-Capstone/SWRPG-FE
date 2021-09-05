@@ -29,11 +29,12 @@ lll - Elements | Defaults & Semantic Elements
 lV - Layout | Specialized CSS 
 ========================================================================== */
 
-@import './layout/Header.scss';
 @import './layout/Characteristic.scss';
 @import './layout/Characteristics.scss';
 @import './layout/FormContainer.scss';
 @import './layout/HomePage.scss';
+@import './layout/Die.scss';
+@import './layout/Header.scss';
 @import './layout/InfoField.scss';
 @import './layout/NavBar.scss';
 @import './layout/Orb.scss';
