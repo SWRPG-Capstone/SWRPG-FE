@@ -11,8 +11,8 @@ export const NavBar = () => {
 
   return (
     <footer>
-      <div className={`backdrop ${isAuthorize && 'disabled'}`} />
-      <section className='nav-bar'>
+      <div className={`backdrop ${!isAuthorize && 'disabled'}`} />
+      <section className={`nav-bar ${!isAuthorize && 'disabled'}`}>
         <Orb pathway='/home' icon={home} size='small'/>
         <Orb pathway='/character' icon={character} size='medium' />
         <Orb pathway='/dice' icon={dice} size='large' />
