@@ -63,7 +63,7 @@ export const FormCharacteristics = ({ charId, currentStep, setCurrentStep }) => 
     <form>
       <label htmlFor='agility'>
         agility
-        <input type='number' min='1' max='5' name='agility' value={agility} onChange={onChange}/>
+        <input type='number' min='1' max='5' name='agility' value={agility} onChange={onChange} autoFocus/>
       </label>
       <label htmlFor='brawn'>
         brawn
