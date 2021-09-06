@@ -70,44 +70,62 @@ export const FormCharDetails = ({ currentStep, setCurrentStep, setCharId }) => {
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <form>
-      <label htmlFor="name">
-        name
-        <input type="text" name="name" value={name} onChange={onChange}/>
-      </label>
-      <label htmlFor="species">
-        species
-        <input type="text" name="species" value={species} onChange={onChange}/>
-      </label>
-      <label htmlFor="specialization">
-        specialization
-        <input type="text" name="specialization" value={specialization} onChange={onChange}/>
-      </label>
-      <label htmlFor="career">
-        career
-        <input type="text" name="career" value={career} onChange={onChange}/>
-      </label>
-      <label htmlFor="age">
-        age
-        <input type="number" name="age" value={age} onChange={onChange}/>
-      </label>
-      <label htmlFor="height">
-        height
-        <input type="text" name="height" value={height} onChange={onChange}/>
-      </label>
-      <label htmlFor="build">
-        build
-        <input type="text" name="build" value={build} onChange={onChange}/>
-      </label>
-      <label htmlFor="hair">
-        hair
-        <input type="text" name="hair" value={hair} onChange={onChange}/>
-      </label>
-      <label htmlFor="eyes">
-        eyes
-        <input type="text" name="eyes" value={eyes} onChange={onChange}/>
-      </label>
-      <button onClick={handleCreate}>Next</button>
+    <form className='char-form'>
+     <div className='input-container'> 
+        <label className='char-heading' htmlFor="name">
+          name
+          <input className='char-value' type="text" name="name" value={name} onChange={onChange} autoFocus/>
+        </label>
+      </div>  
+     <div className='input-container'>
+        <label className='char-heading'htmlFor="species">
+          species
+          <input className='char-value' type="text" name="species" value={species} onChange={onChange}/>
+        </label>
+      </div>  
+     <div className='input-container'>
+        <label className='char-heading'htmlFor="specialization">
+          specialization
+          <input className='char-value' type="text" name="specialization" value={specialization} onChange={onChange}/>
+        </label>
+      </div>  
+     <div className='input-container'>
+        <label className='char-heading'htmlFor="career">
+          career
+          <input className='char-value' type="text" name="career" value={career} onChange={onChange}/>
+        </label>
+      </div>  
+     <div className='input-container'>
+        <label className='char-heading'htmlFor="age">
+          age
+          <input className='char-value' type="number" name="age" value={age} onChange={onChange}/>
+        </label>
+      </div>  
+     <div className='input-container'>
+        <label className='char-heading'htmlFor="height">
+          height
+          <input className='char-value' type="text" name="height" value={height} onChange={onChange}/>
+        </label>
+      </div>  
+     <div className='input-container'>
+        <label className='char-heading'htmlFor="build">
+          build
+          <input className='char-value' type="text" name="build" value={build} onChange={onChange}/>
+        </label>
+      </div>  
+     <div className='input-container'>
+        <label className='char-heading'htmlFor="hair">
+          hair
+          <input className='char-value' type="text" name="hair" value={hair} onChange={onChange}/>
+        </label>
+      </div>  
+     <div className='input-container'>
+        <label className='char-heading'htmlFor="eyes">
+          eyes
+          <input className='char-value' type="text" name="eyes" value={eyes} onChange={onChange}/>
+        </label>
+      </div>  
+      <button className='button large'onClick={handleCreate}>Next</button>
     </form>
   )
 }
