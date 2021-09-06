@@ -69,4 +69,45 @@ describe('Home page user flows', () => {
     cy.get('.home-link').should('have.length', 1);
     cy.get('.home-link').contains('Create a New Character').should('be.visible');
   });
+
+  it('Can click a character\'s name to view them on the character page', () => {
+    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+      if (req.body.operationName === 'getCharacter') {
+        req.alias = 'getCharQuery';
+        req.reply({
+          body: {
+            data: {
+              character: {
+                id: '1',
+                name: 'Boops McGoops',
+                species: 'cool alien',
+                specialization: 'assassin',
+                career: 'bounty hunter',
+                characteristics: [
+                  {
+                    brawn: 4,
+                    agility: 3,
+                    cunning: 2,
+                    intellect: 2,
+                    willpower: 3,
+                    charPresence: 1,
+                    __typename: 'Characteristic'
+                  }
+                ],
+                __typename: 'Character'
+              }
+            }
+          },
+          headers: {
+            'access-control-allow-origin': '*',
+          }
+        })
+      }
+    })
+
+    cy.get('.home-link').contains('Boops McGoops').click();
+    cy.wait('@getCharQuery');
+    cy.get('.info-value').contains('Boops McGoops').should('exist');
+    cy.get('.info-value').contains('bounty hunter').should('exist');
+  })
 });
