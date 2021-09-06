@@ -1,7 +1,8 @@
-import React, { useReducer, useLayoutEffect } from "react";
+import React, { useReducer, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { gql, useMutation } from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
+import { UserContext } from "../utilities/UserContext";
 
 const initialState = {
   astrogation: 0,
@@ -117,10 +118,9 @@ const CREATE_SKILLS = gql`
   }
 `;
 
-export const FormSkills = ({ charId, currentStep, setCurrentStep, setCurrentChar }) => {
+export const FormSkills = ({ charId }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const history = useHistory();
-
   const onChange = (e) => {
     dispatch({ field: e.target.name, value: parseInt(e.target.value) })
   }
@@ -135,154 +135,245 @@ export const FormSkills = ({ charId, currentStep, setCurrentStep, setCurrentChar
   const handleSubmit = (e) => {
     e.preventDefault();
     createSkills();
+    console.log(charId)
     history.push('/character');
   }
 
-  useLayoutEffect(() => {
-    return () => {
-      setCurrentChar(parseInt(charId));
-    }
-  }, [setCurrentChar, charId])
-
-  if (currentStep !== 'skills') {
-    return null;
-  }
 
   return (
-    <form>
-      <label htmlFor='astrogation'>
+    <form className='skills-form'>
+
+       <div className='input-container'> 
+      <label className='char-heading' htmlFor='astrogation'>
         Astrogation
-        <input type='number' min='0' max='5' name='astrogation' value={astrogation} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='astrogation' value={astrogation} onChange={onChange} autoFocus />
       </label>
-      <label htmlFor='athletics'>
+        </div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='athletics'>
         Athletics
-        <input type='number' min='0' max='5' name='athletics' value={athletics} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='athletics' value={athletics} onChange={onChange}/>
       </label>
-      <label htmlFor='brawl'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='brawl'>
         Brawl
-        <input type='number' min='0' max='5' name='brawl' value={brawl} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='brawl' value={brawl} onChange={onChange}/>
       </label>
-      <label htmlFor='charm'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='charm'>
         Charm
-        <input type='number' min='0' max='5' name='charm' value={charm} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='charm' value={charm} onChange={onChange}/>
       </label>
-      <label htmlFor='coercion'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='coercion'>
         Coercion
-        <input type='number' min='0' max='5' name='coercion' value={coercion} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='coercion' value={coercion} onChange={onChange}/>
       </label>
-      <label htmlFor='computers'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='computers'>
         Computers
-        <input type='number' min='0' max='5' name='computers' value={computers} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='computers' value={computers} onChange={onChange}/>
       </label>
-      <label htmlFor='cool'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='cool'>
         Cool
-        <input type='number' min='0' max='5' name='cool' value={cool} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='cool' value={cool} onChange={onChange}/>
       </label>
-      <label htmlFor='coordination'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='coordination'>
         Coordination
-        <input type='number' min='0' max='5' name='coordination' value={coordination} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='coordination' value={coordination} onChange={onChange}/>
       </label>
-      <label htmlFor='coreWorlds'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='coreWorlds'>
         Core Worlds
-        <input type='number' min='0' max='5' name='coreWorlds' value={coreWorlds} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='coreWorlds' value={coreWorlds} onChange={onChange}/>
       </label>
-      <label htmlFor='deception'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='deception'>
         Deception
-        <input type='number' min='0' max='5' name='deception' value={deception} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='deception' value={deception} onChange={onChange}/>
       </label>
-      <label htmlFor='discipline'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='discipline'>
         Discipline
-        <input type='number' min='0' max='5' name='discipline' value={discipline} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='discipline' value={discipline} onChange={onChange}/>
       </label>
-      <label htmlFor='education'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='education'>
         Education
-        <input type='number' min='0' max='5' name='education' value={education} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='education' value={education} onChange={onChange}/>
       </label>
-      <label htmlFor='gunnery'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='gunnery'>
         Gunnery
-        <input type='number' min='0' max='5' name='gunnery' value={gunnery} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='gunnery' value={gunnery} onChange={onChange}/>
       </label>
-      <label htmlFor='leadership'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='leadership'>
         Leadership
-        <input type='number' min='0' max='5' name='leadership' value={leadership} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='leadership' value={leadership} onChange={onChange}/>
       </label>
-      <label htmlFor='lore'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='lore'>
         Lore
-        <input type='number' min='0' max='5' name='lore' value={lore} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='lore' value={lore} onChange={onChange}/>
       </label>
-      <label htmlFor='mechanics'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='mechanics'>
         Mechanics
-        <input type='number' min='0' max='5' name='mechanics' value={mechanics} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='mechanics' value={mechanics} onChange={onChange}/>
       </label>
-      <label htmlFor='medicine'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='medicine'>
         Medicine
-        <input type='number' min='0' max='5' name='medicine' value={medicine} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='medicine' value={medicine} onChange={onChange}/>
       </label>
-      <label htmlFor='melee'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='melee'>
         Melee
-        <input type='number' min='0' max='5' name='melee' value={melee} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='melee' value={melee} onChange={onChange}/>
       </label>
-      <label htmlFor='negotiation'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='negotiation'>
         Negotiation
-        <input type='number' min='0' max='5' name='negotiation' value={negotiation} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='negotiation' value={negotiation} onChange={onChange}/>
       </label>
-      <label htmlFor='outerRim'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='outerRim'>
         Outer Rim
-        <input type='number' min='0' max='5' name='outerRim' value={outerRim} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='outerRim' value={outerRim} onChange={onChange}/>
       </label>
-      <label htmlFor='perception'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='perception'>
         Perception
-        <input type='number' min='0' max='5' name='perception' value={perception} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='perception' value={perception} onChange={onChange}/>
       </label>
-      <label htmlFor='piloting'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='piloting'>
         Piloting
-        <input type='number' min='0' max='5' name='piloting' value={piloting} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='piloting' value={piloting} onChange={onChange}/>
       </label>
-      <label htmlFor='pilotingSpace'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='pilotingSpace'>
         Piloting Space
-        <input type='number' min='0' max='5' name='pilotingSpace' value={pilotingSpace} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='pilotingSpace' value={pilotingSpace} onChange={onChange}/>
       </label>
-      <label htmlFor='rangedHeavy'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='rangedHeavy'>
         Ranged Heavy
-        <input type='number' min='0' max='5' name='rangedHeavy' value={rangedHeavy} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='rangedHeavy' value={rangedHeavy} onChange={onChange}/>
       </label>
-      <label htmlFor='rangedLight'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='rangedLight'>
         Ranged Light
-        <input type='number' min='0' max='5' name='rangedLight' value={rangedLight} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='rangedLight' value={rangedLight} onChange={onChange}/>
       </label>
-      <label htmlFor='resilience'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='resilience'>
         Resilience
-        <input type='number' min='0' max='5' name='resilience' value={resilience} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='resilience' value={resilience} onChange={onChange}/>
       </label>
-      <label htmlFor='skulduggery'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='skulduggery'>
         Skulduggery
-        <input type='number' min='0' max='5' name='skulduggery' value={skulduggery} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='skulduggery' value={skulduggery} onChange={onChange}/>
       </label>
-      <label htmlFor='stealth'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='stealth'>
         Stealth
-        <input type='number' min='0' max='5' name='stealth' value={stealth} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='stealth' value={stealth} onChange={onChange}/>
       </label>
-      <label htmlFor='streetWise'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='streetWise'>
         Street Wise
-        <input type='number' min='0' max='5' name='streetWise' value={streetWise} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='streetWise' value={streetWise} onChange={onChange}/>
       </label>
-      <label htmlFor='survival'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='survival'>
         Survival
-        <input type='number' min='0' max='5' name='survival' value={survival} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='survival' value={survival} onChange={onChange}/>
       </label>
-      <label htmlFor='underworld'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='underworld'>
         Underworld
-        <input type='number' min='0' max='5' name='underworld' value={underworld} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='underworld' value={underworld} onChange={onChange}/>
       </label>
-      <label htmlFor='vigilance'>
+</div>
+
+         <div className='input-container'> 
+      <label className='char-heading' htmlFor='vigilance'>
         Vigilance
-        <input type='number' min='0' max='5' name='vigilance' value={vigilance} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='vigilance' value={vigilance} onChange={onChange}/>
       </label>
-      <label htmlFor='xenology'>
+</div>
+
+      <div className='input-container'> 
+      <label className='char-heading' htmlFor='xenology'>
         Xenology
-        <input type='number' min='0' max='5' name='xenology' value={xenology} onChange={onChange}/>
+        <input className='char-value' type='number' min='0' max='5' name='xenology' value={xenology} onChange={onChange}/>
       </label>
-      <button onClick={handleSubmit}>Submit</button>
+      </div>
+      <button className='button' onClick={handleSubmit}>Submit</button>
     </form>
   )
 }
