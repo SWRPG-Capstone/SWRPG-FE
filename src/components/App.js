@@ -10,7 +10,7 @@ import { reducer } from "../utilities/reducer";
 import { FormContainer } from "./FormContainer";
 
 const initialState = {
-  isAuthorize: false
+  isAuthorize: true
 }
 
 export const App = () => {
