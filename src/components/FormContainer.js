@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FormSkills } from "./FormSkills";
 import { FormCharacteristics } from "./FormCharacteristics";
 import { FormCharDetails } from "./FormCharDetails";
+import { UserContext } from "../utilities/UserContext";
 
 export const FormContainer = ({ setCurrentChar }) => {
-  const [charId, setCharId] = useState(null);
-  const [currentStep, setCurrentStep] = useState('details');
+  const [count, setCount] = useState(0)
+  const {state: {currentChar}} = useContext(UserContext)
+  const handleCount = () => setCount(count + 1)
+
+
 
   return (
     <section className="form-container">
-      <FormCharDetails currentStep={currentStep} setCurrentStep={setCurrentStep} setCharId={setCharId} />
-      <FormCharacteristics charId={charId} currentStep={currentStep} setCurrentStep={setCurrentStep} />
-      <FormSkills charId={charId} currentStep={currentStep} setCurrentStep={setCurrentStep} setCurrentChar={setCurrentChar} />
+      {count === 0 && <FormCharDetails setCount={handleCount} setCharId={setCurrentChar} />}
+      {count === 1 && <FormCharacteristics charId={currentChar} setCount={handleCount} />}
+      {count === 2 && <FormSkills charId={currentChar} setCount={handleCount}  />}
     </section>
   )
 }

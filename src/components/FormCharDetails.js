@@ -1,6 +1,7 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import { gql, useMutation } from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
+import { UserContext } from "../utilities/UserContext";
 
 const initialState = {
   name: "",
@@ -36,34 +37,29 @@ const CREATE_DETAILS = gql`
   }
 `;
 
-export const FormCharDetails = ({ currentStep, setCurrentStep, setCharId }) => {
+// I know you had useEffect here before but I found it odd to create the character immediately when one hasnt been made yet. 
+
+export const FormCharDetails = ({ setCount }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
-
-  const onChange = (e) => {
-    dispatch({ field: e.target.name, value: e.target.value })
-  }
-
-  const { name, species, specialization, career, age, height, build, hair, eyes } = state;
+  const{state: userState, dispatch: userDispatch} = useContext(UserContext)
 
   const [createCharDetails, { loading, error, data }] = useMutation(CREATE_DETAILS, {
     variables: state
   });
 
-  const handleCreate = (e) => {
-    e.preventDefault();
-    createCharDetails();
+  const onChange = (e) => {
+    dispatch({ field: e.target.name, value: e.target.value })
   }
-
-  useEffect(() => {
-    if (data) {
-      console.log(data.createCharacter.id)
-      setCharId(data.createCharacter.id);
-      setCurrentStep('characteristics');
-    }
-  }, [data, setCharId, setCurrentStep])
-
-  if (currentStep !== 'details') {
-    return null;
+  
+  const { name, species, specialization, career, age, height, build, hair, eyes } = state;
+  
+  
+  const handleCreate = (e) => {
+        // Lauren this is where I am stuck. I am getting undefined from the apollo so I have to hardcode in 1 to get everything to continue smoothly
+    e.preventDefault();
+    createCharDetails() // <--- I know this works when you assign it to a variable but its locked in as a promise
+    userDispatch({userState, action: { type: 'SETCHARACTER', character: 1}})
+    setCount();
   }
 
   if (loading) return 'Submitting...';
