@@ -1,7 +1,6 @@
-
 .button {
   @include flex(column, center);
-  position: relative;  
+  position: relative;
   transition: 500ms transform;
   border-radius: $border-radius-tertiary;
 
@@ -9,16 +8,19 @@
   &.medium:hover {
     transform: scale(1.2);
   }
+
   &.small {
     margin: 0 .5rem;
     min-width: 2rem;
   }
+
   &.medium {
     margin: 1rem 1rem;
     min-width: 3rem;
   }
+
   &.large {
-   @include hover;
+    @include hover;
     transition-delay: 100ms;
     margin: 0 0rem 1rem;
     min-width: 4.5rem;
@@ -26,14 +28,16 @@
 
   .icon {
     position: absolute;
+
     &.small {
       transform: scale(.95);
     }
+
     &.medium {
       transform: scale(.90);
     }
+
     &.large {
-      border-radius: 100%;
       opacity: 1;
     }
   }
@@ -41,7 +45,6 @@
   .orb {
     position: absolute;
     z-index: -1;
-    background: #fff;
     opacity: .7;
     border: $border-secondary;
     border-radius: $border-radius-tertiary;
@@ -53,27 +56,30 @@
       width: 3rem;
       height: 3rem;
     }
+
     &.medium {
       width: 4rem;
       height: 4rem;
     }
+
     &.large {
       border: unset;
-      opacity: 1;
+      background: $color-white;
+      opacity: .8;
       width: 5rem;
       height: 5rem;
 
     }
   }
-  
+
   &.disabled {
     pointer-events: none;
-    transform:translateY(10rem);
+    transform: translateY(10rem);
   }
 }
 
 .dice {
-  animation: spin infinite 35s alternate;
+  animation: spin infinite 35s normal;
 }
 
 @keyframes spin {
@@ -81,4 +87,3 @@
     transform: rotate(360deg);
   }
 }
-
