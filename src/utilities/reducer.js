@@ -1,19 +1,22 @@
-export const reducer = (state, action) => {
-	const { type, isValid } = action
+export const reducer = (state, {action}) => {
+	const { type,  character } = action
   switch (type) {
-    case "ACTIVATE":
-      localStorage.setItem("token", JSON.stringify(isValid))
+    case "SETCHARACTER": 
+    localStorage.setItem('token', character)
       return {
         ...state,
         isAuthorize: true,
-      };
-    case "AUTOACTIVATE": 
+        currentChar: character
+      }
+    case "AUTOSET": 
       const token = JSON.parse(localStorage.getItem('token'))
       return token ?
         {
         ...state,
-        isAuthorize: token,
+        isAuthorize: true,
+        currentChar: token
       } : state
+
     default:
     return state
   }
