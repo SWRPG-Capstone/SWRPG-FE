@@ -31,9 +31,9 @@ export const HomePage = ({ currentChar, setCurrentChar }) => {
   });
 
   return (
-    <>
+    <section className='home-sheet'>
       {charOptions}
       <Link to='/create' className='home-link'>Create a New Character</Link>
-    </>
+    </section>
   )
 }
