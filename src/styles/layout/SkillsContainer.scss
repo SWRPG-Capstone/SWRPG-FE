@@ -6,9 +6,8 @@
     content: '';
     position: absolute;
     z-index: 1;
-    margin-top: 1rem;
     width: 100%;
-    height: 4rem;
+    height: 3.85rem;
     background: $color-background-primary;
     filter: $blur-primary;
     }
@@ -27,7 +26,7 @@
   .skills-container {
     z-index: 0;
     overflow-y: auto;
-    margin: 3rem 0;
+    margin: 1rem 0;
     width: 100%;
     height: clamp(10%, 90vh, 100%);
     padding: 2.5rem 1rem 15rem;
