@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Orb } from './Orb';
 import { icons } from '../utilities/icons';
+import { UserContext } from '../utilities/UserContext';
 
 export const NavBar = () => {
+
+    const { state: { isAuthorize }  } = useContext(UserContext)
+
   const { home, character, dice, skills, logout } = icons
 
   return (
     <footer>
-      <div className='backdrop'/>
+      <div className={`${isAuthorize && 'disabled'}`} />
       <section className='nav-bar'>
         <Orb pathway='/home' icon={home} size='small'/>
         <Orb pathway='/character' icon={character} size='medium' />
