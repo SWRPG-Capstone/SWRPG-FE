@@ -19,40 +19,40 @@ export const App = () => {
 
   useEffect(() => {
     !state.isAuthorize && state.currentChar &&
-    dispatch({ state, action: { type: 'AUTOSET'}})
+      dispatch({ state, action: { type: 'AUTOSET' } })
   }, [state])
 
-console.log(state)
+  console.log(state)
   const setCurrentChar = (id) => {
-      dispatch({ state, action: { type: 'SETCHARACTER', character: id }} )
-    }
-  
-    const location = useLocation().pathname
+    dispatch({ state, action: { type: 'SETCHARACTER', character: id } })
+  }
+
+  const location = useLocation().pathname
 
   return (
-    <UserContext.Provider value={{ state, dispatch }} >      
+    <UserContext.Provider value={{ state, dispatch }} >
       <main>
         <Header />
-          <Switch>
-            <Route exact path="/home">
-              <HomePage currentChar={state.currentChar} setCurrentChar={setCurrentChar} />
-            </Route>
-            <Route exact path="/character">
-              <CharacterPage currentChar={state.currentChar} />
-            </Route>
-            <Route exact path="/skills">
-              <SkillsPage currentChar={state.currentChar} />
-            </Route>
-            <Route exact path="/create">
-              <FormContainer setCurrentChar={setCurrentChar} />
-            </Route>
-            <Route>
-              <Redirect to="/home" />
-            </Route>
-          </Switch>
+        <Switch>
+          <Route exact path="/home">
+            <HomePage currentChar={state.currentChar} setCurrentChar={setCurrentChar} />
+          </Route>
+          <Route exact path="/character">
+            <CharacterPage currentChar={state.currentChar} />
+          </Route>
+          <Route exact path="/skills">
+            <SkillsPage currentChar={state.currentChar} />
+          </Route>
+          <Route exact path="/create">
+            <FormContainer setCurrentChar={setCurrentChar} />
+          </Route>
+          <Route>
+            <Redirect to="/home" />
+          </Route>
+        </Switch>
         {location !== '/create' && state.isAuthorize && <NavBar />}
       </main>
-    </UserContext.Provider>    
+    </UserContext.Provider>
   )
 }
 

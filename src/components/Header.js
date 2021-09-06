@@ -10,4 +10,4 @@ export const Header = () => {
       <h1 className='title'>{pageTitle}</h1>
     </header>
   )
-} 
+}

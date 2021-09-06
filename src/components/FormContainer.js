@@ -6,7 +6,7 @@ import { UserContext } from "../utilities/UserContext";
 
 export const FormContainer = ({ setCurrentChar }) => {
   const [count, setCount] = useState(0)
-  const {state: {currentChar}} = useContext(UserContext)
+  const { state: { currentChar } } = useContext(UserContext)
   const handleCount = () => setCount(count + 1)
 
 
@@ -15,7 +15,7 @@ export const FormContainer = ({ setCurrentChar }) => {
     <section className="form-container">
       {count === 0 && <FormCharDetails setCount={handleCount} setCharId={setCurrentChar} />}
       {count === 1 && <FormCharacteristics charId={currentChar} setCount={handleCount} />}
-      {count === 2 && <FormSkills charId={currentChar} setCount={handleCount}  />}
+      {count === 2 && <FormSkills charId={currentChar} setCount={handleCount} />}
     </section>
   )
 }
