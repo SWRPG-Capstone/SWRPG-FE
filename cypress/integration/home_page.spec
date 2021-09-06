@@ -23,11 +23,16 @@ describe('Home page user flows', () => {
           }
         })
       }
-    })
+    });
+    cy.visit('http://localhost:3000/');
+  });
+
+  it('Header and url should reflect the current page', () => {
+    cy.get('.title').contains('home').should('be.visible');
+    cy.url().should('include', '/home');
   });
 
   it('Should display a user\'s saved characters', () => {
-    cy.visit('http://localhost:3000/');
     cy.wait('@allCharsQuery');
     cy.get('.home-link').should('have.length', 4);
     cy.get('.home-link').contains('Boops McGoops').should('be.visible');
@@ -36,6 +41,6 @@ describe('Home page user flows', () => {
   });
 
   it('Should contain an option to create a new character', () => {
-
-  })
+    cy.get('.home-link').contains('Create a New Character').should('be.visible');
+  });
 })
