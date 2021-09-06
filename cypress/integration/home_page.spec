@@ -1,5 +1,6 @@
 describe('Home page user flows', () => {
-  it('Should display a user\'s saved characters', () => {
+
+  beforeEach(() => {
     cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
       if (req.body.operationName === 'getAllCharacters') {
         req.alias = 'allCharsQuery';
@@ -23,11 +24,18 @@ describe('Home page user flows', () => {
         })
       }
     })
+  });
+
+  it('Should display a user\'s saved characters', () => {
     cy.visit('http://localhost:3000/');
     cy.wait('@allCharsQuery');
     cy.get('.home-link').should('have.length', 4);
     cy.get('.home-link').contains('Boops McGoops').should('be.visible');
     cy.get('.home-link').contains('Miriax Bibble').should('be.visible');
     cy.get('.home-link').contains('Rein Dodonna').should('be.visible');
+  });
+
+  it('Should contain an option to create a new character', () => {
+
   })
 })
