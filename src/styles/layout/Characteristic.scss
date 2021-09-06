@@ -1,18 +1,18 @@
 .bubble-wrapper{
-  @include flex(column, center);
   .score-bubble {
+    @include flex(column, center);
     @include fonts(massive);
     border: $border-primary;
     border-radius: 50%;
-    width: 4.75rem;
-    height: 4.75rem;
+    width: 4rem;
+    height: 4rem;
     background-color: $color-primary;
     text-align: center;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: $color-accent-primary;
   }
   .characteristic-title {
-    padding-top: .25rem;
+    padding-top: .25em;
     @include fonts(tiny);
   }
 }
