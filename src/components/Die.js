@@ -5,15 +5,15 @@ export const Die = ({ die }) => {
 
 	const handleClick = (e, sign) => {
 		e.preventDefault()
-		sign === 'plus' && setCount(count + 1) 
+		sign === 'plus' && setCount(count + 1)
 		sign === 'minus' && count > 0 && setCount(count - 1)
 	}
 
 	return (
 		<article className='die-field'>
- 			<h4 className='die-name'>{die}</h4>
+			<h4 className='die-name'>{die}</h4>
 			<aside className='dice-scale'>
-			<div className='scale down'>
+				<div className='scale down'>
 					<p className='sign minus' onClick={(e) => handleClick(e, 'minus')}>-</p>
 				</div>
 				<h4 className='dice-amount'>{count}</h4>

@@ -55,7 +55,7 @@ export const SkillsPage = ({ currentChar }) => {
 
   const skillBars = skills.map(skill => {
     const ranks = data.character.skills[0][skill];
-    return <SkillBar key={skill} skill={skill} ranks={ranks}/>
+    return <SkillBar key={skill} skill={skill} ranks={ranks} />
   });
 
   return (
@@ -65,7 +65,7 @@ export const SkillsPage = ({ currentChar }) => {
         <h2 className='heading'>Ranks</h2>
       </div>
       <article className='skills-container'>
-      {skillBars}
+        {skillBars}
       </article>
     </section>
   );

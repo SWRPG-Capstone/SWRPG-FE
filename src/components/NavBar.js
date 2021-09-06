@@ -5,7 +5,7 @@ import { UserContext } from '../utilities/UserContext';
 
 export const NavBar = () => {
 
-    const { state: { isAuthorize }  } = useContext(UserContext)
+  const { state: { isAuthorize } } = useContext(UserContext)
 
   const { home, character, dice, skills, logout } = icons
 
@@ -13,7 +13,7 @@ export const NavBar = () => {
     <footer>
       <div className={`backdrop ${!isAuthorize && 'disabled'}`} />
       <section className={`nav-bar ${!isAuthorize && 'disabled'}`}>
-        <Orb pathway='/home' icon={home} size='small'/>
+        <Orb pathway='/home' icon={home} size='small' />
         <Orb pathway='/character' icon={character} size='medium' />
         <Orb pathway='/dice' icon={dice} size='large' />
         <Orb pathway='/skills' icon={skills} size='medium' />

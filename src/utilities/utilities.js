@@ -9,7 +9,7 @@ export const formReducer = (state, { field, value }) => {
       [field]: parseInt(value)
     }
   }
-  
+
   return {
     ...state,
     [field]: value
