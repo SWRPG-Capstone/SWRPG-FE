@@ -43,4 +43,30 @@ describe('Home page user flows', () => {
   it('Should contain an option to create a new character', () => {
     cy.get('.home-link').contains('Create a New Character').should('be.visible');
   });
-})
+
+  it('If a user has no saved characters, only the create new character button is displayed', () => {
+    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+      if (req.body.operationName === 'getAllCharacters') {
+        req.alias = 'allCharsQuery';
+        req.reply({
+          body: {
+            data: {
+              user: {
+                username: "newuser6",
+                __typename: "User",
+                characters: []
+              }
+            }
+          },
+          headers: {
+            'access-control-allow-origin': '*',
+          }
+        })
+      }
+    });
+    cy.visit('http://localhost:3000/');
+    cy.wait('@allCharsQuery');
+    cy.get('.home-link').should('have.length', 1);
+    cy.get('.home-link').contains('Create a New Character').should('be.visible');
+  });
+});
