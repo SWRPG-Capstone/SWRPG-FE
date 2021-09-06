@@ -1,15 +1,33 @@
-.home-link {
-  text-decoration: none;
-  @include fonts(small);
-  background-color: $color-primary;
-  border: $border-primary;
-  border-radius: $border-radius-primary;
-  padding: .2rem 1.5rem;
-  box-shadow: $box-shadow-primary;
-  transition: 500ms transform, 500ms color;
+.home-sheet {
+  @include flex(column, first);
+  align-items: center;
+  // max-height: 500%;
 
-  &:hover {
-    transform: scale(1.2);
-    color: $color-accent-secondary;
+  min-height: 100%;
+  padding-bottom: 18rem;
+  min-width: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .home-link {
+    text-align: center;
+    @include fonts(small, $font-weight-bold);
+    transition: 500ms transform, 500ms color;
+    margin: .2rem;
+    min-width: 90%;
+    border: $border-primary;
+    border-radius: $border-radius-primary;
+    box-shadow: $box-shadow-primary;
+    background: $color-primary;
+    padding: 0.2rem 1.5rem;
+    text-decoration: none;
+    &:hover {
+      transform: scale(1.05);
+      color: $color-accent-secondary;
+    }
   }
 }
