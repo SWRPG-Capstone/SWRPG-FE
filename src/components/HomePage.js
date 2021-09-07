@@ -4,7 +4,7 @@ import { useQuery, gql } from '@apollo/client';
 
 const ALL_CHARACTERS = gql`
   query getAllCharacters {
-    user(id: 1) {
+    user(id: 2) {
       username
       characters {
         id
