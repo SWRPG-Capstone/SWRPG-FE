@@ -33,25 +33,27 @@ const CREATE_DETAILS = gql`
     ) {
       id
       name
+      species
     }
   }
 `;
 
 
-export const FormCharDetails = ({ charId, setCount }) => {
+export const FormCharDetails = ({ setCount }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const { state: userState, dispatch: userDispatch } = useContext(UserContext)
   const { name, species, specialization, career, age, height, build, hair, eyes } = state;
-  state.characterId = parseInt(charId);
   
-  const [createCharDetails, { loading, error, data }] = useMutation(CREATE_DETAILS,{ 
-    variables: state 
-  });
+  const [createCharDetails, { loading, error, data }] = useMutation(CREATE_DETAILS);
 
-   useEffect(() => {
-    createCharDetails() // <--- I know this works when you assign it to a variable but its locked in as a promise
-  }, [createCharDetails])
-  
+  //  useEffect(() => {
+  //   createCharDetails({ 
+  //     variables: state 
+  //   }) // So this useEffect works every time the state is change (ever keypress) but it creates a new character per key press
+  // }, [state, createCharDetails])
+
+
+
   const onChange = (e) => {
     dispatch({ 
       field: e.target.name, 
@@ -61,11 +63,12 @@ export const FormCharDetails = ({ charId, setCount }) => {
 
   const handleCreate = (e) => {
     e.preventDefault();
-    console.log(data.createCharacter)
+    createCharDetails({ // <--- For some reason this guy does wanna work in here. 
+      variables: state 
+    })
     userDispatch({ userState, action: { type: 'SETCHARACTER', character: data.createCharacter.id } })
     setCount();
   }
-
 
 
 
@@ -75,7 +78,7 @@ export const FormCharDetails = ({ charId, setCount }) => {
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <form className='char-form' autoComplete='on'>
+    <form className='char-form' onSubmit={handleCreate} >
       <div className='input-container'>
         <label className='char-heading' htmlFor="name">
           name
@@ -130,7 +133,7 @@ export const FormCharDetails = ({ charId, setCount }) => {
           <input className='char-value' type="text" name="eyes" value={eyes} onChange={onChange} />
         </label>
       </div>
-      <button className='button large' onClick={handleCreate}>Next</button>
+      <button className='button large'   type='submit'>Next</button>
     </form>
   )
 }
