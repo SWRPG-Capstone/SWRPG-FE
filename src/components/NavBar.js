@@ -4,9 +4,7 @@ import { icons } from '../utilities/icons';
 import { UserContext } from '../utilities/UserContext';
 
 export const NavBar = () => {
-
   const { state: { isAuthorize } } = useContext(UserContext)
-
   const { home, character, dice, skills, logout } = icons
 
   return (
