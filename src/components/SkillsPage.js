@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SkillBar } from "./SkillBar";
 import { useQuery, gql } from "@apollo/client";
 
-const SKILLS = gql`
+export const SKILLS = gql`
   query getSkills ($id: ID!){
     character(id: $id) {
       skills {
