@@ -39,3 +39,9 @@ article {
 form {
   @include flex(column, center)
 }
+
+button {
+  border: none;
+  background: unset;
+  cursor: pointer;
+}
