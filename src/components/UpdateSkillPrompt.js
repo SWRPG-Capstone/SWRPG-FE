@@ -53,11 +53,14 @@ export const UpdateSkillPrompt = ({ skill, skillID, ranks, isOpen, closeModal })
     <>
     {
       isOpen ? 
-        <section className='update-skill-prompt' onClick={() => closeModal()}>
+      <div className='modal-backdrop' onClick={() => closeModal()}>
+        <section className='update-skill-prompt'>
           <h2>Update ranks in {formatName(skill)}?</h2>
           {addButton}
           {removeButton}
+          <button onClick={() => closeModal()}>Close</button>
         </section>
+      </div>
       : null
     }
     </>
