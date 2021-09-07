@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { formatName } from '../utilities/utilities';
 import { UserContext } from "../utilities/UserContext";
+import { SKILLS } from './SkillsPage';
 
 export const UpdateSkillPrompt = ({ skill, skillID, ranks, isOpen, closeModal }) => {
 
@@ -27,7 +28,10 @@ export const UpdateSkillPrompt = ({ skill, skillID, ranks, isOpen, closeModal })
   }
 
   const [mutateSkill] = useMutation(MUTATE_SKILL, {
-    variables: mutationVars
+    variables: mutationVars,
+    refetchQueries: [
+      SKILLS
+    ]
   });
 
   const addButton = ranks < 5 && <button onClick={() => mutateSkill()}>Add Rank</button>;
