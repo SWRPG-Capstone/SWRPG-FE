@@ -18,6 +18,7 @@ const SKILLS = gql`
         discipline
         education
         gunnery
+        id
         leadership
         lore
         mechanics
@@ -53,10 +54,15 @@ export const SkillsPage = ({ currentChar }) => {
   const skills = Object.keys(data.character.skills[0]);
   skills.shift();
 
-  const skillBars = skills.map(skill => {
+  const skillBars = skills.reduce((bars, skill) => {
     const ranks = data.character.skills[0][skill];
-    return <SkillBar key={skill} skill={skill} ranks={ranks} />
-  });
+    if (skill !== 'id') {
+      bars.push(<SkillBar key={skill} skill={skill} ranks={ranks} />)
+    }
+    return bars;
+  }, []);
+
+  console.log(data.character.skills[0].id);
 
   return (
     <section className="skills-sheet">
