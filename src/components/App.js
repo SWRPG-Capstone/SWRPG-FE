@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import { Route, Redirect, Switch, useLocation } from "react-router-dom";
 import { Header } from './Header'
 import { HomePage } from "./HomePage";
+import { DicePage } from "./DicePage";
 import { SkillsPage } from "./SkillsPage";
 import { CharacterPage } from "./CharacterPage";
 import { NavBar } from "./NavBar";
@@ -38,6 +39,9 @@ export const App = () => {
           </Route>
           <Route exact path="/character">
             <CharacterPage currentChar={state.currentChar} />
+          </Route>
+          <Route exact path="/dice">
+            <DicePage />
           </Route>
           <Route exact path="/skills">
             <SkillsPage currentChar={state.currentChar} />
