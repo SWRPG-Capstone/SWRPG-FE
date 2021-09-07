@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
-import { NavLink, useHistory, useLocation } from 'react-router-dom';
-import { randomizeDice } from '../utilities/dice';
-import { UserContext } from '../utilities/UserContext'
+import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 
 export const Orb = ({ pathway, icon, size }) => {
-  // const { state: { isAuthorize } } = useContext(UserContext)
+
   const file = icon.substr(14)
   const iconName = file.substr(0, file.indexOf('.'))
   const history = useHistory();
@@ -12,10 +10,9 @@ export const Orb = ({ pathway, icon, size }) => {
 
 
   const handleClick = () => {
-    console.log(location)
-    return location !== '/dice' ?
-    history.push(pathway) :
-    randomizeDice()
+    return location === '/dice' && size === 'large' ?
+    console.log('location') :
+    history.push(pathway) 
   }
 
   return (

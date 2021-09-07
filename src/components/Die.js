@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { randomizeDice } from "../utilities/dice"
+import { useState } from "react";
 
 export const Die = ({ die, sides, scenario, roll }) => {
 	const [count, setCount] = useState(0)
