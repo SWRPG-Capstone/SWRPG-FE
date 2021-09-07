@@ -61,7 +61,7 @@ export const SkillsPage = ({ currentChar }) => {
   const skillBars = skills.reduce((bars, skill) => {
     const ranks = data.character.skills[0][skill];
     if (skill !== 'id') {
-      bars.push(<SkillBar key={skill} skill={skill} ranks={ranks} />)
+      bars.push(<SkillBar key={skill} skill={skill} skillID={skillID} ranks={ranks} />)
     }
     return bars;
   }, []);
