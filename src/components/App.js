@@ -18,11 +18,10 @@ export const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    !state.isAuthorize && state.currentChar &&
+    !state.isAuthorize &&
       dispatch({ state, action: { type: 'AUTOSET' } })
   }, [state])
 
-  console.log(state)
   const setCurrentChar = (id) => {
     dispatch({ state, action: { type: 'SETCHARACTER', character: id } })
   }
@@ -44,7 +43,7 @@ export const App = () => {
             <SkillsPage currentChar={state.currentChar} />
           </Route>
           <Route exact path="/create">
-            <FormContainer setCurrentChar={setCurrentChar} />
+            <FormContainer />
           </Route>
           <Route>
             <Redirect to="/home" />
