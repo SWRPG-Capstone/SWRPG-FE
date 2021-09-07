@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Orb } from './Orb';
 import { icons } from '../utilities/icons';
-import { UserContext } from '../utilities/UserContext';
+import { useLocation } from 'react-router';
 
 export const NavBar = () => {
-  const { state: { isAuthorize } } = useContext(UserContext)
   const { home, character, dice, skills, logout } = icons
-
+  const location = useLocation().pathname
+  console.log(location)
   return (
-    <footer>
-      <div className={`backdrop ${!isAuthorize && 'disabled'}`} />
-      <section className={`nav-bar ${!isAuthorize && 'disabled'}`}>
+    <footer className={location === '/create' && 'disable'}>
+      <div className={`backdrop`} />
+      <section className={`nav-bar`}>
         <Orb pathway='/home' icon={home} size='small' />
         <Orb pathway='/character' icon={character} size='medium' />
         <Orb pathway='/dice' icon={dice} size='large' />
