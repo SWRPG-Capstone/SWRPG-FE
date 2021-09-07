@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import { gql, useMutation } from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
 import { UserContext } from "../utilities/UserContext";
@@ -32,47 +32,34 @@ const CREATE_DETAILS = gql`
       }
     ) {
       id
-      name
-      species
     }
   }
 `;
 
-
 export const FormCharDetails = ({ setCount }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
-  const { state: userState, dispatch: userDispatch } = useContext(UserContext)
+  const { state: userState, dispatch: userDispatch } = useContext(UserContext);
   const { name, species, specialization, career, age, height, build, hair, eyes } = state;
   
-  const [createCharDetails, { loading, error, data }] = useMutation(CREATE_DETAILS);
-
-  //  useEffect(() => {
-  //   createCharDetails({ 
-  //     variables: state 
-  //   }) // So this useEffect works every time the state is change (ever keypress) but it creates a new character per key press
-  // }, [state, createCharDetails])
-
-
+  const [createCharDetails, { loading, error }] = useMutation(CREATE_DETAILS, {
+    onCompleted(data) {
+      userDispatch({ userState, action: { type: 'SETCHARACTER', character: data.createCharacter.id } });
+    }
+  });
 
   const onChange = (e) => {
     dispatch({ 
       field: e.target.name, 
-      value: e.target.value })
+      value: e.target.value });
   }
-
 
   const handleCreate = (e) => {
     e.preventDefault();
-    createCharDetails({ // <--- For some reason this guy does wanna work in here. 
+    createCharDetails({
       variables: state 
-    })
-    userDispatch({ userState, action: { type: 'SETCHARACTER', character: data.createCharacter.id } })
+    });
     setCount();
   }
-
-
-
-
 
   if (loading) return 'Submitting...';
   if (error) return `Submission error! ${error.message}`;
@@ -133,7 +120,7 @@ export const FormCharDetails = ({ setCount }) => {
           <input className='char-value' type="text" name="eyes" value={eyes} onChange={onChange} />
         </label>
       </div>
-      <button className='button large'   type='submit'>Next</button>
+      <button className='button large' type='submit'>Next</button>
     </form>
   )
 }
