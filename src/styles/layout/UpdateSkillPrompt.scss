@@ -2,9 +2,20 @@
   position: absolute;
   z-index: 2;
   top: 10vh;
+  left: 10vw;
   background-color: $color-primary;
   padding: 2rem;
   border-radius: $border-radius-primary;
   border: $border-primary;
   box-shadow: $box-shadow-primary;
+}
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-background-primary;
 }
