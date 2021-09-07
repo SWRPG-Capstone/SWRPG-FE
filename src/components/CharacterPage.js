@@ -33,6 +33,8 @@ export const CharacterPage = ({ currentChar }) => {
 
   const character = data.character;
 
+  
+
   const characterInfo = (
     <>
       <InfoField heading='name' info={character.name} />

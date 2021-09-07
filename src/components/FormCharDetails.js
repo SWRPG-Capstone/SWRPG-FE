@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import { gql, useMutation } from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
 import { UserContext } from "../utilities/UserContext";
@@ -16,7 +16,7 @@ const initialState = {
 }
 
 const CREATE_DETAILS = gql`
-  mutation ($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!){
+  mutation ($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!) {
     createCharacter(
       input: {
         userId: "1"
@@ -37,36 +37,45 @@ const CREATE_DETAILS = gql`
   }
 `;
 
-// I know you had useEffect here before but I found it odd to create the character immediately when one hasnt been made yet. 
 
-export const FormCharDetails = ({ setCount }) => {
+export const FormCharDetails = ({ charId, setCount }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const { state: userState, dispatch: userDispatch } = useContext(UserContext)
-
-  const [createCharDetails, { loading, error, data }] = useMutation(CREATE_DETAILS, {
-    variables: state
+  const { name, species, specialization, career, age, height, build, hair, eyes } = state;
+  state.characterId = parseInt(charId);
+  
+  const [createCharDetails, { loading, error, data }] = useMutation(CREATE_DETAILS,{ 
+    variables: state 
   });
 
+   useEffect(() => {
+    createCharDetails() // <--- I know this works when you assign it to a variable but its locked in as a promise
+  }, [createCharDetails])
+  
   const onChange = (e) => {
-    dispatch({ field: e.target.name, value: e.target.value })
+    dispatch({ 
+      field: e.target.name, 
+      value: e.target.value })
   }
-
-  const { name, species, specialization, career, age, height, build, hair, eyes } = state;
 
 
   const handleCreate = (e) => {
-    // Lauren this is where I am stuck. I am getting undefined from the apollo so I have to hardcode in 1 to get everything to continue smoothly
     e.preventDefault();
-    createCharDetails() // <--- I know this works when you assign it to a variable but its locked in as a promise
-    userDispatch({ userState, action: { type: 'SETCHARACTER', character: 1 } })
+    console.log(data.createCharacter)
+    userDispatch({ userState, action: { type: 'SETCHARACTER', character: data.createCharacter.id } })
     setCount();
   }
+
+
+
+
+
 
   if (loading) return 'Submitting...';
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <form className='char-form'>
+    <form className='char-form' autoComplete='on'>
       <div className='input-container'>
         <label className='char-heading' htmlFor="name">
           name

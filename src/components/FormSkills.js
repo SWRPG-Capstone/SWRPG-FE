@@ -1,8 +1,7 @@
-import React, { useReducer, useContext, useEffect } from "react";
+import React, { useReducer } from "react";
 import { useHistory } from "react-router-dom";
 import { gql, useMutation } from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
-import { UserContext } from "../utilities/UserContext";
 
 const initialState = {
   astrogation: 0,
@@ -141,7 +140,7 @@ export const FormSkills = ({ charId }) => {
 
 
   return (
-    <form className='skills-form'>
+    <form className='skills-form' autoComplete='on'>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='astrogation'>

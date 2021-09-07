@@ -37,6 +37,12 @@ const CREATE_CHARACTERISTICS = gql`
 
 export const FormCharacteristics = ({ charId, setCount }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
+  const { agility, brawn, charPresence, cunning, intellect, willpower } = state;
+  state.characterId = parseInt(charId);
+
+  const [createCharacteristics] = useMutation(CREATE_CHARACTERISTICS, {
+    variables: state
+  });
 
   const onChange = e => {
     dispatch({
@@ -46,61 +52,56 @@ export const FormCharacteristics = ({ charId, setCount }) => {
   };
 
 
-  const { agility, brawn, charPresence, cunning, intellect, willpower } = state;
-  state.characterId = parseInt(charId);
 
-  const [createCharacteristics] = useMutation(CREATE_CHARACTERISTICS, {
-    variables: state
-  });
 
   const handleCreate = e => {
     e.preventDefault();
-    setCount()
+    setCount();
     createCharacteristics();
   };
 
 
   return (
-    <form className='characteristic-form'>
+    <form className='characteristic-form' autoComplete='on'>
       <div className='input-container'>
         <label className='char-heading' htmlFor='agility'>
           agility
-          <input className='char-value' type='number' min='1' max='5' name='agility' value={agility} onChange={onChange} autoFocus />
+          <input className='char-value' type='number' min='0' max='5' name='agility' value={agility} onChange={onChange} autoFocus />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='brawn'>
           brawn
-          <input className='char-value' type='number' min='1' max='5' name='brawn' value={brawn} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='brawn' value={brawn} onChange={onChange} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='charPresence'>
           presence
-          <input className='char-value' type='number' min='1' max='5' name='charPresence' value={charPresence} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='charPresence' value={charPresence} onChange={onChange} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='cunning'>
           cunning
-          <input className='char-value' type='number' min='1' max='5' name='cunning' value={cunning} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='cunning' value={cunning} onChange={onChange} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='intellect'>
           intellect
-          <input className='char-value' type='number' min='1' max='5' name='intellect' value={intellect} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='intellect' value={intellect} onChange={onChange} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='willpower'>
           willpower
-          <input className='char-value' type='number' min='1' max='5' name='willpower' value={willpower} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='willpower' value={willpower} onChange={onChange} />
         </label>
       </div>
 
