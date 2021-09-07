@@ -1,3 +1,17 @@
 .dice-sheet {
+	@include flex(column, start);
 	height: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+	.dice-headings {
+		@include flex(row, space-between);
+		> h3 {
+      @include fonts(giant, $font-weight-bold);
+			color: $color-white;
+		}
+	}
 }
