@@ -1,12 +1,18 @@
 import { useState } from "react"
+import { randomizeDice } from "../utilities/dice"
 
-export const Die = ({ die }) => {
+export const Die = ({ die, sides, scenario, roll }) => {
 	const [count, setCount] = useState(0)
 
 	const handleClick = (e, sign) => {
 		e.preventDefault()
-		sign === 'plus' && setCount(count + 1)
-		sign === 'minus' && count > 0 && setCount(count - 1)
+		if (sign === 'plus') {
+			 setCount(count + 1)
+			 roll(die, count + 1)
+		 } else if (sign === 'minus' && count > 0) {
+				 setCount(count - 1)
+				 roll(die, count - 1)
+			 }
 	}
 
 	return (
