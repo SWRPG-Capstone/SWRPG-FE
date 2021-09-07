@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { SkillBar } from "./SkillBar";
 import { useQuery, gql } from "@apollo/client";
 
@@ -45,8 +45,12 @@ const SKILLS = gql`
 
 export const SkillsPage = ({ currentChar }) => {
   const { loading, error, data } = useQuery(SKILLS, {
-    variables: { id: currentChar }
+    variables: { id: currentChar },
+    onCompleted(data) {
+      setSkillID(data.character.skills[0].id);
+    }
   });
+  const [skillID, setSkillID] = useState(null);
 
   if (loading) return 'Loading your data...';
   if (error) return `Error! ${error.message}`;
@@ -61,8 +65,6 @@ export const SkillsPage = ({ currentChar }) => {
     }
     return bars;
   }, []);
-
-  console.log(data.character.skills[0].id);
 
   return (
     <section className="skills-sheet">
