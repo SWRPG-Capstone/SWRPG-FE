@@ -1,11 +1,9 @@
 .home-sheet {
-  @include flex(column, first);
+  @include flex(column, start);
   align-items: center;
-  // max-height: 500%;
-
   min-height: 100%;
-  padding-bottom: 18rem;
   min-width: 100%;
+  padding-bottom: 18rem;
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;
