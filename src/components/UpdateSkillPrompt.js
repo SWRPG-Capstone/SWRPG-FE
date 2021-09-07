@@ -19,23 +19,35 @@ export const UpdateSkillPrompt = ({ skill, skillID, ranks, isOpen, closeModal })
   `;
 
   const userContext = useContext(UserContext);
-  console.log(userContext.state.currentChar)
 
-  const mutationVars = {
+  const increaseVars = {
     id: parseInt(skillID),
     characterID: userContext.state.currentChar,
     ranks: (ranks + 1)
   }
 
-  const [mutateSkill] = useMutation(MUTATE_SKILL, {
-    variables: mutationVars,
+  const decreaseVars = {
+    id: parseInt(skillID),
+    characterID: userContext.state.currentChar,
+    ranks: (ranks - 1)
+  }
+
+  const [increaseSkill] = useMutation(MUTATE_SKILL, {
+    variables: increaseVars,
     refetchQueries: [
       SKILLS
     ]
   });
 
-  const addButton = ranks < 5 && <button onClick={() => mutateSkill()}>Add Rank</button>;
-  const removeButton = ranks > 0 && <button>Remove Rank</button>;
+  const [decreaseSkill] = useMutation(MUTATE_SKILL, {
+    variables: decreaseVars,
+    refetchQueries: [
+      SKILLS
+    ]
+  });
+
+  const addButton = ranks < 5 && <button onClick={() => increaseSkill()}>Add Rank</button>;
+  const removeButton = ranks > 0 && <button onClick={() => decreaseSkill()}>Remove Rank</button>;
 
   return (
     <>
