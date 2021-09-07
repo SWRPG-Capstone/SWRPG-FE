@@ -14,7 +14,7 @@ const ALL_CHARACTERS = gql`
   }
 `;
 
-export const HomePage = ({ currentChar, setCurrentChar }) => {
+export const HomePage = ({ setCurrentChar }) => {
   const { loading, error, data } = useQuery(ALL_CHARACTERS);
 
   if (loading) return 'Loading your data...';
