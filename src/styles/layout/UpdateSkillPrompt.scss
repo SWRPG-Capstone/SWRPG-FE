@@ -1,5 +1,10 @@
 .update-skill-prompt {
   position: absolute;
+  z-index: 2;
   top: 10vh;
   background-color: $color-primary;
+  padding: 2rem;
+  border-radius: $border-radius-primary;
+  border: $border-primary;
+  box-shadow: $box-shadow-primary;
 }
