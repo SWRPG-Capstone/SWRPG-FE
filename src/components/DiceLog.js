@@ -1,62 +1,61 @@
 import React, { useEffect, useState } from "react"
 
 export const DiceLog = ({ diceRolls }) => {
-	const [log, setLog] = useState([])
+	const [logs, setLogs] = useState([])
 	const { outcome } = diceRolls
 	const diceSet = ['force', 'ability', 'proficiency', 'boost', 'difficulty', 'challenge', 'setback']
 
 	let countOutcome;
 
-
-
+	
 	useEffect(() => {
-		if ( outcome ) {
+		const entries = []
+		if (outcome) {
 			const translation = outcome.filter(entry => {
 				return entry.length
 			}).map((result) => {
+				setLogs([])
 				const diceIndex = (outcome.indexOf(result))
 				const logEntry = countOutcome(result, diceIndex)
-				return !log.length && setLog(...log, logEntry)
+				entries.push(logEntry)
+				return setLogs(...logs, entries)
 			})
 			return translation
 		}
-	}, [outcome, countOutcome, log])
+	}, [outcome, countOutcome])
 
 
 	countOutcome = (result, i) => {
 		const die = diceSet[i]
-		const dieAmount = diceRolls[die]
 
 		const totalResult = result.reduce((acc, dieValues) => {
-				dieValues.map(value => {
+			 dieValues.map(value => {
 				if (!acc[value]) {
 					acc[value] = 0
-				} 
-					return acc[value]++
+				}
+				return acc[value]++
 			})
 			return acc
 		}, {})
-		 
+		
+
 		const getPhrases = Object.keys(totalResult).map(face => {
-			const total = Object.values(totalResult).map(amount => console.log(amount))
-			// const	total = Object.keys(totalResult).length
 			return (
-				<>{`You rolled ${dieAmount} ${die} dice and got ${total} ${face} `}</>		
-				)
+				<p>{`You rolled a ${die} die and got ${totalResult[face]} ${face}`}<br/></p>
+			)
 		})
 
-			const parsedPhrases = getPhrases.map(phrase => {
-				return phrase.props.children
-			})
+		const parsedPhrases = getPhrases.map(phrase => {
+			return phrase.props.children
+		})
 
+		return parsedPhrases
+	};
 
-
-			return parsedPhrases
-		};
 
 	return (
 		<article className='roll-log'>
-			<p className='entry'>	{log} </p>
+				<p className='entry'>{logs}</p>
 		</article>
 	)
 }
