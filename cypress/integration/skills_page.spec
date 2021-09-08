@@ -307,12 +307,12 @@ describe('Skills page user flows', () => {
               __typename: 'Character'
             }
           }
-          })
-        }
-        });
+        })
+      }
+    });
         
-        cy.get('button').contains('Add Rank').click();
-        cy.wait('@skillsQuery');
+    cy.get('button').contains('Add Rank').click();
+    cy.wait('@skillsQuery');
     cy.get('#coercion').should('have.value', 2);
   });
 });
