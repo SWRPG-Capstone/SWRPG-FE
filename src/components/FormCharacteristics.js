@@ -12,7 +12,7 @@ const initialState = {
 };
 
 const CREATE_CHARACTERISTICS = gql`
-  mutation($agility: Int!, $brawn: Int!, $characterId: Int!, $charPresence: Int!, $cunning: Int!, $intellect: Int!, $willpower: Int!) {
+  mutation createCharacteristics($agility: Int!, $brawn: Int!, $characterId: Int!, $charPresence: Int!, $cunning: Int!, $intellect: Int!, $willpower: Int!) {
     createCharacteristic(
       input: {
         agility: $agility

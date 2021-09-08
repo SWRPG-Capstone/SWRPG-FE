@@ -16,7 +16,7 @@ const initialState = {
 }
 
 const CREATE_DETAILS = gql`
-  mutation ($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!) {
+  mutation createCharDetails($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!) {
     createCharacter(
       input: {
         userId: "2"
