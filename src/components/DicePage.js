@@ -1,24 +1,17 @@
 import { Die } from "./Die"
 import { dice } from "../utilities/dice"
-import { useReducer } from "react";
-import { diceReducer } from "../utilities/diceReducer";
+import { useContext, useState } from "react";
+import { UserContext } from "../utilities/UserContext";
 
-const initialState = {
-	force: 0,
-	ability: 0,
-	profecieny: 0,
-	boost: 0,
-	difficulty: 0,
-	challenge: 0,
-	setback: 0
-}
+
 
 export const DicePage = () => {
-  const [state, dispatch] = useReducer(diceReducer, initialState);
+  const { state , dispatch } = useContext(UserContext);
+	const [isActive, setActive] = useState(false);
+	const [log, setLog] = useState(''); 
 	
 		const handleRoll = (type, value) => {
-			dispatch({state, type: 'SETDIE', die: type, value: value})
-
+			dispatch({state, action: {type: 'SETDIE', die: type, value: value}})
 		}
 
 	const diceSet = dice.map(die => {
@@ -28,17 +21,20 @@ export const DicePage = () => {
 		)
 	})
 
-	
+
 
 	return (
 		<section className='dice-sheet'>
-			<h2>Dice Log</h2>
+			<button className={`open-log-button ${isActive && 'active' }`} onClick={() => setActive(!isActive)}>Dice Log</button>
+			<article className={`dice-log ${!isActive && 'hidden' }`}>
+
+			</article>
 			<div className='dice-field'>
 				<div className="dice-headings">
 					<h3 className='heading'>Dice</h3>
 					<h3 className='heading'>Amount</h3>
 				</div>
-					{diceSet }
+					{diceSet}
 			</div>
 		</section>
 	)
