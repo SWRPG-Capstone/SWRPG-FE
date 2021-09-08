@@ -45,8 +45,9 @@
 				filter: $blur-quaternary;
 			}
 
-			&.down {
+			&.down { 
 				transform: rotate(180deg);
+				z-index: 3;
 				&::after {
 					content: '';
 					top: -.3rem;
