@@ -52,6 +52,24 @@ describe('Character creation user flows', () => {
           }
         })
       }
+
+      if (req.body.operationName === 'createCharacteristics') {
+        req.alias = 'characteristicsMutation';
+        req.reply({
+          data: {
+            createCharacteristic: {
+              agility: 4,
+              brawn: 1,
+              characterId: 4,
+              charPresence: 3,
+              cunning: 3,
+              intellect: 2,
+              willpower: 1,
+              __typename: 'Characteristic'
+            }
+          }
+        })
+      }
     });
 
     cy.get('.home-link').should('have.length', 4);
@@ -66,5 +84,13 @@ describe('Character creation user flows', () => {
     cy.get('input[name="hair"]').type('black').should('have.value', 'black');
     cy.get('input[name="eyes"]').type('brown').should('have.value', 'brown');
     cy.get('button[type="submit"]').click();
+
+    cy.get('input[name="agility"]').clear().type('4').should('have.value', '4');
+    cy.get('input[name="brawn"]').clear().type('1').should('have.value', '1');
+    cy.get('input[name="charPresence"]').clear().type('3').should('have.value', '3');
+    cy.get('input[name="cunning"]').clear().type('3').should('have.value', '3');
+    cy.get('input[name="intellect"]').clear().type('2').should('have.value', '2');
+    cy.get('input[name="willpower"]').clear().type('1').should('have.value', '1');
+    cy.get('button').contains('Next').click();
   });
 });
