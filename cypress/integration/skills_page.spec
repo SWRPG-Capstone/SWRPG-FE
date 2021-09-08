@@ -168,7 +168,7 @@ describe('Skills page user flows', () => {
     cy.get('button').contains('Add Rank').should('be.visible');
   });
 
-  it('Should be able to click the add rank button to increase a skill\'s rank', () => {
+  it('Should be able to click the Add Rank button to increase a skill\'s rank', () => {
     cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
       if (req.body.operationName === 'mutateSkill') {
         req.alias = 'mutateSkill';
@@ -186,7 +186,6 @@ describe('Skills page user flows', () => {
     cy.visit('http://localhost:3000/skills');
     cy.get('#coercion').should('have.value', 3);
     cy.get('#coercion').click({force: true});
-    cy.get('button').contains('Add Rank').click();
 
     cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
       if (req.body.operationName === 'getSkills') {
@@ -238,6 +237,82 @@ describe('Skills page user flows', () => {
       }
     });
 
+    cy.get('button').contains('Add Rank').click();
+    cy.wait('@skillsQuery');
     cy.get('#coercion').should('have.value', 4);
+  });
+
+  it('Should be able to click the Remove Rank button to decrease a skill\'s rank', () => {
+    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+      if (req.body.operationName === 'mutateSkill') {
+        req.alias = 'mutateSkill';
+        req.reply({
+          data: {
+            updateSkill: {
+              coercion: 2,
+              __typename: 'Skill'
+            }
+          }
+        })
+      }
+    });
+
+    cy.visit('http://localhost:3000/skills');
+    cy.get('#coercion').should('have.value', 3);
+    cy.get('#coercion').click({force: true});
+    
+    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+      if (req.body.operationName === 'getSkills') {
+        req.alias = 'skillsQuery';
+        req.reply({
+          data: {
+            character: {
+              skills: [
+                {
+                  astrogation: 0,
+                  athletics: 5,
+                  brawl: 2,
+                  charm: 1,
+                  coercion: 2,
+                  computers: 0,
+                  cool: 3,
+                  coordination: 2,
+                  deception: 0,
+                  discipline: 1,
+                  education: 0,
+                  gunnery: 1,
+                  id: '1',
+                  leadership: 0,
+                  lore: 0,
+                  mechanics: 1,
+                  melee: 3,
+                  negotiation: 0,
+                  outerRim: 0,
+                  perception: 1,
+                  piloting: 2,
+                  pilotingSpace: 2,
+                  rangedHeavy: 1,
+                  rangedLight: 3,
+                  resilience: 3,
+                  skulduggery: 0,
+                  stealth: 1,
+                  streetWise: 4,
+                  survival: 2,
+                  underworld: 0,
+                  vigilance: 2,
+                  xenology: 0,
+                  __typename: 'Skill'
+                }
+              ],
+              __typename: 'Character'
+            }
+          }
+          })
+        }
+        });
+        
+        cy.get('button').contains('Add Rank').click();
+        cy.wait('@skillsQuery');
+    cy.get('#coercion').should('have.value', 2);
   });
 });
