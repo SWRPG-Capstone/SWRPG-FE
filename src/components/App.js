@@ -11,15 +11,15 @@ import { reducer } from "../utilities/reducer";
 import { FormContainer } from "./FormContainer";
 
 const initialState = {
-    currentChar: null,
-    force: 0,
-    ability: 0,
-    proficiency: 0,
-    boost: 0,
-    difficulty: 0,
-    challenge: 0,
-    setback: 0,
-    outcome: []
+  force: 0,
+  ability: 0,
+  proficiency: 0,
+  boost: 0,
+  difficulty: 0,
+  challenge: 0,
+  setback: 0,
+  outcome: [],
+  currentChar: null
 }
 
 export const App = () => {
