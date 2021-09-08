@@ -146,4 +146,25 @@ describe('Skills page user flows', () => {
     cy.get('.modal-backdrop').contains('Close').click();
     cy.get('#deception').should('be.visible');
   });
+
+  it('Should only show an Add Rank button for skills with less than 5 ranks', () => {
+    cy.visit('http://localhost:3000/skills');
+    cy.get('#deception').click({force: true});
+    cy.get('button').contains('Add Rank').should('be.visible');
+    cy.get('button').contains('Remove Rank').should('not.exist');
+  });
+
+  it('Should only show a Remove Rank button for skills with 5 ranks', () => {
+    cy.visit('http://localhost:3000/skills');
+    cy.get('#athletics').click({force: true});
+    cy.get('button').contains('Remove Rank').should('be.visible');
+    cy.get('button').contains('Add Rank').should('not.exist');
+  });
+
+  it('Should show both buttons for skills with 1-4 ranks', () => {
+    cy.visit('http://localhost:3000/skills');
+    cy.get('#brawl').click({force: true});
+    cy.get('button').contains('Remove Rank').should('be.visible');
+    cy.get('button').contains('Add Rank').should('be.visible');
+  });
 });
