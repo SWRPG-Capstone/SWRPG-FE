@@ -61,27 +61,43 @@ describe('Character page user flows', () => {
   });
   
   it('Should be able to visit the character page', () => {
-    cy.visit('http://localhost:3000/character')
-    cy.get('h1').contains('character')
+    cy.visit('http://localhost:3000/character');
+    cy.get('h1').contains('character');
   });
 
+  it('Header and url should reflect the current page', () => {
+    cy.visit('http://localhost:3000/home');
+    cy.get('.button.medium').first().click();
+    cy.url().should('include', '/character');
+    cy.get('h1').contains('character');
+  })
+
   it('Should show a character name, species, career, and specialization', () => {
-    cy.visit('http://localhost:3000/character')
-    cy.get('h2').contains('name')
-    cy.get('p').contains('Boops McGoops')
-    cy.get('h2').contains('species')
-    cy.get('p').contains('cool alien')
-    cy.get('h2').contains('career')
-    cy.get('p').contains('bounty hunter')
-    cy.get('h2').contains('specialization')
-    cy.get('p').contains('assassin')
+    cy.visit('http://localhost:3000/character');
+    cy.get('h2').contains('name');
+    cy.get('p').contains('Boops McGoops');
+    cy.get('h2').contains('species');
+    cy.get('p').contains('cool alien');
+    cy.get('h2').contains('career');
+    cy.get('p').contains('bounty hunter');
+    cy.get('h2').contains('specialization');
+    cy.get('p').contains('assassin');
   });
 
   it('Should be able to click the home button to return to character select', () => {
-    cy.visit('http://localhost:3000/character')
+    cy.visit('http://localhost:3000/character');
     cy.get('.button.small').first().click();
     cy.get('.title').contains('home').should('be.visible');
     cy.url().should('include', '/home');
     cy.get('.home-link').should('have.length', 4);
+  });
+
+  it('Should be able to click the character button to view the character page', () => {
+    cy.visit('http://localhost:3000/character');
+    cy.get('.button.small').first().click();
+    cy.get('.button.medium').first().click();
+    cy.get('h1').contains('character');
+    cy.get('h2').contains('name');
+    cy.get('p').contains('Boops McGoops');
   });
 });
