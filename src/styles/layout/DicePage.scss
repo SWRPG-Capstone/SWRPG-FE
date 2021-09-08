@@ -1,17 +1,81 @@
 .dice-sheet {
 	@include flex(column, start);
 	height: 100%;
-  -ms-overflow-style: none;
+}
+
+
+.dice-field {
+	min-height: 100%;
   scrollbar-width: none;
+	overflow-x: hidden;
   overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 	.dice-headings {
 		@include flex(row, space-between);
 		> h3 {
-      @include fonts(giant, $font-weight-bold);
+			@include fonts(giant, $font-weight-bold);
 			color: $color-white;
 		}
+	}	
+}
+
+.dice-log {
+	position: absolute;
+	z-index: 4;
+	inset-block: 5rem;
+	height: clamp(30rem, 5vh, 10rem);
+	width: clamp(23rem, 30vw, 30rem);
+	background: $color-transparent-secondary;
+	box-shadow: $box-shadow-primary;
+	filter: $blur-quaternary;
+	transition: 1s opacity;
+		
+	&.hidden {
+		opacity: 0;
+		z-index: 4;
 	}
+	&::after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: $color-transparent-secondary;
+		border: 1.5rem solid $color-background-secondary;
+		filter: none;
+		z-index: 6;
+	}
+}
+
+.open-log-button {
+	@include fonts(massive, $font-weight-bold);
+	@include flex(row, center);
+	z-index: 12;
+	color: $color-secondary;
+	text-shadow: $text-shadow-primary;
+	border: $border-primary;
+	border-radius: $border-primary;
+	background-color: $color-secondary;
+	box-shadow: $box-shadow-primary;
+	padding-inline: 2.5rem;
+	height: 5rem;
+	margin-bottom: 1rem;
+	transition: font-size 750ms ease-in-out, color 750ms ease-in-out, background 250ms ease-out, text-shadow 500ms ease-in-out; 
+	&:hover {
+		color: $color-accent-secondary;
+	}
+	&:active  {
+		transition: 5s ease-in-out;
+		color: $color-accent-secondary;
+		transform: scale(.95);
+	}
+	&.active {
+		z-index: 7;
+		background: unset;
+		border-color: transparent;
+		box-shadow: unset;
+		color: $color-accent-secondary;
+	}
+}
+
+@keyframes fade {
+	from {}
 }
