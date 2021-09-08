@@ -12,9 +12,11 @@ export const Orb = ({ pathway, icon, size }) => {
   const { state } = useContext(UserContext)
 
   const handleClick = () => {
-    return location === '/dice' && size === 'large' ?
-      rollDice(state) :
-      history.push(pathway)
+    if (location === '/dice' && size === 'large') {
+      rollDice(state)
+    } else {
+      return history.push(pathway);
+    }
   }
 
 
