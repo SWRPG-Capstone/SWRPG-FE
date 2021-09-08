@@ -1,17 +1,3 @@
-const symbols = {
-	blank: 'blank',
-	success: 'success',
-	triumph: 'triumph',
-	advantage: 'advantage',
-	failure: 'failure',
-	despair: 'despair',
-	threat: 'threat',
-	darkPip: 'darkPip',
-	lightPip: 'lightPip',
-}
-
-const { blank, success, triumph, advantage, failure, despair, threat, darkPip, lightPip } = symbols
-
 export const diceFaces = {
 	b: [blank],
 	dP: [darkPip],
