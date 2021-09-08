@@ -70,6 +70,51 @@ describe('Character creation user flows', () => {
           }
         })
       }
+
+      if (req.body.operationName === 'createSkills') {
+        req.alias = 'charSkillsMutation';
+        req.reply({
+          data: {
+            createSkill: {
+              astrogation: 1,
+              athletics: 2,
+              brawl: 0,
+              charm: 3,
+              coercion: 0,
+              computers: 0,
+              cool: 0,
+              coordination: 4,
+              coreWorlds: 0,
+              deception: 5,
+              discipline: 0,
+              education: 0,
+              gunnery: 0,
+              id: '4',
+              leadership: 0,
+              lore: 0,
+              mechanics: 0,
+              medicine: 0,
+              melee: 0,
+              negotiation: 0,
+              outerRim: 0,
+              perception: 0,
+              piloting: 0,
+              pilotingSpace: 0,
+              rangedHeavy: 0,
+              rangedLight: 0,
+              resilience: 0,
+              skulduggery: 0,
+              stealth: 0,
+              streetWise: 0,
+              survival: 0,
+              underworld: 0,
+              vigilance: 0,
+              xenology: 0,
+              __typename: 'Skill'
+            }
+          }
+        })
+      }
     });
 
     cy.get('.home-link').should('have.length', 4);
@@ -92,5 +137,12 @@ describe('Character creation user flows', () => {
     cy.get('input[name="intellect"]').clear().type('2').should('have.value', '2');
     cy.get('input[name="willpower"]').clear().type('1').should('have.value', '1');
     cy.get('button').contains('Next').click();
+
+    cy.get('input[name="astrogation"]').clear({force: true}).type('1').should('have.value', '1');
+    cy.get('input[name="athletics"]').clear({force: true}).type('2').should('have.value', '2');
+    cy.get('input[name="charm"]').clear({force: true}).type('3').should('have.value', '3');
+    cy.get('input[name="coordination"]').clear({force: true}).type('4').should('have.value', '4');
+    cy.get('input[name="deception"]').clear({force: true}).type('5').should('have.value', '5');
+    cy.get('button').contains('Submit');
   });
 });
