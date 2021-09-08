@@ -1,23 +1,27 @@
-export const reducer = (state, { action }) => {
-  const { type, character } = action
-  switch (type) {
+export const reducer = (state, {action}) => {
+  switch (action.type) {
     case "SETCHARACTER":
+      const {character} = action
       localStorage.setItem('token', character)
       return {
         ...state,
-        isAuthorize: true,
         currentChar: character
       }
+      case "SETDIE":
+        const {die, value} = action
+        return {
+          ...state,
+          [die]: value
+        }
     case "AUTOSET":
       const token = JSON.parse(localStorage.getItem('token'))
       return token ?
         {
           ...state,
-          isAuthorize: true,
-          currentChar: token
+          currentChar: token,
         } : state
-
     default:
       return state
   }
 };
+
