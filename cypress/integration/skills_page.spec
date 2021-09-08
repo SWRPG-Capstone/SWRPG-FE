@@ -134,4 +134,16 @@ describe('Skills page user flows', () => {
     cy.get('.update-skill-prompt').contains('Update ranks in deception?').should('be.visible');
     cy.get('#deception').should('not.be.visible');
   });
+
+  it('Should close the modal by clicking the close button or the background', () => {
+    cy.visit('http://localhost:3000/skills');
+    cy.get('#deception').click({force: true});
+    cy.get('.update-skill-prompt').contains('Update ranks in deception?').should('be.visible');
+    cy.get('button').contains('Close').click();
+    cy.get('#deception').should('be.visible');
+    cy.get('#deception').click({force: true});
+    cy.get('.update-skill-prompt').contains('Update ranks in deception?').should('be.visible');
+    cy.get('.modal-backdrop').contains('Close').click();
+    cy.get('#deception').should('be.visible');
+  });
 });
