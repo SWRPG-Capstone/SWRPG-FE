@@ -1,9 +1,9 @@
 export const diceFaces = {
 	b: ['blank'],
-	dP: ['darkPip'],
-	dPdP: ['darkPip', 'darkPip'],
-	lP: ['lightPip'],
-	lPlP: ['lightPip', 'lightPip'],
+	dP: ['dark side pip'],
+	dPdP: ['dark side pip', 'dark side pip'],
+	lP: ['light side pip'],
+	lPlP: ['light side pip', 'light side pip'],
 	a: ['advantage'],
 	aa: ['advantage', 'advantage'],
 	sa: ['success', 'advantage'],
@@ -70,18 +70,21 @@ const randomizeDice = (max) => {
 	return 1 + Math.floor(Math.random() * max)
 }
 
+export let diceOutcome;
+
 export const rollDice = (state) => {
 	updateDiceAmount(Object.entries(state))
-	dice.map(die => {
+	const outcome = dice.map(die => {
 		const {amount, sides} = die
 		if ({amount}) {
-		 const rollAmount =	Array.from(Array(amount))
-		const rolls = rollAmount.map(() => {
-			return randomizeDice(sides)
+		 	const rollAmount =	Array.from(Array(amount))
+			const rolls = rollAmount.map(() => {
+			return die.scenario[randomizeDice(sides) - 1]
 		 })
-		 console.log(rolls)
-		 }
+		 return rolls
+		}
 	})
+	return diceOutcome = outcome
 }
 
 const updateDiceAmount = (dice) => {
