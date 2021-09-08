@@ -2,17 +2,15 @@ import { Die } from "./Die"
 import { dice } from "../utilities/dice"
 import { useContext, useState } from "react";
 import { UserContext } from "../utilities/UserContext";
-
-
+import { DiceLog } from "./DiceLog";
 
 export const DicePage = () => {
   const { state , dispatch } = useContext(UserContext);
 	const [isActive, setActive] = useState(false);
-	const [log, setLog] = useState(''); 
 	
-		const handleRoll = (type, value) => {
-			dispatch({state, action: {type: 'SETDIE', die: type, value: value}})
-		}
+	const handleRoll = (type, value) => {
+		dispatch({state, action: {type: 'SETDIE', die: type, value: value}})
+	}
 
 	const diceSet = dice.map(die => {
 		const {type, sides, scenario} = die
@@ -21,13 +19,11 @@ export const DicePage = () => {
 		)
 	})
 
-
-
 	return (
 		<section className='dice-sheet'>
 			<button className={`open-log-button ${isActive && 'active' }`} onClick={() => setActive(!isActive)}>Dice Log</button>
 			<article className={`dice-log ${!isActive && 'hidden' }`}>
-
+				<DiceLog diceRolls={state} />
 			</article>
 			<div className='dice-field'>
 				<div className="dice-headings">
