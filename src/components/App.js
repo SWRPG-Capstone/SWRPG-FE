@@ -19,6 +19,7 @@ const initialState = {
     difficulty: 0,
     challenge: 0,
     setback: 0,
+    outcome: []
 }
 
 export const App = () => {
