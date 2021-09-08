@@ -11,23 +11,29 @@ import { reducer } from "../utilities/reducer";
 import { FormContainer } from "./FormContainer";
 
 const initialState = {
-  isAuthorize: false,
-  currentChar: null
+    currentChar: null,
+    force: 0,
+    ability: 0,
+    profecieny: 0,
+    boost: 0,
+    difficulty: 0,
+    challenge: 0,
+    setback: 0,
 }
 
 export const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const location = useLocation().pathname
 
   useEffect(() => {
-    !state.isAuthorize &&
+    !state.currentChar &&
       dispatch({ state, action: { type: 'AUTOSET' } })
   }, [state])
 
   const setCurrentChar = (id) => {
     dispatch({ state, action: { type: 'SETCHARACTER', character: id } })
   }
-
-  const location = useLocation().pathname
+  
 
   return (
     <UserContext.Provider value={{ state, dispatch }} >
@@ -53,7 +59,7 @@ export const App = () => {
             <Redirect to="/home" />
           </Route>
         </Switch>
-        {location !== '/create' && state.isAuthorize && <NavBar />}
+        {location !== '/create' && <NavBar />}
       </main>
     </UserContext.Provider>
   )
