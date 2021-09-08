@@ -115,6 +115,38 @@ describe('Character creation user flows', () => {
           }
         })
       }
+
+      if (req.body.operationName === 'getCharacter') {
+        req.alias = 'getCharQuery';
+        req.reply({
+          body: {
+            data: {
+              character: {
+                id: '4',
+                name: 'Bail Loran',
+                species: 'human',
+                specialization: 'pilot',
+                career: 'ace',
+                characteristics: [
+                  {
+                    brawn: 1,
+                    agility: 4,
+                    cunning: 3,
+                    intellect: 2,
+                    willpower: 1,
+                    charPresence: 3,
+                    __typename: 'Characteristic'
+                  }
+                ],
+                __typename: 'Character'
+              }
+            }
+          },
+          headers: {
+            'access-control-allow-origin': '*',
+          }
+        })
+      }
     });
 
     cy.get('.home-link').should('have.length', 4);
@@ -143,6 +175,6 @@ describe('Character creation user flows', () => {
     cy.get('input[name="charm"]').clear({force: true}).type('3').should('have.value', '3');
     cy.get('input[name="coordination"]').clear({force: true}).type('4').should('have.value', '4');
     cy.get('input[name="deception"]').clear({force: true}).type('5').should('have.value', '5');
-    cy.get('button').contains('Submit');
+    cy.get('button').contains('Submit').click();
   });
 });
