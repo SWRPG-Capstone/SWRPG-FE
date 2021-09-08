@@ -6,9 +6,9 @@ import { useLocation } from 'react-router';
 export const NavBar = () => {
   const { home, character, dice, skills, logout } = icons
   const location = useLocation().pathname
-  console.log(location)
+
   return (
-    <footer className={location === '/create' && 'disable'}>
+    <footer className={`${location === '/create' && 'disable'}`}>
       <div className={`backdrop`} />
       <section className={`nav-bar`}>
         <Orb pathway='/home' icon={home} size='small' />
