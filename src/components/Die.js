@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Die = ({ die, sides, scenario, roll }) => {
+export const Die = ({ die, roll }) => {
 	const [count, setCount] = useState(0)
 
 	const handleClick = (e, sign) => {
