@@ -134,7 +134,6 @@ export const FormSkills = ({ charId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createSkills();
-    console.log(charId)
     history.push('/character');
   }
 
