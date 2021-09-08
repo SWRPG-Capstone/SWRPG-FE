@@ -127,4 +127,11 @@ describe('Skills page user flows', () => {
     cy.get('label').contains('xenology').should('be.visible');
     cy.get('#survival').should('have.value', 2);
   });
+
+  it('Should open a modal when a skill bar is clicked', () => {
+    cy.visit('http://localhost:3000/skills');
+    cy.get('#deception').click({force: true});
+    cy.get('.update-skill-prompt').contains('Update ranks in deception?').should('be.visible');
+    cy.get('#deception').should('not.be.visible');
+  });
 });
