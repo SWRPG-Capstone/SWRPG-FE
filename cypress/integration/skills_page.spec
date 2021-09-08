@@ -117,4 +117,14 @@ describe('Skills page user flows', () => {
     cy.get('.button.medium').last().click();
     cy.get('.title').contains('skills').should('be.visible');
   });
+
+  it('Should display a character\'s skills and number of ranks', () => {
+    cy.visit('http://localhost:3000/skills');
+    cy.get('progress').should('have.length', 31);
+    cy.get('label').should('have.length', 31);
+    cy.get('label').contains('astrogation').should('be.visible');
+    cy.get('.skills-container').scrollTo('bottom');
+    cy.get('label').contains('xenology').should('be.visible');
+    cy.get('#survival').should('have.value', 2);
+  });
 });
