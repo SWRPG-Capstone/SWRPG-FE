@@ -22,13 +22,13 @@ export const UpdateSkillPrompt = ({ skill, skillID, ranks, isOpen, closeModal })
 
   const increaseVars = {
     id: parseInt(skillID),
-    characterID: userContext.state.currentChar,
+    characterID: parseInt(userContext.state.currentChar),
     ranks: (ranks + 1)
   }
 
   const decreaseVars = {
     id: parseInt(skillID),
-    characterID: userContext.state.currentChar,
+    characterID: parseInt(userContext.state.currentChar),
     ranks: (ranks - 1)
   }
 
