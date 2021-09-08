@@ -49,7 +49,7 @@ export const dice = [
 		amount: 0
 	},
 	{
-		type: 'profeciency',
+		type: 'proficiency',
 		sides: 12,
 		scenario: [b, s, s, ss, ss, a, sa, sa, sa, aa, aa, tr],
 		amount: 0

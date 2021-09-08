@@ -14,7 +14,7 @@ const initialState = {
     currentChar: null,
     force: 0,
     ability: 0,
-    profecieny: 0,
+    proficiency: 0,
     boost: 0,
     difficulty: 0,
     challenge: 0,
