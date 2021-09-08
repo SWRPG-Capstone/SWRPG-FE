@@ -1,21 +1,21 @@
 export const diceFaces = {
-	b: [blank],
-	dP: [darkPip],
-	dPdP: [darkPip, darkPip],
-	lP: [lightPip],
-	lPlP: [lightPip, lightPip],
-	a: [advantage],
-	aa: [advantage, advantage],
-	sa: [success, advantage],
-	ss: [success, success],
-	s: [success],
-	tr: [triumph],
-	f: [failure],
-	ff: [failure, failure],
-	ft: [failure, threat],
-	tt: [threat, threat],
-	t: [threat],
-	d: [despair]
+	b: ['blank'],
+	dP: ['darkPip'],
+	dPdP: ['darkPip', 'darkPip'],
+	lP: ['lightPip'],
+	lPlP: ['lightPip', 'lightPip'],
+	a: ['advantage'],
+	aa: ['advantage', 'advantage'],
+	sa: ['success', 'advantage'],
+	ss: ['success', 'success'],
+	s: ['success'],
+	tr: ['triumph'],
+	f: ['failure'],
+	ff: ['failure', 'failure'],
+	ft: ['failure', 'threat'],
+	tt: ['threat', 'threat'],
+	t: ['threat'],
+	d: ['despair']
 }
 
 const { b, dP, dPdP, lP, lPlP, a, aa, sa, ss, s, tr, f, ff, ft, tt, t, d } = diceFaces
