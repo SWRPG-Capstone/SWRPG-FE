@@ -6,12 +6,12 @@ export const Die = ({ die, sides, scenario, roll }) => {
 	const handleClick = (e, sign) => {
 		e.preventDefault()
 		if (sign === 'plus') {
-			 setCount(count + 1)
-			 roll(die, count + 1)
-		 } else if (sign === 'minus' && count > 0) {
-				 setCount(count - 1)
-				 roll(die, count - 1)
-			 }
+			setCount(count + 1)
+			roll(die, count + 1)
+		} else if (sign === 'minus' && count > 0) {
+			setCount(count - 1)
+			roll(die, count - 1)
+		}
 	}
 
 	return (
