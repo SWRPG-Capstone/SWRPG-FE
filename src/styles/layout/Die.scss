@@ -1,6 +1,7 @@
 .die-field {
 	@include flex(row, space-between);
-	height: unset;
+	overflow: hidden;
+	max-height: 3rem;
 	.die-name {
 		@include fonts(large);
 	}
