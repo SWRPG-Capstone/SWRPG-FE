@@ -89,9 +89,18 @@ This project was our capstone project for our final module at Turing, school of 
 
 
 
-**Learning goals:**  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque exercitationem repudiandae ad vitae. Recusandae iure facere autem officia alias ea voluptate maxime? Hic, doloremque itaque.
+**Learning goals:**
+- Gain experience working with a back-end team
+- Implement a git rebase workflow
+- Learn about GraphQL and using the Apollo Client
 
-**Challenges:** Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque exercitationem repudiandae ad vitae. Recusandae iure facere autem officia alias ea voluptate maxime? Hic, doloremque itaque.
+**Challenges:**
+- Capturing the character ID created after the first page of the form is submitted, then passing that value to the final pages of the form
+- Intercepting/Stubbing GraphQL responses in the Cypress testing
+- Implementing GraphQL mutations
+
+**Reflections:**  
+I learned SO MUCH from this project! There were a lot of new experiences happening all at once, but I did my best to keep tackling tasks one at a time without getting overwhelmed. I think the front end could have really benefitted from making the connection to the back end sooner, or setting a firm JSON contract early. I also struggled with spending a little too much time researching GraphQL up front, which didn't leave enough time to fully complete our implementation and testing. I think our team did a great job of communicating despite our scattered schedules, and I'm really proud of what we accomplished! There's a ton of room for continued growth on this project, and I'd like to continue making improvements/ (I really want to set up some user authentication!)
 
 
 <img align='left' alt="Andrew's's github stats" src="https://github-readme-stats.vercel.app/api?username=andrewvallejo&hide=stars&show_icons=true&theme=ayu-mirage"> 
