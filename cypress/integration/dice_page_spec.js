@@ -28,4 +28,10 @@ describe('Dice page user flows', () => {
     cy.get('button').contains('Dice Log').click();
     cy.get('article[class="roll-log"]').contains('You rolled a force die');
   });
+
+  it('Can click the Dice Log button to open and close the log', () => {
+    cy.get('article[class="dice-log hidden"]').should('not.be.visible');
+    cy.get('button').contains('Dice Log').click();
+    cy.get('article[class="dice-log false"]').should('be.visible');
+  });
 })
