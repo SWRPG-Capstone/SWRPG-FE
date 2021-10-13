@@ -34,4 +34,13 @@ describe('Dice page user flows', () => {
     cy.get('button').contains('Dice Log').click();
     cy.get('article[class="dice-log false"]').should('be.visible');
   });
+
+  it('Can roll multiple types of dice', () => {
+    cy.get('div[class="scale"]').eq(1).click();
+    cy.get('div[class="scale"]').eq(4).click();
+    cy.get('img[class="icon dice large"]').click();
+    cy.get('button').contains('Dice Log').click();
+    cy.get('article[class="roll-log"]').contains('You rolled a ability die');
+    cy.get('article[class="roll-log"]').contains('You rolled a difficulty die');
+  });
 })
