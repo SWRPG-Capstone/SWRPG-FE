@@ -1,8 +1,9 @@
 .update-skill-prompt {
   position: absolute;
   z-index: 2;
-  top: 10vh;
-  left: 10vw;
+  top: 10%;
+  width: 90%;
+  // left: 10vw;
   background-color: $color-primary;
   padding: 2rem;
   border-radius: $border-radius-primary;
@@ -11,11 +12,13 @@
 }
 
 .modal-backdrop {
+  @include flex(column, center);
   position: absolute;
   top: 0;
   left: 0;
+  background-color: $color-background-primary;
+
   z-index: 1;
   width: 100vw;
   height: 100vh;
-  background-color: $color-background-primary;
 }
