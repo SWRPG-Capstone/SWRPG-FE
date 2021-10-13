@@ -21,4 +21,11 @@ describe('Dice page user flows', () => {
     cy.get('div[class="scale down"]').first().click();
     cy.get('h4[class="dice-amount"]').first().contains('1');
   });
+
+  it('Can roll a die and open the log to view results', () => {
+    cy.get('div[class="scale"]').first().click();
+    cy.get('img[class="icon dice large"]').click();
+    cy.get('button').contains('Dice Log').click();
+    cy.get('article[class="roll-log"]').contains('You rolled a force die');
+  });
 })
