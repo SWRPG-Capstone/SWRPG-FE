@@ -53,12 +53,25 @@ export const FormCharDetails = ({ setCount }) => {
       value: e.target.value });
   }
 
+  const validateForm = () => {
+    return Object.keys(state).reduce((valid, field) => {
+      if (field === 'age') {
+        if (state.age <= 0) valid = false;
+      } else {
+        if (!state[field].length) valid = false;
+      }
+      return valid;
+    }, true);
+  }
+
   const handleCreate = (e) => {
     e.preventDefault();
-    createCharDetails({
-      variables: state 
-    });
-    setCount();
+    if (validateForm()) {
+      createCharDetails({
+        variables: state 
+      });
+      setCount();
+    }
   }
 
   if (loading) return 'Submitting...';
