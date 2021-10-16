@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import { gql, useMutation } from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
 import { UserContext } from "../utilities/UserContext";
@@ -40,6 +40,7 @@ export const FormCharDetails = ({ setCount }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const { state: userState, dispatch: userDispatch } = useContext(UserContext);
   const { name, species, specialization, career, age, height, build, hair, eyes } = state;
+  const [validated, setValidated] = useState(null);
   
   const [createCharDetails, { loading, error }] = useMutation(CREATE_DETAILS, {
     onCompleted(data) {
@@ -64,9 +65,11 @@ export const FormCharDetails = ({ setCount }) => {
     }, true);
   }
 
-  const handleCreate = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    let formComplete = validateForm();
+    setValidated(formComplete);
+    if (formComplete) {
       createCharDetails({
         variables: state 
       });
@@ -78,7 +81,7 @@ export const FormCharDetails = ({ setCount }) => {
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <form className='char-form' onSubmit={handleCreate} >
+    <form className='char-form' onSubmit={handleSubmit} >
       <div className='input-container'>
         <label className='char-heading' htmlFor="name">
           name
@@ -133,6 +136,7 @@ export const FormCharDetails = ({ setCount }) => {
           <input className='char-value' type="text" name="eyes" value={eyes} onChange={onChange} />
         </label>
       </div>
+      {validated === false && <p>Please fill out all fields to continue</p>}
       <button className='button large' type='submit'>Next</button>
     </form>
   )
