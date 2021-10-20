@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { formReducer } from '../utilities/utilities';
 
@@ -39,6 +39,7 @@ export const FormCharacteristics = ({ charId, setCount }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const { agility, brawn, charPresence, cunning, intellect, willpower } = state;
   state.characterId = parseInt(charId);
+  const [validated, setValidated] = useState(null);
 
   const [createCharacteristics] = useMutation(CREATE_CHARACTERISTICS, {
     variables: state
@@ -60,9 +61,13 @@ export const FormCharacteristics = ({ charId, setCount }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(validateForm());
-    // setCount();
-    // createCharacteristics();
+    let formComplete = validateForm();
+    setValidated(formComplete);
+    if (formComplete) {
+      console.log(validateForm());
+      setCount();
+      // createCharacteristics();
+    }
   };
 
   return (
