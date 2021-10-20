@@ -144,9 +144,8 @@ export const FormSkills = ({ charId }) => {
     let formComplete = validateForm();
     setValidated(formComplete);
     if (formComplete) {
-      console.log('success')
-      // createSkills();
-      // history.push('/character');
+      createSkills();
+      history.push('/character');
     }
   }
 
@@ -383,7 +382,9 @@ export const FormSkills = ({ charId }) => {
           <input className='char-value' type='number' min='0' max='5' name='xenology' value={xenology} onChange={onChange} />
         </label>
       </div>
+
       {validated === false && <p>Skills must have a value between 0 and 5</p>}
+
       <button className='button' onClick={handleSubmit}>Submit</button>
     </form>
   )
