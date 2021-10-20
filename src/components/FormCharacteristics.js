@@ -51,15 +51,19 @@ export const FormCharacteristics = ({ charId, setCount }) => {
     });
   };
 
+  const validateForm = () => {
+    return Object.keys(state).reduce((valid, stat) => {
+      if (stat !== 'characterId' && (state[stat] < 1 || state[stat] > 5 || !state[stat])) valid = false;
+      return valid;
+    }, true);
+  }
 
-
-
-  const handleCreate = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    setCount();
-    createCharacteristics();
+    console.log(validateForm());
+    // setCount();
+    // createCharacteristics();
   };
-
 
   return (
     <form className='characteristic-form' autoComplete='on'>
@@ -105,7 +109,7 @@ export const FormCharacteristics = ({ charId, setCount }) => {
         </label>
       </div>
 
-      <button className='button' onClick={handleCreate}>
+      <button className='button' onClick={handleSubmit}>
         Next
       </button>
     </form>
