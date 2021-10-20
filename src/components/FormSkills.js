@@ -120,23 +120,30 @@ const CREATE_SKILLS = gql`
 export const FormSkills = ({ charId }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const history = useHistory();
+  const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
+  state.characterId = parseInt(charId);
+  
+  const [createSkills] = useMutation(CREATE_SKILLS, {
+    variables: state
+  });
+  
   const onChange = (e) => {
     dispatch({ field: e.target.name, value: parseInt(e.target.value) })
   }
 
-  const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
-  state.characterId = parseInt(charId);
-
-  const [createSkills] = useMutation(CREATE_SKILLS, {
-    variables: state
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createSkills();
-    history.push('/character');
+  const validateForm = () => {
+    return Object.keys(state).reduce((valid, stat) => {
+      if (stat !== 'characterId' && (state[stat] < 0 || state[stat] > 5 || isNaN(state[stat]))) valid = false;
+      return valid;
+    }, true);
   }
 
+  const handleSubmit = (e) => {
+    console.log(validateForm())
+    e.preventDefault();
+    // createSkills();
+    // history.push('/character');
+  }
 
   return (
     <form className='skills-form' autoComplete='on'>
