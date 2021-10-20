@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { gql, useMutation } from '@apollo/client';
 import { formReducer } from "../utilities/utilities";
@@ -122,6 +122,7 @@ export const FormSkills = ({ charId }) => {
   const history = useHistory();
   const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
   state.characterId = parseInt(charId);
+  const [validated, setValidated] = useState(null);
   
   const [createSkills] = useMutation(CREATE_SKILLS, {
     variables: state
@@ -139,10 +140,14 @@ export const FormSkills = ({ charId }) => {
   }
 
   const handleSubmit = (e) => {
-    console.log(validateForm())
     e.preventDefault();
-    // createSkills();
-    // history.push('/character');
+    let formComplete = validateForm();
+    setValidated(formComplete);
+    if (formComplete) {
+      console.log('success')
+      // createSkills();
+      // history.push('/character');
+    }
   }
 
   return (
@@ -378,6 +383,7 @@ export const FormSkills = ({ charId }) => {
           <input className='char-value' type='number' min='0' max='5' name='xenology' value={xenology} onChange={onChange} />
         </label>
       </div>
+      {validated === false && <p>Skills must have a value between 0 and 5</p>}
       <button className='button' onClick={handleSubmit}>Submit</button>
     </form>
   )
