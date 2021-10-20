@@ -113,8 +113,8 @@ export const FormCharacteristics = ({ charId, setCount }) => {
         </label>
       </div>
 
-      {validated === false && <p>Characteristics must have a value between 1 and 5</p>}
-      
+      {validated === false && <p className='form-error-msg'>Characteristics must have a value between 1 and 5</p>}
+
       <button className='button' onClick={handleSubmit}>
         Next
       </button>
