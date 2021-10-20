@@ -64,9 +64,8 @@ export const FormCharacteristics = ({ charId, setCount }) => {
     let formComplete = validateForm();
     setValidated(formComplete);
     if (formComplete) {
-      console.log(validateForm());
-      setCount();
       // createCharacteristics();
+      setCount();
     }
   };
 
@@ -113,7 +112,7 @@ export const FormCharacteristics = ({ charId, setCount }) => {
           <input className='char-value' type='number' min='0' max='5' name='willpower' value={willpower} onChange={onChange} />
         </label>
       </div>
-
+      {validated === false && <p>Characteristics must have a value between 1 and 5</p>}
       <button className='button' onClick={handleSubmit}>
         Next
       </button>
