@@ -383,7 +383,7 @@ export const FormSkills = ({ charId }) => {
         </label>
       </div>
 
-      {validated === false && <p>Skills must have a value between 0 and 5</p>}
+      {validated === false && <p className='form-error-msg'>Skills must have a value between 0 and 5</p>}
 
       <button className='button' onClick={handleSubmit}>Submit</button>
     </form>

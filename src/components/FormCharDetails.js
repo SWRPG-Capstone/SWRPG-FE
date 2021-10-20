@@ -136,7 +136,7 @@ export const FormCharDetails = ({ setCount }) => {
           <input className='char-value' type="text" name="eyes" value={eyes} onChange={onChange} />
         </label>
       </div>
-      {validated === false && <p>Please fill out all fields to continue</p>}
+      {validated === false && <p className='form-error-msg'>Please fill out all fields to continue</p>}
       <button className='button large' type='submit'>Next</button>
     </form>
   )
