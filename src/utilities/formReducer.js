@@ -3,16 +3,16 @@ export const formReducer = (state, action) => {
     case 'handle text input':
       return {
         ...state, 
-        details: {
-          ...state.details,
+        [action.page]: {
+          ...state[action.page],
           [action.field]: action.value
         }
       };
     case 'handle number input':
       return {
         ...state,
-        details: {
-          ...state.details,
+        [action.page]: {
+          ...state[action.page],
           [action.field]: parseInt(action.value)
         }
       };
