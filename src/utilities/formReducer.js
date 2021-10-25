@@ -3,7 +3,10 @@ export const formReducer = (state, action) => {
     case 'handle text input':
       return {
         ...state, 
-        [action.field]: action.value
+        details: {
+          ...state.details,
+          [action.field]: action.value
+        }
       };
     case 'handle number input':
       return {
