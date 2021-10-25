@@ -109,7 +109,7 @@ export const FormCharDetails = ({ setCount, onChange, formState }) => {
       <div className='input-container'>
         <label className='char-heading' htmlFor="age">
           age
-          <input className='char-value' type="number" name="age" value={formState.details.age} onChange={onChange} />
+          <input className='char-value' type="number" name="age" value={formState.details.age} onChange={(e) => onChange(e, 'handle number input')} />
         </label>
       </div>
       <div className='input-container'>

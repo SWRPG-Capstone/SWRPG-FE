@@ -11,7 +11,10 @@ export const formReducer = (state, action) => {
     case 'handle number input':
       return {
         ...state,
-        [action.field]: parseInt(action.value)
+        details: {
+          ...state.details,
+          [action.field]: parseInt(action.value)
+        }
       };
     default:
       throw new Error();
