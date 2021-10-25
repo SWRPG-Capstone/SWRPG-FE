@@ -16,7 +16,9 @@ const initialFormState = {
     build: '',
     hair: '',
     eyes: '',
-  }
+  },
+  characteristics: {},
+  skills: {}
 }
 
 export const FormContainer = () => {
@@ -25,9 +27,10 @@ export const FormContainer = () => {
   const handleCount = () => setCount(count + 1)
   const [formState, formDispatch] = useReducer(formReducer, initialFormState);
 
-  const onChange = (e, type) => {
+  const onChange = (e, type, page) => {
     formDispatch({
       type: type,
+      page: page,
       field: e.target.name,
       value: e.target.value,
     });
