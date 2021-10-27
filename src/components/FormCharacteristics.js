@@ -53,8 +53,8 @@ export const FormCharacteristics = ({ charId, setCount, onChange, formState }) =
   // };
 
   const validateForm = () => {
-    return Object.keys(formState.characteristics).reduce((valid, stat) => {
-      if (stat !== 'characterId' && (formState.characteristics[stat] < 1 || formState.characteristics[stat] > 5 || !formState.characteristics[stat])) valid = false;
+    return Object.keys(formState).reduce((valid, stat) => {
+      if (stat !== 'characterId' && (formState[stat] < 1 || formState[stat] > 5 || !formState[stat])) valid = false;
       return valid;
     }, true);
   }
@@ -74,42 +74,42 @@ export const FormCharacteristics = ({ charId, setCount, onChange, formState }) =
       <div className='input-container'>
         <label className='char-heading' htmlFor='agility'>
           agility
-          <input className='char-value' type='number' min='0' max='5' name='agility' value={formState.characteristics.agility} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} autoFocus />
+          <input className='char-value' type='number' min='1' max='5' name='agility' value={formState.agility} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} autoFocus />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='brawn'>
           brawn
-          <input className='char-value' type='number' min='0' max='5' name='brawn' value={formState.characteristics.brawn} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} />
+          <input className='char-value' type='number' min='1' max='5' name='brawn' value={formState.brawn} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='charPresence'>
           presence
-          <input className='char-value' type='number' min='0' max='5' name='charPresence' value={formState.characteristics.charPresence} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} />
+          <input className='char-value' type='number' min='1' max='5' name='charPresence' value={formState.charPresence} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='cunning'>
           cunning
-          <input className='char-value' type='number' min='0' max='5' name='cunning' value={formState.characteristics.cunning} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} />
+          <input className='char-value' type='number' min='1' max='5' name='cunning' value={formState.cunning} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='intellect'>
           intellect
-          <input className='char-value' type='number' min='0' max='5' name='intellect' value={formState.characteristics.intellect} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} />
+          <input className='char-value' type='number' min='1' max='5' name='intellect' value={formState.intellect} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='willpower'>
           willpower
-          <input className='char-value' type='number' min='0' max='5' name='willpower' value={formState.characteristics.willpower} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} />
+          <input className='char-value' type='number' min='1' max='5' name='willpower' value={formState.willpower} onChange={(e) => onChange(e, 'handle number input', 'characteristics')} />
         </label>
       </div>
 
