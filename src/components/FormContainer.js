@@ -17,7 +17,14 @@ const initialFormState = {
     hair: '',
     eyes: '',
   },
-  characteristics: {},
+  characteristics: {
+    agility: 1,
+    brawn: 1,
+    charPresence: 1,
+    cunning: 1,
+    intellect: 1,
+    willpower: 1
+  },
   skills: {}
 }
 
@@ -38,8 +45,8 @@ export const FormContainer = () => {
 
   return (
     <section className="form-container">
-      {count === 0 && <FormCharDetails setCount={handleCount} onChange={onChange} formState={formState} />}
-      {count === 1 && <FormCharacteristics charId={currentChar} setCount={handleCount} />}
+      {count === 0 && <FormCharDetails setCount={handleCount} onChange={onChange} formState={formState.details} />}
+      {count === 1 && <FormCharacteristics charId={currentChar} setCount={handleCount} onChange={onChange} formState={formState.characteristics} />}
       {count === 2 && <FormSkills charId={currentChar} setCount={handleCount} />}
     </section>
   )
