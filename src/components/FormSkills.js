@@ -1,43 +1,42 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { gql, useMutation } from '@apollo/client';
-import { formReducer } from "../utilities/utilities";
 
-const initialState = {
-  astrogation: 0,
-  athletics: 0,
-  brawl: 0,
-  charm: 0,
-  coercion: 0,
-  computers: 0,
-  cool: 0,
-  coordination: 0,
-  coreWorlds: 0,
-  deception: 0,
-  discipline: 0,
-  education: 0,
-  gunnery: 0,
-  leadership: 0,
-  lore: 0,
-  mechanics: 0,
-  medicine: 0,
-  melee: 0,
-  negotiation: 0,
-  outerRim: 0,
-  perception: 0,
-  piloting: 0,
-  pilotingSpace: 0,
-  rangedHeavy: 0,
-  rangedLight: 0,
-  resilience: 0,
-  skulduggery: 0,
-  stealth: 0,
-  streetWise: 0,
-  survival: 0,
-  underworld: 0,
-  vigilance: 0,
-  xenology: 0,
-}
+// const initialState = {
+//   astrogation: 0,
+//   athletics: 0,
+//   brawl: 0,
+//   charm: 0,
+//   coercion: 0,
+//   computers: 0,
+//   cool: 0,
+//   coordination: 0,
+//   coreWorlds: 0,
+//   deception: 0,
+//   discipline: 0,
+//   education: 0,
+//   gunnery: 0,
+//   leadership: 0,
+//   lore: 0,
+//   mechanics: 0,
+//   medicine: 0,
+//   melee: 0,
+//   negotiation: 0,
+//   outerRim: 0,
+//   perception: 0,
+//   piloting: 0,
+//   pilotingSpace: 0,
+//   rangedHeavy: 0,
+//   rangedLight: 0,
+//   resilience: 0,
+//   skulduggery: 0,
+//   stealth: 0,
+//   streetWise: 0,
+//   survival: 0,
+//   underworld: 0,
+//   vigilance: 0,
+//   xenology: 0,
+// }
 
 const CREATE_SKILLS = gql`
   mutation createSkills($characterId: Int!, $astrogation: Int!, $athletics: Int!, $brawl: Int!, $charm: Int!, $coercion: Int!, $computers: Int!, $cool: Int!, $coordination: Int!, $coreWorlds: Int!, $deception: Int!, $discipline: Int!, $education: Int!, $gunnery: Int!, $leadership: Int!, $lore: Int!, $mechanics: Int!, $medicine: Int!, $melee: Int!, $negotiation: Int!, $outerRim: Int!, $perception: Int!, $piloting: Int!, $pilotingSpace: Int!, $rangedHeavy: Int!, $rangedLight: Int!, $resilience: Int!, $skulduggery: Int!, $stealth: Int!, $streetWise: Int!, $survival: Int!, $underworld: Int!, $vigilance: Int!, $xenology: Int!){ 
@@ -117,24 +116,24 @@ const CREATE_SKILLS = gql`
   }
 `;
 
-export const FormSkills = ({ charId }) => {
-  const [state, dispatch] = useReducer(formReducer, initialState);
+export const FormSkills = ({ charId, onChange, formState }) => {
+  // const [state, dispatch] = useReducer(formReducer, initialState);
   const history = useHistory();
-  const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
-  state.characterId = parseInt(charId);
+  // const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
+  // state.characterId = parseInt(charId);
   const [validated, setValidated] = useState(null);
   
-  const [createSkills] = useMutation(CREATE_SKILLS, {
-    variables: state
-  });
+  // const [createSkills] = useMutation(CREATE_SKILLS, {
+  //   variables: state
+  // });
   
-  const onChange = (e) => {
-    dispatch({ field: e.target.name, value: parseInt(e.target.value) })
-  }
+  // const onChange = (e) => {
+  //   dispatch({ field: e.target.name, value: parseInt(e.target.value) })
+  // }
 
   const validateForm = () => {
-    return Object.keys(state).reduce((valid, stat) => {
-      if (stat !== 'characterId' && (state[stat] < 0 || state[stat] > 5 || isNaN(state[stat]))) valid = false;
+    return Object.keys(formState.skills).reduce((valid, stat) => {
+      if (stat !== 'characterId' && (formState.skills[stat] < 0 || formState.skills[stat] > 5 || isNaN(formState.skills[stat]))) valid = false;
       return valid;
     }, true);
   }
@@ -144,8 +143,8 @@ export const FormSkills = ({ charId }) => {
     let formComplete = validateForm();
     setValidated(formComplete);
     if (formComplete) {
-      createSkills();
-      history.push('/character');
+      // createSkills();
+      // history.push('/character');
     }
   }
 
@@ -155,231 +154,231 @@ export const FormSkills = ({ charId }) => {
       <div className='input-container'>
         <label className='char-heading' htmlFor='astrogation'>
           Astrogation
-          <input className='char-value' type='number' min='0' max='5' name='astrogation' value={astrogation} onChange={onChange} autoFocus />
+          <input className='char-value' type='number' min='0' max='5' name='astrogation' value={formState.skills.astrogation} onChange={(e) => onChange(e, 'handle number input', 'skills')} autoFocus />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='athletics'>
           Athletics
-          <input className='char-value' type='number' min='0' max='5' name='athletics' value={athletics} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='athletics' value={formState.skills.athletics} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='brawl'>
           Brawl
-          <input className='char-value' type='number' min='0' max='5' name='brawl' value={brawl} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='brawl' value={formState.skills.brawl} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='charm'>
           Charm
-          <input className='char-value' type='number' min='0' max='5' name='charm' value={charm} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='charm' value={formState.skills.charm} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='coercion'>
           Coercion
-          <input className='char-value' type='number' min='0' max='5' name='coercion' value={coercion} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='coercion' value={formState.skills.coercion} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='computers'>
           Computers
-          <input className='char-value' type='number' min='0' max='5' name='computers' value={computers} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='computers' value={formState.skills.computers} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='cool'>
           Cool
-          <input className='char-value' type='number' min='0' max='5' name='cool' value={cool} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='cool' value={formState.skills.cool} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='coordination'>
           Coordination
-          <input className='char-value' type='number' min='0' max='5' name='coordination' value={coordination} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='coordination' value={formState.skills.coordination} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='coreWorlds'>
           Core Worlds
-          <input className='char-value' type='number' min='0' max='5' name='coreWorlds' value={coreWorlds} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='coreWorlds' value={formState.skills.coreWorlds} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='deception'>
           Deception
-          <input className='char-value' type='number' min='0' max='5' name='deception' value={deception} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='deception' value={formState.skills.deception} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='discipline'>
           Discipline
-          <input className='char-value' type='number' min='0' max='5' name='discipline' value={discipline} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='discipline' value={formState.skills.discipline} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='education'>
           Education
-          <input className='char-value' type='number' min='0' max='5' name='education' value={education} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='education' value={formState.skills.education} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='gunnery'>
           Gunnery
-          <input className='char-value' type='number' min='0' max='5' name='gunnery' value={gunnery} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='gunnery' value={formState.skills.gunnery} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='leadership'>
           Leadership
-          <input className='char-value' type='number' min='0' max='5' name='leadership' value={leadership} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='leadership' value={formState.skills.leadership} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='lore'>
           Lore
-          <input className='char-value' type='number' min='0' max='5' name='lore' value={lore} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='lore' value={formState.skills.lore} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='mechanics'>
           Mechanics
-          <input className='char-value' type='number' min='0' max='5' name='mechanics' value={mechanics} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='mechanics' value={formState.skills.mechanics} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='medicine'>
           Medicine
-          <input className='char-value' type='number' min='0' max='5' name='medicine' value={medicine} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='medicine' value={formState.skills.medicine} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='melee'>
           Melee
-          <input className='char-value' type='number' min='0' max='5' name='melee' value={melee} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='melee' value={formState.skills.melee} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='negotiation'>
           Negotiation
-          <input className='char-value' type='number' min='0' max='5' name='negotiation' value={negotiation} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='negotiation' value={formState.skills.negotiation} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='outerRim'>
           Outer Rim
-          <input className='char-value' type='number' min='0' max='5' name='outerRim' value={outerRim} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='outerRim' value={formState.skills.outerRim} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='perception'>
           Perception
-          <input className='char-value' type='number' min='0' max='5' name='perception' value={perception} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='perception' value={formState.skills.perception} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='piloting'>
           Piloting
-          <input className='char-value' type='number' min='0' max='5' name='piloting' value={piloting} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='piloting' value={formState.skills.piloting} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='pilotingSpace'>
           Piloting Space
-          <input className='char-value' type='number' min='0' max='5' name='pilotingSpace' value={pilotingSpace} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='pilotingSpace' value={formState.skills.pilotingSpace} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='rangedHeavy'>
           Ranged Heavy
-          <input className='char-value' type='number' min='0' max='5' name='rangedHeavy' value={rangedHeavy} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='rangedHeavy' value={formState.skills.rangedHeavy} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='rangedLight'>
           Ranged Light
-          <input className='char-value' type='number' min='0' max='5' name='rangedLight' value={rangedLight} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='rangedLight' value={formState.skills.rangedLight} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='resilience'>
           Resilience
-          <input className='char-value' type='number' min='0' max='5' name='resilience' value={resilience} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='resilience' value={formState.skills.resilience} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='skulduggery'>
           Skulduggery
-          <input className='char-value' type='number' min='0' max='5' name='skulduggery' value={skulduggery} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='skulduggery' value={formState.skills.skulduggery} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='stealth'>
           Stealth
-          <input className='char-value' type='number' min='0' max='5' name='stealth' value={stealth} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='stealth' value={formState.skills.stealth} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='streetWise'>
           Street Wise
-          <input className='char-value' type='number' min='0' max='5' name='streetWise' value={streetWise} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='streetWise' value={formState.skills.streetWise} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='survival'>
           Survival
-          <input className='char-value' type='number' min='0' max='5' name='survival' value={survival} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='survival' value={formState.skills.survival} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='underworld'>
           Underworld
-          <input className='char-value' type='number' min='0' max='5' name='underworld' value={underworld} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='underworld' value={formState.skills.underworld} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='vigilance'>
           Vigilance
-          <input className='char-value' type='number' min='0' max='5' name='vigilance' value={vigilance} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='vigilance' value={formState.skills.vigilance} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
       <div className='input-container'>
         <label className='char-heading' htmlFor='xenology'>
           Xenology
-          <input className='char-value' type='number' min='0' max='5' name='xenology' value={xenology} onChange={onChange} />
+          <input className='char-value' type='number' min='0' max='5' name='xenology' value={formState.skills.xenology} onChange={(e) => onChange(e, 'handle number input', 'skills')} />
         </label>
       </div>
 
