@@ -1,123 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { gql, useMutation } from '@apollo/client';
-
-// const initialState = {
-//   astrogation: 0,
-//   athletics: 0,
-//   brawl: 0,
-//   charm: 0,
-//   coercion: 0,
-//   computers: 0,
-//   cool: 0,
-//   coordination: 0,
-//   coreWorlds: 0,
-//   deception: 0,
-//   discipline: 0,
-//   education: 0,
-//   gunnery: 0,
-//   leadership: 0,
-//   lore: 0,
-//   mechanics: 0,
-//   medicine: 0,
-//   melee: 0,
-//   negotiation: 0,
-//   outerRim: 0,
-//   perception: 0,
-//   piloting: 0,
-//   pilotingSpace: 0,
-//   rangedHeavy: 0,
-//   rangedLight: 0,
-//   resilience: 0,
-//   skulduggery: 0,
-//   stealth: 0,
-//   streetWise: 0,
-//   survival: 0,
-//   underworld: 0,
-//   vigilance: 0,
-//   xenology: 0,
-// }
-
-const CREATE_SKILLS = gql`
-  mutation createSkills($characterId: Int!, $astrogation: Int!, $athletics: Int!, $brawl: Int!, $charm: Int!, $coercion: Int!, $computers: Int!, $cool: Int!, $coordination: Int!, $coreWorlds: Int!, $deception: Int!, $discipline: Int!, $education: Int!, $gunnery: Int!, $leadership: Int!, $lore: Int!, $mechanics: Int!, $medicine: Int!, $melee: Int!, $negotiation: Int!, $outerRim: Int!, $perception: Int!, $piloting: Int!, $pilotingSpace: Int!, $rangedHeavy: Int!, $rangedLight: Int!, $resilience: Int!, $skulduggery: Int!, $stealth: Int!, $streetWise: Int!, $survival: Int!, $underworld: Int!, $vigilance: Int!, $xenology: Int!){ 
-    createSkill(
-      input: {
-        characterId: $characterId
-        astrogation: $astrogation
-        athletics: $athletics
-        brawl: $brawl
-        charm: $charm
-        coercion: $coercion
-        computers: $computers
-        cool: $cool
-        coordination: $coordination
-        coreWorlds: $coreWorlds
-        deception: $deception
-        discipline: $discipline
-        education: $education
-        gunnery: $gunnery
-        leadership: $leadership
-        lore: $lore
-        mechanics: $mechanics
-        medicine: $medicine
-        melee: $melee
-        negotiation: $negotiation
-        outerRim: $outerRim
-        perception: $perception
-        piloting: $piloting
-        pilotingSpace: $pilotingSpace
-        rangedHeavy: $rangedHeavy
-        rangedLight: $rangedLight
-        resilience: $resilience
-        skulduggery: $skulduggery
-        stealth: $stealth
-        streetWise: $streetWise
-        survival: $survival
-        underworld: $underworld
-        vigilance: $vigilance
-        xenology: $xenology
-      }
-    ) {							  
-        astrogation
-        athletics
-        brawl
-        charm
-        coercion
-        computers
-        cool
-        coordination
-        coreWorlds
-        deception
-        discipline
-        education
-        gunnery
-        id
-        leadership
-        lore
-        mechanics
-        medicine
-        melee
-        negotiation
-        outerRim
-        perception
-        piloting
-        pilotingSpace
-        rangedHeavy
-        rangedLight
-        resilience
-        skulduggery
-        stealth
-        streetWise
-        survival
-        underworld
-        vigilance
-        xenology
-    }
-  }
-`;
+import { useMutation } from '@apollo/client';
 
 export const FormSkills = ({ charId, onChange, formState }) => {
-  // const [state, dispatch] = useReducer(formReducer, initialState);
   const history = useHistory();
   // const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
   // state.characterId = parseInt(charId);
@@ -126,10 +11,6 @@ export const FormSkills = ({ charId, onChange, formState }) => {
   // const [createSkills] = useMutation(CREATE_SKILLS, {
   //   variables: state
   // });
-  
-  // const onChange = (e) => {
-  //   dispatch({ field: e.target.name, value: parseInt(e.target.value) })
-  // }
 
   const validateForm = () => {
     return Object.keys(formState.skills).reduce((valid, stat) => {

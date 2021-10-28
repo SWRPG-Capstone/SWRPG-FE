@@ -1,44 +1,6 @@
 import React, { useState } from "react";
-// import { gql, useMutation } from '@apollo/client';
-// import { formReducer } from "../utilities/utilities";
-// import { UserContext } from "../utilities/UserContext";
-
-// const initialState = {
-//   name: "",
-//   species: "",
-//   specialization: "",
-//   career: "",
-//   age: 0,
-//   height: "",
-//   build: "",
-//   hair: "",
-//   eyes: "",
-// }
-
-// const CREATE_DETAILS = gql`
-//   mutation createCharDetails($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!) {
-//     createCharacter(
-//       input: {
-//         userId: "2"
-//         name: $name
-//         species: $species
-//         specialization: $specialization
-//         career: $career
-//         age: $age
-//         height: $height
-//         build: $build
-//         hair: $hair
-//         eyes: $eyes
-//       }
-//     ) {
-//       id
-//     }
-//   }
-// `;
 
 export const FormCharDetails = ({ setCount, onChange, formState }) => {
-  // const [state, dispatch] = useReducer(formReducer, initialState);
-  // const { state: userState, dispatch: userDispatch } = useContext(UserContext);
   // const { name, species, specialization, career, age, height, build, hair, eyes } = state;
   const [validated, setValidated] = useState(null);
   
@@ -47,12 +9,6 @@ export const FormCharDetails = ({ setCount, onChange, formState }) => {
   //     userDispatch({ userState, action: { type: 'SETCHARACTER', character: data.createCharacter.id } });
   //   }
   // });
-
-  // const onChange = (e) => {
-  //   dispatch({ 
-  //     field: e.target.name, 
-  //     value: e.target.value });
-  // }
 
   const validateForm = () => {
     return Object.keys(formState).reduce((valid, field) => {
@@ -76,9 +32,6 @@ export const FormCharDetails = ({ setCount, onChange, formState }) => {
       setCount();
     }
   }
-
-  // if (loading) return 'Submitting...';
-  // if (error) return `Submission error! ${error.message}`;
 
   return (
     <form className='char-form' onSubmit={handleSubmit} >

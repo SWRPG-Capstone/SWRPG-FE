@@ -1,42 +1,6 @@
 import React, { useState } from 'react';
-// import { gql, useMutation } from '@apollo/client';
-// import { formReducer } from '../utilities/utilities';
-
-// const initialState = {
-//   agility: 1,
-//   brawn: 1,
-//   charPresence: 1,
-//   cunning: 1,
-//   intellect: 1,
-//   willpower: 1
-// };
-
-// const CREATE_CHARACTERISTICS = gql`
-//   mutation createCharacteristics($agility: Int!, $brawn: Int!, $characterId: Int!, $charPresence: Int!, $cunning: Int!, $intellect: Int!, $willpower: Int!) {
-//     createCharacteristic(
-//       input: {
-//         agility: $agility
-//         brawn: $brawn
-//         characterId: $characterId
-//         charPresence: $charPresence
-//         cunning: $cunning
-//         intellect: $intellect
-//         willpower: $willpower
-//       }
-//     ) {
-//       agility
-//       brawn
-//       characterId
-//       charPresence
-//       cunning
-//       intellect
-//       willpower
-//     }
-//   }
-// `;
 
 export const FormCharacteristics = ({ charId, setCount, onChange, formState }) => {
-  // const [state, dispatch] = useReducer(formReducer, initialState);
   // const { agility, brawn, charPresence, cunning, intellect, willpower } = state;
   // state.characterId = parseInt(charId);
   const [validated, setValidated] = useState(null);
@@ -44,13 +8,6 @@ export const FormCharacteristics = ({ charId, setCount, onChange, formState }) =
   // const [createCharacteristics] = useMutation(CREATE_CHARACTERISTICS, {
   //   variables: state
   // });
-
-  // const onChange = e => {
-  //   dispatch({
-  //     field: e.target.name,
-  //     value: parseInt(e.target.value)
-  //   });
-  // };
 
   const validateForm = () => {
     return Object.keys(formState).reduce((valid, stat) => {
