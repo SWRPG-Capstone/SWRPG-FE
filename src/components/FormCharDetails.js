@@ -3,12 +3,6 @@ import React, { useState } from "react";
 export const FormCharDetails = ({ setCount, onChange, formState }) => {
   // const { name, species, specialization, career, age, height, build, hair, eyes } = state;
   const [validated, setValidated] = useState(null);
-  
-  // const [createCharDetails, { loading, error }] = useMutation(CREATE_DETAILS, {
-  //   onCompleted(data) {
-  //     userDispatch({ userState, action: { type: 'SETCHARACTER', character: data.createCharacter.id } });
-  //   }
-  // });
 
   const validateForm = () => {
     return Object.keys(formState).reduce((valid, field) => {
@@ -26,9 +20,6 @@ export const FormCharDetails = ({ setCount, onChange, formState }) => {
     let formComplete = validateForm();
     setValidated(formComplete);
     if (formComplete) {
-    //   createCharDetails({
-    //     variables: state 
-    //   });
       setCount();
     }
   }
