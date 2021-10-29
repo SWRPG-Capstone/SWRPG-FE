@@ -16,6 +16,14 @@ export const formReducer = (state, action) => {
           [action.field]: parseInt(action.value)
         }
       };
+    case 'handle id':
+      return {
+        ...state,
+        [action.page]: {
+          ...state[action.page],
+          characterId: action.id
+        }
+      }
     default:
       throw new Error();
   }
