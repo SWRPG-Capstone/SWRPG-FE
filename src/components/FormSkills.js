@@ -1,16 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation } from '@apollo/client';
+import { CREATE_DETAILS, CREATE_CHARACTERISTICS, CREATE_SKILLS } from "../graphql/mutations";
+import { UserContext } from "../utilities/UserContext";
 
 export const FormSkills = ({ charId, onChange, formState }) => {
   const history = useHistory();
   // const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
-  // state.characterId = parseInt(charId);
   const [validated, setValidated] = useState(null);
+  const { state: userState, dispatch: userDispatch } = useContext(UserContext);
+
+  const [createCharacteristics] = useMutation(CREATE_CHARACTERISTICS, {
+    variables: formState.characteristics
+  });
   
-  // const [createSkills] = useMutation(CREATE_SKILLS, {
-  //   variables: state
-  // });
+  const [createSkills] = useMutation(CREATE_SKILLS, {
+    variables: formState.skills
+  });
+
+  const [createCharDetails, { loading, error }] = useMutation(CREATE_DETAILS, {
+    onCompleted(data) {
+      userDispatch({ userState, action: { type: 'SETCHARACTER', character: data.createCharacter.id } });
+  // Add character ID to skills/characteristics state before calling mutations
+      createSkills();
+      createCharacteristics();
+      history.push('/character');
+    }
+  });
 
   const validateForm = () => {
     return Object.keys(formState.skills).reduce((valid, stat) => {
@@ -24,8 +40,10 @@ export const FormSkills = ({ charId, onChange, formState }) => {
     let formComplete = validateForm();
     setValidated(formComplete);
     if (formComplete) {
-      // createSkills();
-      // history.push('/character');
+      console.log('success')
+    //   createCharDetails({
+    //     variables: state 
+    //   });
     }
   }
 
