@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 
 export const FormCharacteristics = ({ charId, setCount, onChange, formState }) => {
   // const { agility, brawn, charPresence, cunning, intellect, willpower } = state;
-  // state.characterId = parseInt(charId);
   const [validated, setValidated] = useState(null);
-
-  // const [createCharacteristics] = useMutation(CREATE_CHARACTERISTICS, {
-  //   variables: state
-  // });
 
   const validateForm = () => {
     return Object.keys(formState).reduce((valid, stat) => {
@@ -21,7 +16,6 @@ export const FormCharacteristics = ({ charId, setCount, onChange, formState }) =
     let formComplete = validateForm();
     setValidated(formComplete);
     if (formComplete) {
-      // createCharacteristics();
       setCount();
     }
   };
