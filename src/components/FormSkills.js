@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { CREATE_DETAILS, CREATE_CHARACTERISTICS, CREATE_SKILLS } from "../graphql/mutations";
 import { UserContext } from "../utilities/UserContext";
 
-export const FormSkills = ({ charId, onChange, formState }) => {
+export const FormSkills = ({ charId, onChange, formState, formDispatch }) => {
   const history = useHistory();
   // const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
   const [validated, setValidated] = useState(null);
@@ -22,11 +22,23 @@ export const FormSkills = ({ charId, onChange, formState }) => {
     onCompleted(data) {
       userDispatch({ userState, action: { type: 'SETCHARACTER', character: data.createCharacter.id } });
   // Add character ID to skills/characteristics state before calling mutations
+  // UseEffect for skills charID fires mutation
+  // separate useEffect for characteristics
+      updateID(data.createCharacter.id, 'skills');
+      updateID(data.createCharacter.id, 'characteristics');
+      // Each of these needs to go in a useEffect?
       createSkills();
       createCharacteristics();
       history.push('/character');
     }
   });
+
+  const updateID = (id, page) => {
+    formDispatch({
+      page: page,
+      id: id
+    })
+  }
 
   const validateForm = () => {
     return Object.keys(formState.skills).reduce((valid, stat) => {
@@ -42,7 +54,7 @@ export const FormSkills = ({ charId, onChange, formState }) => {
     if (formComplete) {
       console.log('success')
     //   createCharDetails({
-    //     variables: state 
+    //     variables: formState.details
     //   });
     }
   }
