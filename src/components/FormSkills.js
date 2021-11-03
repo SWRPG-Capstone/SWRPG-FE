@@ -10,35 +10,31 @@ export const FormSkills = ({ charId, onChange, formState, formDispatch }) => {
   const [validated, setValidated] = useState(null);
   const { state: userState, dispatch: userDispatch } = useContext(UserContext);
 
-  const [createCharacteristics] = useMutation(CREATE_CHARACTERISTICS, {
-    variables: formState.characteristics
-  });
+  const [createCharacteristics] = useMutation(CREATE_CHARACTERISTICS);
   
   const [createSkills] = useMutation(CREATE_SKILLS, {
-    variables: formState.skills
+    onCompleted() {
+      history.push('/character');
+    }
   });
 
   const [createCharDetails, { loading, error }] = useMutation(CREATE_DETAILS, {
     onCompleted(data) {
       userDispatch({ userState, action: { type: 'SETCHARACTER', character: data.createCharacter.id } });
-  // Add character ID to skills/characteristics state before calling mutations
-  // UseEffect for skills charID fires mutation
-  // separate useEffect for characteristics
-      updateID(data.createCharacter.id, 'skills');
-      updateID(data.createCharacter.id, 'characteristics');
-      // Each of these needs to go in a useEffect?
-      createSkills();
-      createCharacteristics();
-      history.push('/character');
+      createCharacteristics({
+        variables: {
+          ...formState.characteristics,
+          characterId: parseInt(data.createCharacter.id)
+        }
+      });
+      createSkills({
+        variables: {
+          ...formState.skills,
+          characterId: parseInt(data.createCharacter.id)
+        }
+      });
     }
   });
-
-  const updateID = (id, page) => {
-    formDispatch({
-      page: page,
-      id: id
-    })
-  }
 
   const validateForm = () => {
     return Object.keys(formState.skills).reduce((valid, stat) => {
@@ -52,12 +48,14 @@ export const FormSkills = ({ charId, onChange, formState, formDispatch }) => {
     let formComplete = validateForm();
     setValidated(formComplete);
     if (formComplete) {
-      console.log('success')
-    //   createCharDetails({
-    //     variables: formState.details
-    //   });
+      createCharDetails({
+        variables: formState.details
+      });
     }
   }
+
+  if (loading) return 'Submitting...';
+  if (error) return `Submission error! ${error.message}`;
 
   return (
     <form className='skills-form' autoComplete='on'>
