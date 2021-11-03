@@ -21,7 +21,6 @@ const initialFormState = {
     agility: 1,
     brawn: 1,
     charPresence: 1,
-    characterId: null,
     cunning: 1,
     intellect: 1,
     willpower: 1
@@ -30,7 +29,6 @@ const initialFormState = {
     astrogation: 0,
     athletics: 0,
     brawl: 0,
-    characterId: null,
     charm: 0,
     coercion: 0,
     computers: 0,
