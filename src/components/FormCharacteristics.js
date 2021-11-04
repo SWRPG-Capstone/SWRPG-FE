@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-export const FormCharacteristics = ({ charId, setCount, onChange, formState }) => {
-  // const { agility, brawn, charPresence, cunning, intellect, willpower } = state;
+export const FormCharacteristics = ({ setCount, onChange, formState }) => {
   const [validated, setValidated] = useState(null);
 
   const validateForm = () => {
