@@ -4,9 +4,8 @@ import { useMutation } from '@apollo/client';
 import { CREATE_DETAILS, CREATE_CHARACTERISTICS, CREATE_SKILLS } from "../graphql/mutations";
 import { UserContext } from "../utilities/UserContext";
 
-export const FormSkills = ({ charId, onChange, formState, formDispatch }) => {
+export const FormSkills = ({ onChange, formState }) => {
   const history = useHistory();
-  // const { astrogation, athletics, brawl, charm, coercion, computers, cool, coordination, coreWorlds, deception, discipline, education, gunnery, leadership, lore, mechanics, medicine, melee, negotiation, outerRim, perception, piloting, pilotingSpace, rangedHeavy, rangedLight, resilience, skulduggery, stealth, streetWise, survival, underworld, vigilance, xenology } = state;
   const [validated, setValidated] = useState(null);
   const { state: userState, dispatch: userDispatch } = useContext(UserContext);
 

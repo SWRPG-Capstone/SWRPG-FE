@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 export const FormCharDetails = ({ setCount, onChange, formState }) => {
-  // const { name, species, specialization, career, age, height, build, hair, eyes } = state;
   const [validated, setValidated] = useState(null);
 
   const validateForm = () => {
