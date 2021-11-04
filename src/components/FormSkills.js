@@ -10,15 +10,15 @@ export const FormSkills = ({ charId, onChange, formState, formDispatch }) => {
   const [validated, setValidated] = useState(null);
   const { state: userState, dispatch: userDispatch } = useContext(UserContext);
 
-  const [createCharacteristics] = useMutation(CREATE_CHARACTERISTICS);
+  const [createCharacteristics, { loading: charsLoading, error: charsError }] = useMutation(CREATE_CHARACTERISTICS);
   
-  const [createSkills] = useMutation(CREATE_SKILLS, {
+  const [createSkills, { loading: skillsLoading, error: skillsError }] = useMutation(CREATE_SKILLS, {
     onCompleted() {
       history.push('/character');
     }
   });
 
-  const [createCharDetails, { loading, error }] = useMutation(CREATE_DETAILS, {
+  const [createCharDetails, { loading: detailsLoading, error: detailsError }] = useMutation(CREATE_DETAILS, {
     onCompleted(data) {
       userDispatch({ userState, action: { type: 'SETCHARACTER', character: data.createCharacter.id } });
       createCharacteristics({
@@ -54,8 +54,8 @@ export const FormSkills = ({ charId, onChange, formState, formDispatch }) => {
     }
   }
 
-  if (loading) return 'Submitting...';
-  if (error) return `Submission error! ${error.message}`;
+  if (detailsLoading || charsLoading || skillsLoading) return <p>Submitting...</p>;
+  if (detailsError || charsError || skillsError) return <p>A submission error occurred!</p>;
 
   return (
     <form className='skills-form' autoComplete='on'>
