@@ -73,34 +73,23 @@ const randomizeDice = (max) => {
 export let diceOutcome;
 
 export const rollDice = (state) => {
-	updateDiceAmount(Object.entries(state))
+  updateDiceAmount(state);
 	const outcome = dice.map(die => {
-		const { amount, sides } = die
+		const { amount, sides } = die;
 		if ({ amount }) {
-			const rollAmount = Array.from(Array(amount))
+			const rollAmount = Array.from(Array(amount));
 			const rolls = rollAmount.map(() => {
 				return die.scenario[randomizeDice(sides) - 1]
-			})
-			return rolls
+			});
+			return rolls;
 		}
-	})
-	return diceOutcome = outcome
+    return [];
+	});
+  diceOutcome = outcome;
 }
 
-const updateDiceAmount = (dice) => {
-	dice.map(die => {
-		return getStats(die)
-	})
-}
-
-const getStats = (gameDie) => {
-	const diceMap = dice.map(die => {
-		const type = die.type
-		if (gameDie[0] === type) {
-			const currentDie = dice[dice.indexOf(die)]
-			currentDie.amount = gameDie[1]
-		}
-		return die
-	})
-	return diceMap
+const updateDiceAmount = (state) => {
+  dice.forEach(die => {
+    die.amount = state[die.type];
+  });
 }
