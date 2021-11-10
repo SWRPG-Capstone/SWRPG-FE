@@ -18,19 +18,15 @@ export const DiceLog = ({ diceRolls }) => {
         })
         return acc;
       }, {});
-      
-      const getPhrases = Object.keys(totalResult).map(face => {
-        return (
-          <p>{`You rolled a ${die} die and got ${totalResult[face]} ${face}`}<br/></p>
-          );
-        })
+
+      const diceResults = Object.keys(totalResult).map(face => {
+        return ` ${totalResult[face]} ${face}`;
+      })
+
+      const phrase = <>{`You rolled ${outcome[i].length} ${die} die and got${diceResults}`}<br/></>
         
-        const parsedPhrases = getPhrases.map(phrase => {
-          return phrase.props.children;
-        })
-        
-        return parsedPhrases;
-      };
+      return phrase.props.children;
+    };
 
     const translation = outcome.filter(dieType => dieType.length).map(result => {
       const diceIndex = (outcome.indexOf(result));
