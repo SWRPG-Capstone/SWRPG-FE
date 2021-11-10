@@ -83,5 +83,10 @@
 		padding-inline: .5rem;
 		width: 100%;
 		z-index: 8;
+    height: 85%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    top: 6%;
+    position: inherit;
 	}
 }
