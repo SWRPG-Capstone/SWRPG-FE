@@ -76,7 +76,7 @@ export const rollDice = (state) => {
   updateDiceAmount(state);
 	const outcome = dice.map(die => {
 		const { amount, sides } = die;
-		if ({ amount }) {
+    if (amount) {
 			const rollAmount = Array.from(Array(amount));
 			const rolls = rollAmount.map(() => {
 				return die.scenario[randomizeDice(sides) - 1]
