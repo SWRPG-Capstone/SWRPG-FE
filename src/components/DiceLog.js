@@ -9,21 +9,20 @@ export const DiceLog = ({ diceRolls }) => {
     const countOutcome = (result, i) => {
       const die = diceSet[i];
       
-      const totalResult = result.reduce((acc, dieValues) => {
-        dieValues.map(value => {
-          if (!acc[value]) {
-            acc[value] = 0;
-          }
-          return acc[value]++;
-        })
+      const totalResult = result.flat().reduce((acc, value) => {
+        if (!acc[value]) {
+          acc[value] = 0;
+        }
+        acc[value]++;
+
         return acc;
       }, {});
 
-      const diceResults = Object.keys(totalResult).map(face => {
+      const diceOutcomes = Object.keys(totalResult).map(face => {
         return ` ${totalResult[face]} ${face}`;
-      })
+      });
 
-      const phrase = <>{`You rolled ${outcome[i].length} ${die} die and got${diceResults}`}<br/></>
+      const phrase = <>{`You rolled ${outcome[i].length} ${die} ${outcome[i].length > 1 ? 'dice' : 'die'} and got${diceOutcomes}`}<br/></>;
         
       return phrase.props.children;
     };
