@@ -5,6 +5,10 @@ export const DiceLog = ({ diceRolls }) => {
 	const { outcome } = diceRolls;
   
   useEffect(() => {  
+    if (!outcome.length) {
+      return;
+    }
+
     const diceSet = ['force', 'ability', 'proficiency', 'boost', 'difficulty', 'challenge', 'setback']; 
     const countOutcome = (result, i) => {
       const die = diceSet[i];
@@ -22,9 +26,9 @@ export const DiceLog = ({ diceRolls }) => {
         return ` ${totalResult[face]} ${face}`;
       });
 
-      const phrase = <>{`You rolled ${outcome[i].length} ${die} ${outcome[i].length > 1 ? 'dice' : 'die'} and got${diceOutcomes}`}<br/></>;
+      const phrase = `You rolled ${outcome[i].length} ${die} ${outcome[i].length > 1 ? 'dice' : 'die'} and got${diceOutcomes}`;
         
-      return phrase.props.children;
+      return phrase;
     };
 
     const translation = outcome.filter(dieType => dieType.length).map(result => {
@@ -32,12 +36,19 @@ export const DiceLog = ({ diceRolls }) => {
       return countOutcome(result, diceIndex);
     });
 
-    setLogs(prevLogs => [ ...translation, ...prevLogs]);
+    setLogs(prevLogs => [ translation, ...prevLogs ]);
   }, [outcome]);
+
+  const rollLog = logs.map((entry, index) => {
+    const spacedEntry = entry.join(', ');
+    return <li className='log-entry' key={index}>{spacedEntry}</li>
+  })
 
 	return (
 		<article className='roll-log'>
-				<p className='entry'>{logs}</p>
+				<ul className='entries'>
+          {rollLog}
+        </ul>
 		</article>
 	)
 }
