@@ -78,7 +78,8 @@
 		filter: $blur-quaternary;
 		z-index: 6;
 	}
-	.entry {
+
+	.entries {
 		text-align: center;
 		padding-inline: .5rem;
 		width: 100%;
@@ -88,5 +89,20 @@
     scrollbar-width: none;
     top: 6%;
     position: inherit;
+    list-style-type: none;
 	}
+
+  .log-entry {
+    margin-bottom: 4%;
+    position: relative;
+  }
+
+  .log-entry:before {
+    content: '';
+    border-bottom: 1px solid $color-accent-secondary;
+    position: absolute;
+    width: 60%;
+    left: 20%;
+    bottom: -5px;
+  }
 }
