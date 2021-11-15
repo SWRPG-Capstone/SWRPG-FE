@@ -74,6 +74,12 @@ export let diceOutcome;
 
 export const rollDice = (state) => {
   updateDiceAmount(state);
+
+  if (!checkForDice(state)) {
+    diceOutcome = [];
+    return;
+  }
+
 	const outcome = dice.map(die => {
 		const { amount, sides } = die;
     if (amount) {
@@ -86,6 +92,15 @@ export const rollDice = (state) => {
     return [];
 	});
   diceOutcome = outcome;
+}
+
+const checkForDice = (state) => {
+  return dice.reduce((acc, die) => {
+    if (state[die.type]) {
+      acc = true;
+    }
+    return acc;
+  }, false);
 }
 
 const updateDiceAmount = (state) => {
