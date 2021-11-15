@@ -26,7 +26,7 @@ describe('Dice page user flows', () => {
     cy.get('div[class="scale"]').first().click();
     cy.get('img[class="icon dice large"]').click();
     cy.get('button').contains('Dice Log').click();
-    cy.get('article[class="roll-log"]').contains('You rolled a force die');
+    cy.get('article[class="roll-log"]').contains('You rolled 1 force die');
   });
 
   it('Can click the Dice Log button to open and close the log', () => {
@@ -40,7 +40,7 @@ describe('Dice page user flows', () => {
     cy.get('div[class="scale"]').eq(4).click();
     cy.get('img[class="icon dice large"]').click();
     cy.get('button').contains('Dice Log').click();
-    cy.get('article[class="roll-log"]').contains('You rolled a ability die');
-    cy.get('article[class="roll-log"]').contains('You rolled a difficulty die');
+    cy.get('article[class="roll-log"]').contains('You rolled 1 ability die');
+    cy.get('article[class="roll-log"]').contains('You rolled 1 difficulty die');
   });
 })
