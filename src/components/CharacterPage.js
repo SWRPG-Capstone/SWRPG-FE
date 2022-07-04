@@ -36,18 +36,18 @@ export const CharacterPage = ({ currentChar }) => {
   
 
   const characterInfo = (
-    <>
-      <InfoField heading='name' info={character.name} />
-      <InfoField heading='species' info={character.species} />
-      <InfoField heading='career' info={character.career} />
-      <InfoField heading='specialization' info={character.specialization} />
-    </>
+    <dl>
+      <InfoField heading="name" info={character.name} />
+      <InfoField heading="species" info={character.species} />
+      <InfoField heading="career" info={character.career} />
+      <InfoField heading="specialization" info={character.specialization} />
+    </dl>
   );
 
   return (
-    <section className='character-sheet'>
+    <section className="character-sheet">
       {characterInfo}
-      <h2>Characteristics</h2>
+      <h2 className="stats-heading">Characteristics</h2>
       <Characteristics characteristics={character.characteristics[0]} />
     </section>
   )
