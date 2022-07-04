@@ -46,6 +46,7 @@ export const CharacterPage = ({ currentChar }) => {
 
   return (
     <section className="character-sheet">
+      <h2 className="sr-only">Character details</h2>
       {characterInfo}
       <h2 className="stats-heading">Characteristics</h2>
       <Characteristics characteristics={character.characteristics[0]} />
