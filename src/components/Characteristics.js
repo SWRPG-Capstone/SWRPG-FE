@@ -9,11 +9,10 @@ export const Characteristics = ({ characteristics }) => {
     <Characteristic key='willpower' characteristic='willpower' score={characteristics.willpower} />,
     <Characteristic key='presence' characteristic='presence' score={characteristics.charPresence} />,
   ];
+  
   return (
-    <div className="bubbles">
-      {characteristicBubbles[0]}{characteristicBubbles[1]}
-      {characteristicBubbles[2]}{characteristicBubbles[3]}
-      {characteristicBubbles[4]}{characteristicBubbles[5]}
-    </div>
+    <dl className="bubbles">
+      {characteristicBubbles}
+    </dl>
   )
 }
