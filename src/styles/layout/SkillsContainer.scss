@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
 	height: 100%;
+
   &::before {
     content: '';
     position: absolute;
@@ -11,12 +12,14 @@
     background: $color-background-primary;
     filter: $blur-primary;
     }
+
   .skill-headings {
     @include flex(row, space-between);
     position: absolute;
     z-index: 1;
     width: 100%;
     padding: 0 2.5rem;
+    
     .heading {
       @include fonts(giant, $font-weight-bold);
       color: $color-white;
@@ -29,6 +32,6 @@
     margin: 1rem 0;
     width: 100%;
     height: clamp(10%, 90vh, 100%);
-    padding: 2.5rem 1rem 15rem;
+    padding: 2.5rem 1rem 8rem;
   }
 }
