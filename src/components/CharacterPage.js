@@ -33,8 +33,6 @@ export const CharacterPage = ({ currentChar }) => {
 
   const character = data.character;
 
-  
-
   const characterInfo = (
     <dl>
       <InfoField heading="name" info={character.name} />
@@ -46,10 +44,14 @@ export const CharacterPage = ({ currentChar }) => {
 
   return (
     <section className="character-sheet">
-      <h2 className="sr-only">Character details</h2>
-      {characterInfo}
-      <h2 className="stats-heading">Characteristics</h2>
-      <Characteristics characteristics={character.characteristics[0]} />
+      <div className="column">
+        <h2 className="sr-only">Character details</h2>
+        {characterInfo}
+      </div>
+      <div className="column">
+        <h2 className="stats-heading">Characteristics</h2>
+        <Characteristics characteristics={character.characteristics[0]} />
+      </div>
     </section>
   )
 }
