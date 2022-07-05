@@ -34,7 +34,7 @@
       width: 60%;
     }
   
-    @include device(desktop) {
+    @include device(tablet-lg) {
       width: 40%;
     }
     
@@ -56,7 +56,7 @@
       width: 60%;
     }
   
-    @include device(desktop) {
+    @include device(tablet-lg) {
       width: 40%;
     }
   }

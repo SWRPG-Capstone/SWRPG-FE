@@ -13,7 +13,7 @@
     width: 80%;
   }
 
-  @include device(desktop) {
+  @include device(tablet-lg) {
     width: 60%;
   }
 
