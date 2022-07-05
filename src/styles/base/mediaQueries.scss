@@ -4,6 +4,12 @@
 
 @mixin device($breakpoint) {
   @if $breakpoint == desktop {
+    @media only screen and (min-width: 1200px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tablet-lg {    
     @media only screen and (min-width: 1024px) {
       @content;
     }
