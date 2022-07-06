@@ -74,14 +74,14 @@ describe('Character page user flows', () => {
 
   it('Should show a character name, species, career, and specialization', () => {
     cy.visit('http://localhost:3000/character');
-    cy.get('h2').contains('name');
-    cy.get('p').contains('Boops McGoops');
-    cy.get('h2').contains('species');
-    cy.get('p').contains('cool alien');
-    cy.get('h2').contains('career');
-    cy.get('p').contains('bounty hunter');
-    cy.get('h2').contains('specialization');
-    cy.get('p').contains('assassin');
+    cy.get('dt').contains('name');
+    cy.get('dd').contains('Boops McGoops');
+    cy.get('dt').contains('species');
+    cy.get('dd').contains('cool alien');
+    cy.get('dt').contains('career');
+    cy.get('dd').contains('bounty hunter');
+    cy.get('dt').contains('specialization');
+    cy.get('dd').contains('assassin');
   });
 
   it('Should be able to click the home button to return to character select', () => {
@@ -97,7 +97,7 @@ describe('Character page user flows', () => {
     cy.get('.button.small').first().click();
     cy.get('.button.medium').first().click();
     cy.get('h1').contains('character');
-    cy.get('h2').contains('name');
-    cy.get('p').contains('Boops McGoops');
+    cy.get('dt').contains('name');
+    cy.get('dd').contains('Boops McGoops');
   });
 });
