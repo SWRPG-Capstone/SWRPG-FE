@@ -6,7 +6,19 @@
     align-items: initial;
     flex-direction: row-reverse;
     justify-content: space-between;
-    width: 60%;
+    width: 70%;
+  }
+}
+
+.log-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+
+  @include device(desktop) {
+    width: 50%;
   }
 }
 
@@ -16,6 +28,10 @@
   scrollbar-width: none;
 	overflow-x: hidden;
   overflow-y: scroll;
+
+  @include device(desktop) {
+    width: 40%;
+  }
 
 	.dice-headings {
 		@include flex(row, space-between);
@@ -32,10 +48,10 @@
 	z-index: 4;
 	inset-block: 5rem;
 	height: clamp(30rem, 5vh, 10rem);
-	width: clamp(23rem, 30vw, 30rem);
 	background: $color-transparent-secondary;
 	box-shadow: $box-shadow-primary;
-	transition: 1s opacity;		
+	transition: 1s opacity;
+  top: 0;
 
 	&.hidden {
 		opacity: 0;
@@ -46,7 +62,7 @@
 .open-log-button {
 	@include fonts(massive, $font-weight-bold);
 	@include flex(row, center);
-	z-index: 12;
+	z-index: 5;
 	color: $color-secondary;
 	text-shadow: $text-shadow-primary;
 	border: $border-primary;
@@ -54,13 +70,10 @@
 	background-color: $color-secondary;
 	box-shadow: $box-shadow-primary;
 	padding-inline: 2.5rem;
+  position: relative;
 	height: 5rem;
 	margin-bottom: 1rem;
 	transition: color 750ms ease-in-out, background 100ms ease-in, text-shadow 500ms ease-in-out;
-
-  @include device(desktop) {
-    margin-right: 4.25rem;
-  }
 
 	&:hover {
 		color: $color-accent-secondary;
@@ -72,7 +85,6 @@
 	}
 
 	&.active {
-		z-index: 7;
 		background: unset;
 		border-color: transparent;
 		box-shadow: unset;
@@ -85,7 +97,7 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
-
+  
 	&::after {
 		content: '';
 		position: absolute;
@@ -102,7 +114,7 @@
 		padding-inline: 1rem;
 		width: 100%;
 		z-index: 8;
-    height: 85%;
+    height: 80%;
     overflow-y: scroll;
     scrollbar-width: none;
     top: 6%;
