@@ -21,10 +21,12 @@ export const DicePage = () => {
 
 	return (
 		<section className='dice-sheet'>
-			<button className={`open-log-button ${isActive && 'active' }`} onClick={() => setActive(!isActive)}>Dice Log</button>
-			<article className={`dice-log ${!isActive && 'hidden' }`}>
-				<DiceLog diceRolls={state} />
-			</article>
+      <div className="log-wrapper">
+        <button className={`open-log-button ${isActive && 'active'}`} onClick={() => setActive(!isActive)}>Dice Log</button>
+        <article className={`dice-log ${!isActive && 'hidden'}`}>
+          <DiceLog diceRolls={state} />
+        </article>
+      </div>
 			<div className='dice-field'>
 				<div className="dice-headings">
 					<h3 className='heading'>Dice</h3>
