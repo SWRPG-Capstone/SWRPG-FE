@@ -1,4 +1,25 @@
 .character-sheet {
 	position: relative;
 	height: 100%;
+
+  @include device(tablet-lg) {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
+    width: 50%;
+  }
+}
+
+.column {
+  @include device(tablet-lg) {
+    width: 45%;
+  }
+}
+
+.stats-heading {
+  padding: 1.5rem 0 0.25rem 0;
+
+  @include device(tablet-lg) {
+    padding: 0 0 0.25rem 0;
+  }
 }

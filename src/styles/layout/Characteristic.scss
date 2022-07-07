@@ -1,4 +1,6 @@
 .bubble-wrapper {
+  @include flex(column-reverse, center);
+
   .score-bubble {
     @include flex(column, center);
     @include fonts(massive);
@@ -11,6 +13,7 @@
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: $color-accent-primary;
   }
+
   .characteristic-title {
     padding-top: 0.25em;
     @include fonts(tiny);

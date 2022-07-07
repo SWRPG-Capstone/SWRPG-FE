@@ -33,22 +33,25 @@ export const CharacterPage = ({ currentChar }) => {
 
   const character = data.character;
 
-  
-
   const characterInfo = (
-    <>
-      <InfoField heading='name' info={character.name} />
-      <InfoField heading='species' info={character.species} />
-      <InfoField heading='career' info={character.career} />
-      <InfoField heading='specialization' info={character.specialization} />
-    </>
+    <dl>
+      <InfoField heading="name" info={character.name} />
+      <InfoField heading="species" info={character.species} />
+      <InfoField heading="career" info={character.career} />
+      <InfoField heading="specialization" info={character.specialization} />
+    </dl>
   );
 
   return (
-    <section className='character-sheet'>
-      {characterInfo}
-      <h2>Characteristics</h2>
-      <Characteristics characteristics={character.characteristics[0]} />
+    <section className="character-sheet">
+      <div className="column">
+        <h2 className="sr-only">Character details</h2>
+        {characterInfo}
+      </div>
+      <div className="column">
+        <h2 className="stats-heading">Characteristics</h2>
+        <Characteristics characteristics={character.characteristics[0]} />
+      </div>
     </section>
   )
 }

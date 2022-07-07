@@ -24,7 +24,7 @@ export const Orb = ({ pathway, icon, size }) => {
 
 
   return (
-    <button className={`button ${size} '}`} onClick={handleClick} >
+    <button className={`button ${size}`} onClick={handleClick} >
       <img className={`icon ${iconName} ${size}`} src={icon} alt={`${iconName} icon.`} />
       <div className={`orb ${size}`} />
     </button>

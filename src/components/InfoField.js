@@ -1,8 +1,8 @@
 export const InfoField = ({ heading, info }) => {
   return (
-    <article className='info-field'>
-      <h2 className="info-heading">{heading}</h2>
-      <p className="info-value">{info}</p>
-    </article>
+    <div className='info-field'>
+      <dt className="info-heading">{heading}</dt>
+      <dd className="info-value">{info}</dd>
+    </div>
   )
 }

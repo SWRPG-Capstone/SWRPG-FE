@@ -1,10 +1,12 @@
 .info-field {
   height: unset;
+
   .info-heading {
     @include fonts(medium);
     width: 90%;
     text-align: left;
   }
+  
   .info-value {
     color: $color-accent-primary;
     background-color: $color-primary;

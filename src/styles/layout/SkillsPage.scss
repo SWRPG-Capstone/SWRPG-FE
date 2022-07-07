@@ -1,0 +1,53 @@
+.skills-sheet {
+  @include flex(column, start);
+  align-items: center;
+  position: relative;
+  width: 100%;
+	height: 100%;
+
+  .skill-headings {
+    @include flex(row, space-between);
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    padding: 0 2.5rem 0.5rem 2.5rem;
+    background: linear-gradient(180deg, $color-background-primary 80%, rgba(0,0,0,0) 100%);
+
+    @include device(tablet) {
+      width: 60%;
+    }
+  
+    @include device(tablet-lg) {
+      width: 40%;
+    }
+    
+    .heading {
+      @include fonts(giant, $font-weight-bold);
+      color: $color-white;
+    }
+  }
+
+  .skills-container {
+    z-index: 0;
+    overflow-y: auto;
+    margin: 1.5rem 0;
+    width: 100%;
+    height: clamp(10%, 90vh, 100%);
+    padding: 2.5rem 1rem 8rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-x: hidden;
+  
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include device(tablet) {
+      width: 60%;
+    }
+  
+    @include device(tablet-lg) {
+      width: 40%;
+    }
+  }
+}

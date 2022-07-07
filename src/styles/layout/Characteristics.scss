@@ -1,3 +1,4 @@
 .bubbles {
   @include grid(triple);
+  justify-items: flex-start;
 }

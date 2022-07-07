@@ -177,10 +177,10 @@ describe('Character creation user flows', () => {
     cy.get('input[name="deception"]').clear({force: true}).type('5').should('have.value', '5');
     cy.get('button').contains('Submit').click();
 
-    cy.get('h2').contains('name');
-    cy.get('p').contains('Bail Loran');
-    cy.get('h2').contains('species');
-    cy.get('p').contains('human');
+    cy.get('dt').contains('name');
+    cy.get('dd').contains('Bail Loran');
+    cy.get('dt').contains('species');
+    cy.get('dd').contains('human');
     cy.get('.score-bubble').first().contains(1);
     cy.get('.score-bubble').last().contains(3);
   });
