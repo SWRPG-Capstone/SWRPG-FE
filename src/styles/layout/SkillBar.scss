@@ -1,3 +1,11 @@
+.skill-element {
+  @include flex(row, space-between);
+
+  * {
+    @include fonts(small);
+  }
+}
+
 .skill-meter {
   overflow: hidden;
   border: $border-primary;
@@ -31,8 +39,4 @@
     background-color: $color-accent-primary;
     mix-blend-mode: multiply;
   }
-}
-
-.skill-element {
-  @include flex(row, space-between);
 }
