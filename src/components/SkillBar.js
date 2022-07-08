@@ -13,7 +13,10 @@ export const SkillBar = ({ skill, skillID, ranks }) => {
     <div className="skill-element">
       <dt>{formatName(skill)}</dt>
       <dd className="sr-only">{ranks === 1 ? `${ranks} rank` : `${ranks} ranks`}</dd>
-      <progress className="skill-meter" id={skill} value={ranks} min="0" max="5" onClick={toggleModal} aria-hidden />
+      <button onClick={toggleModal} title="Update ranks">
+        <span className="sr-only">Update ranks in {skill}</span>
+        <progress aria-hidden  className="skill-meter" id={skill} value={ranks} min="0" max="5" />
+      </button>
       {skillModal}
     </div>
   );
