@@ -38,8 +38,8 @@ export const App = () => {
 
   return (
     <UserContext.Provider value={{ state, dispatch }} >
+      <Header />
       <main>
-        <Header />
         <Switch>
           <Route exact path="/home">
             <HomePage currentChar={state.currentChar} setCurrentChar={setCurrentChar} />
@@ -60,8 +60,8 @@ export const App = () => {
             <Redirect to="/home" />
           </Route>
         </Switch>
-        {location !== '/create' && <NavBar />}
       </main>
+      {location !== '/create' && <NavBar />}
     </UserContext.Provider>
   )
 }
