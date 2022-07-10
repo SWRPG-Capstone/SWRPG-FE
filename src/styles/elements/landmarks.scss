@@ -37,7 +37,7 @@ article {
 }
 
 form {
-  @include flex(column, center)
+  @include flex(column, start);
 }
 
 button {
