@@ -24,7 +24,12 @@ const initialState = {
 
 export const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const location = useLocation().pathname
+  const { pathname } = useLocation();
+  const location = pathname[1]?.toUpperCase() + pathname.slice(2);
+
+  useEffect(() => {
+    document.title = `${location} | SWRPG Companion`;
+  }, [location]);
 
   useEffect(() => {
     !state.currentChar &&
@@ -61,7 +66,7 @@ export const App = () => {
           </Route>
         </Switch>
       </main>
-      {location !== '/create' && <NavBar />}
+      {pathname !== '/create' && <NavBar />}
     </UserContext.Provider>
   )
 }
