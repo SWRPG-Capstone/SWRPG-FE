@@ -1,0 +1,22 @@
+.nav-msg {
+  position: absolute;
+  opacity: 0;
+}
+
+.skip-links {
+  a {
+    @include fonts(small);
+    color: $color-white;
+    display: block;
+    text-decoration: none;
+  }
+
+  &:focus {
+    @include flex(column, center);
+    background: $color-tertiary;
+    padding: 1rem 0;
+    position: absolute;
+    height: auto;
+    width: 14rem;
+  }
+}
