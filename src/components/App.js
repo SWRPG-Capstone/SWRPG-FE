@@ -9,6 +9,7 @@ import { NavBar } from "./NavBar";
 import { UserContext } from "../utilities/UserContext";
 import { reducer } from "../utilities/reducer";
 import { FormContainer } from "./FormContainer";
+import { NavigationAnnouncer } from "./NavigationAnnouncer";
 
 const initialState = {
   force: 0,
@@ -43,8 +44,9 @@ export const App = () => {
 
   return (
     <UserContext.Provider value={{ state, dispatch }} >
+      <NavigationAnnouncer location={location} />
       <Header />
-      <main>
+      <main id="main">
         <Switch>
           <Route exact path="/home">
             <HomePage currentChar={state.currentChar} setCurrentChar={setCurrentChar} />
