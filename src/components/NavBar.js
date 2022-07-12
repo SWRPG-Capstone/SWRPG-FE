@@ -7,7 +7,7 @@ export const NavBar = () => {
 
   return (
     <footer>
-      <nav className={`nav-bar`}>
+      <nav className={`nav-bar`} id="navigation">
         <Orb pathway='/home' icon={home} size='small' />
         <Orb pathway='/character' icon={character} size='medium' />
         <Orb pathway='/dice' icon={dice} size='large' />
