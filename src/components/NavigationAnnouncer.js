@@ -12,7 +12,7 @@ export const NavigationAnnouncer = ({ location }) => {
   return (
     <>
       <span className="nav-msg" ref={ref} tabIndex="-1">Navigated to {location} page</span>
-      <div className="skip-links sr-only" tabIndex="0">
+      <div className="skip-links">
         <a href="#navigation">
           Skip to navigation
         </a>
