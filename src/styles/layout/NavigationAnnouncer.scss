@@ -4,19 +4,25 @@
 }
 
 .skip-links {
+  @include flex(column, center);
+  background: $color-tertiary;
+  border-radius: 0 0 15px 15px;
+  box-shadow: $box-shadow-primary;
+  height: auto;
+  padding: 1rem 0;
+  position: absolute;
+  top: -10rem;
+  transition: top 0.4s ease-in-out;
+  width: 14rem;
+
   a {
     @include fonts(small);
     color: $color-white;
     display: block;
     text-decoration: none;
   }
+}
 
-  &:focus {
-    @include flex(column, center);
-    background: $color-tertiary;
-    padding: 1rem 0;
-    position: absolute;
-    height: auto;
-    width: 14rem;
-  }
+.skip-links:focus-within {
+  top: 0;
 }
