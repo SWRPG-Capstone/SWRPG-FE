@@ -7,12 +7,14 @@ export const NavBar = () => {
 
   return (
     <footer>
-      <nav className={`nav-bar`} id="navigation">
-        <Orb pathway='/home' icon={home} size='small' />
-        <Orb pathway='/character' icon={character} size='medium' />
-        <Orb pathway='/dice' icon={dice} size='large' />
-        <Orb pathway='/skills' icon={skills} size='medium' />
-        <Orb pathway='/home' icon={logout} size='small' />
+      <nav id="navigation">
+        <ul className="nav-bar">
+          <li><Orb pathway='/home' icon={home} size='small' /></li>
+          <li><Orb pathway='/character' icon={character} size='medium' /></li>
+          <li><Orb pathway='/dice' icon={dice} size='large' /></li>
+          <li><Orb pathway='/skills' icon={skills} size='medium' /></li>
+          <li><Orb pathway='/home' icon={logout} size='small' /></li>
+        </ul>
       </nav>
       <div className={`backdrop`} />
     </footer>
