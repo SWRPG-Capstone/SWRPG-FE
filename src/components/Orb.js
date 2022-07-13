@@ -25,7 +25,7 @@ export const Orb = ({ pathway, icon, size }) => {
 
   return (
     <button className={`button ${size}`} onClick={handleClick}>
-      <span className="sr-only">Go to {pathway.slice(1)} page</span>
+      <span className="sr-only">{pathway.slice(1)}</span>
       <img aria-hidden className={`icon ${iconName} ${size}`} src={icon} alt={`${iconName} icon`} />
       <div className={`orb ${size}`} />
     </button>
