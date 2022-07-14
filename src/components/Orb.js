@@ -26,7 +26,7 @@ export const Orb = ({ pathway, icon, size }) => {
 
 
   return (
-    <NavLink to={pathway} className={`nav-link ${size}`} activeClassName="nav-selected" onClick={(e) => handleClick(e)}>
+    <NavLink exact to={pathway} className={`nav-link ${size}`} activeClassName={location === "/dice" ? "" : "nav-selected"} onClick={(e) => handleClick(e)}>
       <span className="sr-only">{pathway.slice(1)}</span>
       <img aria-hidden className={`icon ${iconName} ${size}`} src={icon} alt={`${iconName} icon`} />
       <div className={`orb ${size}`} />

@@ -13,7 +13,7 @@ export const NavBar = () => {
           <li><Orb pathway='/character' icon={character} size='medium' /></li>
           <li><Orb pathway='/dice' icon={dice} size='large' /></li>
           <li><Orb pathway='/skills' icon={skills} size='medium' /></li>
-          <li><Orb pathway='/home' icon={logout} size='small' /></li>
+          <li><Orb pathway='/' icon={logout} size='small' /></li>
         </ul>
       </nav>
       <div className={`backdrop`} />
