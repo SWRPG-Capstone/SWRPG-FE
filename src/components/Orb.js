@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { rollDice } from '../utilities/dice';
 import { UserContext } from '../utilities/UserContext';
 import { diceOutcome } from '../utilities/dice';
@@ -13,7 +13,9 @@ export const Orb = ({ pathway, icon, size }) => {
   const { state, dispatch } = useContext(UserContext);
   
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
+
     if (location === '/dice' && size === 'large') {
       rollDice(state);
       dispatch({state, action: {type: 'SETOUTCOME', results: diceOutcome}});
@@ -24,11 +26,11 @@ export const Orb = ({ pathway, icon, size }) => {
 
 
   return (
-    <button className={`button ${size}`} onClick={handleClick}>
+    <Link to={`/${pathway}`} className={`nav-link ${size}`} onClick={(e) => handleClick(e)}>
       <span className="sr-only">{pathway.slice(1)}</span>
       <img aria-hidden className={`icon ${iconName} ${size}`} src={icon} alt={`${iconName} icon`} />
       <div className={`orb ${size}`} />
-    </button>
+    </Link>
   )
 }
 
