@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { rollDice } from '../utilities/dice';
 import { UserContext } from '../utilities/UserContext';
 import { diceOutcome } from '../utilities/dice';
@@ -26,11 +26,11 @@ export const Orb = ({ pathway, icon, size }) => {
 
 
   return (
-    <Link to={`/${pathway}`} className={`nav-link ${size}`} onClick={(e) => handleClick(e)}>
+    <NavLink to={pathway} className={`nav-link ${size}`} activeClassName="nav-selected" onClick={(e) => handleClick(e)}>
       <span className="sr-only">{pathway.slice(1)}</span>
       <img aria-hidden className={`icon ${iconName} ${size}`} src={icon} alt={`${iconName} icon`} />
       <div className={`orb ${size}`} />
-    </Link>
+    </NavLink>
   )
 }
 
