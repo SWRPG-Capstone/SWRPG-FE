@@ -8,6 +8,7 @@ workflows:
   test-and-deploy:
     jobs:
       - cypress/run:
+          store_artifacts: true
           yarn: true
           start: npm start
           wait-on: 'http://localhost:3000'
