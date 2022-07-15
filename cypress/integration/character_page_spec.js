@@ -67,7 +67,7 @@ describe('Character page user flows', () => {
 
   it('Header and url should reflect the current page', () => {
     cy.visit('http://localhost:3000/home');
-    cy.get('.button.medium').first().click();
+    cy.get('.icon.medium').first().click();
     cy.url().should('include', '/character');
     cy.get('h1').contains('character');
   })
@@ -86,7 +86,7 @@ describe('Character page user flows', () => {
 
   it('Should be able to click the home button to return to character select', () => {
     cy.visit('http://localhost:3000/character');
-    cy.get('.button.small').first().click();
+    cy.get('.icon.small').first().click();
     cy.get('.title').contains('home').should('be.visible');
     cy.url().should('include', '/home');
     cy.get('.home-link').should('have.length', 4);
@@ -94,8 +94,8 @@ describe('Character page user flows', () => {
 
   it('Should be able to click the character button to view the character page', () => {
     cy.visit('http://localhost:3000/character');
-    cy.get('.button.small').first().click();
-    cy.get('.button.medium').first().click();
+    cy.get('.icon.small').first().click();
+    cy.get('.icon.medium').first().click();
     cy.get('h1').contains('character');
     cy.get('dt').contains('name');
     cy.get('dd').contains('Boops McGoops');
