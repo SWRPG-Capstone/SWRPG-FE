@@ -1,11 +1,11 @@
 ![swrpgc banner](https://user-images.githubusercontent.com/17935770/131261369-477cff64-39e5-462a-81bf-3f55944e512e.png)
 
 
-This application acts as a companion for the tabletop rpg game: **Star Wars: Edge of the Empire**. The companion app allows you to keep track of and store your in-game characters. You may also roll any amount of the featured starwars dice so that your adventure may unfold into the legendary campaign it was always meant to be. 
+This application acts as a companion to the tabletop RPG **Star Wars: Edge of the Empire**. This companion app allows you to store your in-game characters, including details, stats, and skill ranks. A dice roller is also included so that your adventure may unfold into the legendary campaign it was always meant to be. 
 
 <div align='center'>
 
- Check out the [deployed app](https://swrpg-companion.herokuapp.com/home) and start your campaign today! 
+ Check out the [deployed app](https://swrpg-companion.herokuapp.com/home) on your mobile device and start your campaign today! 
  
  </div>
 
@@ -14,8 +14,8 @@ This application acts as a companion for the tabletop rpg game: **Star Wars: Edg
  - User may create a new character that contains their information, characteristics, and skills.
  - Dice rolls can be be configured to any desired combination.
  - All of your characters can be seen in one place.
- - Skills may be edited whenever you want.
- - Optimized for Mobile View.
+ - Skill ranks may be edited whenever you want.
+ - Optimized for mobile devices for convenience during gameplay.
  
 
 <img alt="demo-header" src="./src/assets/readme/demo.png">
@@ -24,13 +24,13 @@ This application acts as a companion for the tabletop rpg game: **Star Wars: Edg
  
  <img align='right' alt="A gif of the demo" src="./src/assets/readme/app-demo-gif.gif"> 
 
-![Installation](https://user-images.githubusercontent.com/17935770/131262041-39ba027b-0d4e-44a6-b599-8f1543ae5c6c.png)Clone the project and install dependencies
+![Installation](https://user-images.githubusercontent.com/17935770/131262041-39ba027b-0d4e-44a6-b599-8f1543ae5c6c.png)To run locally, clone the project and install dependencies
 
 ```szh 
 git clone git@github.com:SWRPG-Capstone/swrpg-fe.git
 cd swrpg-fe
-npm install 
-npm start
+yarn
+yarn start
 ```
 
 <img alt="wireframe header" src="./src/assets/readme/wireframe.png">
@@ -56,7 +56,7 @@ npm start
 
 ![Our voyage with backend](./src/assets/readme/backend-header.png)
 
-This project was our capstone project for our final module at Turing, school of software and design. It was our first chance to work on a full-stack team as we were now paired with those who did the backend program at Turing. Our special-feature, exclusive behind-the-scene database may be seen [here](https://github.com/SWRPG-Capstone/swrpg-be). Extra content includes the queries we used to make the magic happen!
+This project was our capstone project for our final module at the Turing School of Software and Design. It was our first chance to work on a full-stack team as we were now paired with students from the backend program at Turing. Our special-feature, exclusive behind-the-scenes database may be seen [here](https://github.com/SWRPG-Capstone/swrpg-be). Extra content includes the queries we used to make the magic happen!
 
 ![tect stack](https://user-images.githubusercontent.com/17935770/131262694-59d17a22-b9e8-4396-b130-cd33d7754e0f.png)
 
@@ -92,7 +92,7 @@ This project was our capstone project for our final module at Turing, school of 
 **Learning goals:**
 - Gain experience working with a back-end team
 - Implement a git rebase workflow
-- Learn about GraphQL and using the Apollo Client
+- Learn about GraphQL using the Apollo Client
 
 **Challenges:**
 - Capturing the character ID created after the first page of the form is submitted, then passing that value to the final pages of the form
