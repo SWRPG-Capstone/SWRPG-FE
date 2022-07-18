@@ -9,6 +9,7 @@ import { NavBar } from "./NavBar";
 import { UserContext } from "../utilities/UserContext";
 import { reducer } from "../utilities/reducer";
 import { FormContainer } from "./FormContainer";
+import { NavigationAnnouncer } from "./NavigationAnnouncer";
 
 const initialState = {
   force: 0,
@@ -24,7 +25,12 @@ const initialState = {
 
 export const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const location = useLocation().pathname
+  const { pathname } = useLocation();
+  const location = pathname[1]?.toUpperCase() + pathname.slice(2);
+
+  useEffect(() => {
+    document.title = `${location} | SWRPG Companion`;
+  }, [location]);
 
   useEffect(() => {
     !state.currentChar &&
@@ -38,8 +44,9 @@ export const App = () => {
 
   return (
     <UserContext.Provider value={{ state, dispatch }} >
-      <main>
-        <Header />
+      <NavigationAnnouncer location={location} />
+      <Header />
+      <main id="main">
         <Switch>
           <Route exact path="/home">
             <HomePage currentChar={state.currentChar} setCurrentChar={setCurrentChar} />
@@ -60,8 +67,8 @@ export const App = () => {
             <Redirect to="/home" />
           </Route>
         </Switch>
-        {location !== '/create' && <NavBar />}
       </main>
+      {pathname !== '/create' && <NavBar />}
     </UserContext.Provider>
   )
 }

@@ -3,6 +3,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: auto;
+  
   &::-webkit-scrollbar {
     display: none;
   }
@@ -12,8 +13,8 @@
 .characteristic-form,
 .skills-form {
   z-index: 15;
-  min-height: 135%;
   padding-bottom: 10rem;
+
   .input-container {
     margin: .25rem;
     z-index: 15;
@@ -21,6 +22,7 @@
     &.char-heading {
       @include fonts(medium);
     }
+
     .char-value {
       @include flex(column, space-around);
       @include fonts(small, $font-weight-bold);
@@ -43,6 +45,7 @@
     box-shadow: $box-shadow-primary;
     padding: 0.1rem 4rem;
     background: $color-primary;
+
     &:hover {
       transform: scale(1.2);
       color: $color-accent-secondary;
@@ -56,16 +59,9 @@
 }
 
 .characteristic-form {
-  min-height: 100%;
-  height: 100%;
   margin-bottom: 5rem;
 
   .button {
     margin-bottom: 5rem;
   }
-}
-
-.skills-form {
-  min-height: 400%;
-  height: 100%;
 }

@@ -1,22 +1,22 @@
 import React from 'react';
 import { Orb } from './Orb';
 import { icons } from '../utilities/icons';
-import { useLocation } from 'react-router';
 
 export const NavBar = () => {
   const { home, character, dice, skills, logout } = icons
-  const location = useLocation().pathname
 
   return (
-    <footer className={`${location === '/create' && 'disable'}`}>
+    <footer>
+      <nav id="navigation">
+        <ul className="nav-bar">
+          <li><Orb pathway='/home' icon={home} size='small' /></li>
+          <li><Orb pathway='/character' icon={character} size='medium' /></li>
+          <li><Orb pathway='/dice' icon={dice} size='large' /></li>
+          <li><Orb pathway='/skills' icon={skills} size='medium' /></li>
+          <li><Orb pathway='/' icon={logout} size='small' /></li>
+        </ul>
+      </nav>
       <div className={`backdrop`} />
-      <section className={`nav-bar`}>
-        <Orb pathway='/home' icon={home} size='small' />
-        <Orb pathway='/character' icon={character} size='medium' />
-        <Orb pathway='/dice' icon={dice} size='large' />
-        <Orb pathway='/skills' icon={skills} size='medium' />
-        <Orb pathway='/home' icon={logout} size='small' />
-      </section>
     </footer>
   )
 }

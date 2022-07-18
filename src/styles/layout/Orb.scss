@@ -1,4 +1,4 @@
-.button {
+.nav-link {
   @include flex(column, center);
   position: relative;
   transition: 500ms transform;
@@ -6,7 +6,7 @@
 
   &.small:hover,
   &.medium:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   &.small {
@@ -69,10 +69,13 @@
       height: 5rem;
     }
   }
+}
 
-  &.disabled {
-    pointer-events: none;
-    transform: translateY(10rem);
+.nav-selected {
+  pointer-events: none;
+
+  .orb {
+    border: 1px solid $color-header-primary;
   }
 }
 

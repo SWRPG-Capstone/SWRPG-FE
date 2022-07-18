@@ -69,12 +69,12 @@ export const SkillsPage = ({ currentChar }) => {
   return (
     <section className="skills-sheet">
       <div className="skill-headings">
-        <h2 className='heading'>Skills</h2>
-        <h2 className='heading'>Ranks</h2>
+        <h2 className='heading' aria-hidden>Skills</h2>
+        <h2 className='heading' aria-hidden>Ranks</h2>
       </div>
-      <article className='skills-container'>
+      <dl className='skills-container'>
         {skillBars}
-      </article>
+      </dl>
     </section>
   );
 }

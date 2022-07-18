@@ -8,6 +8,7 @@ html {
   }
 
 body {
+  background: $color-background-primary;
   position: fixed;  
   overflow: hidden; 
 }
@@ -19,7 +20,6 @@ header {
 
 main {
   @include flex(column, space-between);
-  background: $color-background-primary;
   position: relative;
   height: 100vh;
   width: 100vw;
@@ -37,7 +37,7 @@ article {
 }
 
 form {
-  @include flex(column, center)
+  @include flex(column, start);
 }
 
 button {
