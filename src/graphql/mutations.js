@@ -2,20 +2,7 @@ import { gql } from '@apollo/client';
 
 export const CREATE_DETAILS = gql`
   mutation createCharDetails($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!) {
-    createCharacter(
-      input: {
-        userId: "2"
-        name: $name
-        species: $species
-        specialization: $specialization
-        career: $career
-        age: $age
-        height: $height
-        build: $build
-        hair: $hair
-        eyes: $eyes
-      }
-    ) {
+    createCharacter(input: { userId: "1", name: $name, species: $species, specialization: $specialization, career: $career, age: $age, height: $height, build: $build, hair: $hair, eyes: $eyes }) {
       id
     }
   }
@@ -23,17 +10,7 @@ export const CREATE_DETAILS = gql`
 
 export const CREATE_CHARACTERISTICS = gql`
   mutation createCharacteristics($agility: Int!, $brawn: Int!, $characterId: Int!, $charPresence: Int!, $cunning: Int!, $intellect: Int!, $willpower: Int!) {
-    createCharacteristic(
-      input: {
-        agility: $agility
-        brawn: $brawn
-        characterId: $characterId
-        charPresence: $charPresence
-        cunning: $cunning
-        intellect: $intellect
-        willpower: $willpower
-      }
-    ) {
+    createCharacteristic(input: { agility: $agility, brawn: $brawn, characterId: $characterId, charPresence: $charPresence, cunning: $cunning, intellect: $intellect, willpower: $willpower }) {
       agility
       brawn
       characterId
@@ -46,7 +23,42 @@ export const CREATE_CHARACTERISTICS = gql`
 `;
 
 export const CREATE_SKILLS = gql`
-  mutation createSkills($characterId: Int!, $astrogation: Int!, $athletics: Int!, $brawl: Int!, $charm: Int!, $coercion: Int!, $computers: Int!, $cool: Int!, $coordination: Int!, $coreWorlds: Int!, $deception: Int!, $discipline: Int!, $education: Int!, $gunnery: Int!, $leadership: Int!, $lore: Int!, $mechanics: Int!, $medicine: Int!, $melee: Int!, $negotiation: Int!, $outerRim: Int!, $perception: Int!, $piloting: Int!, $pilotingSpace: Int!, $rangedHeavy: Int!, $rangedLight: Int!, $resilience: Int!, $skulduggery: Int!, $stealth: Int!, $streetWise: Int!, $survival: Int!, $underworld: Int!, $vigilance: Int!, $xenology: Int!){ 
+  mutation createSkills(
+    $characterId: Int!
+    $astrogation: Int!
+    $athletics: Int!
+    $brawl: Int!
+    $charm: Int!
+    $coercion: Int!
+    $computers: Int!
+    $cool: Int!
+    $coordination: Int!
+    $coreWorlds: Int!
+    $deception: Int!
+    $discipline: Int!
+    $education: Int!
+    $gunnery: Int!
+    $leadership: Int!
+    $lore: Int!
+    $mechanics: Int!
+    $medicine: Int!
+    $melee: Int!
+    $negotiation: Int!
+    $outerRim: Int!
+    $perception: Int!
+    $piloting: Int!
+    $pilotingSpace: Int!
+    $rangedHeavy: Int!
+    $rangedLight: Int!
+    $resilience: Int!
+    $skulduggery: Int!
+    $stealth: Int!
+    $streetWise: Int!
+    $survival: Int!
+    $underworld: Int!
+    $vigilance: Int!
+    $xenology: Int!
+  ) {
     createSkill(
       input: {
         characterId: $characterId
@@ -84,41 +96,41 @@ export const CREATE_SKILLS = gql`
         vigilance: $vigilance
         xenology: $xenology
       }
-    ) {							  
-        astrogation
-        athletics
-        brawl
-        charm
-        coercion
-        computers
-        cool
-        coordination
-        coreWorlds
-        deception
-        discipline
-        education
-        gunnery
-        id
-        leadership
-        lore
-        mechanics
-        medicine
-        melee
-        negotiation
-        outerRim
-        perception
-        piloting
-        pilotingSpace
-        rangedHeavy
-        rangedLight
-        resilience
-        skulduggery
-        stealth
-        streetWise
-        survival
-        underworld
-        vigilance
-        xenology
+    ) {
+      astrogation
+      athletics
+      brawl
+      charm
+      coercion
+      computers
+      cool
+      coordination
+      coreWorlds
+      deception
+      discipline
+      education
+      gunnery
+      id
+      leadership
+      lore
+      mechanics
+      medicine
+      melee
+      negotiation
+      outerRim
+      perception
+      piloting
+      pilotingSpace
+      rangedHeavy
+      rangedLight
+      resilience
+      skulduggery
+      stealth
+      streetWise
+      survival
+      underworld
+      vigilance
+      xenology
     }
   }
 `;
