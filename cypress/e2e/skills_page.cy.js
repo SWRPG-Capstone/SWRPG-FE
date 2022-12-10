@@ -1,6 +1,6 @@
 describe('Skills page user flows', () => {
   beforeEach(() => {
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getCharacter') {
         req.alias = 'getCharQuery';
         req.reply({
@@ -20,45 +20,45 @@ describe('Skills page user flows', () => {
                     intellect: 2,
                     willpower: 3,
                     charPresence: 1,
-                    __typename: 'Characteristic'
-                  }
+                    __typename: 'Characteristic',
+                  },
                 ],
-                __typename: 'Character'
-              }
-            }
+                __typename: 'Character',
+              },
+            },
           },
           headers: {
             'access-control-allow-origin': '*',
-          }
-        })
+          },
+        });
       }
     });
 
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getAllCharacters') {
         req.alias = 'allCharsQuery';
         req.reply({
           body: {
             data: {
               user: {
-                username: "coolname5",
-                __typename: "User",
+                username: 'coolname5',
+                __typename: 'User',
                 characters: [
-                  { id: "1", name: "Boops McGoops", __typename: "Character" },
-                  { id: "2", name: "Miriax Bibble", __typename: "Character" },
-                  { id: "3", name: "Rein Dodonna", __typename: "Character" },
-                ]
-              }
-            }
+                  { id: '1', name: 'Boops McGoops', __typename: 'Character' },
+                  { id: '2', name: 'Miriax Bibble', __typename: 'Character' },
+                  { id: '3', name: 'Rein Dodonna', __typename: 'Character' },
+                ],
+              },
+            },
           },
           headers: {
             'access-control-allow-origin': '*',
-          }
-        })
+          },
+        });
       }
     });
 
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getSkills') {
         req.alias = 'skillsQuery';
         req.reply({
@@ -98,15 +98,15 @@ describe('Skills page user flows', () => {
                   underworld: 0,
                   vigilance: 2,
                   xenology: 0,
-                  __typename: 'Skill'
-                }
+                  __typename: 'Skill',
+                },
               ],
-              __typename: 'Character'
-            }
-          }
-        })
+              __typename: 'Character',
+            },
+          },
+        });
       }
-    })
+    });
 
     cy.visit('http://localhost:3000/');
   });
@@ -118,7 +118,7 @@ describe('Skills page user flows', () => {
     cy.get('.title').contains('skills').should('be.visible');
   });
 
-  it('Should display a character\'s skills and number of ranks', () => {
+  it("Should display a character's skills and number of ranks", () => {
     cy.visit('http://localhost:3000/skills');
     cy.get('progress').should('have.length', 31);
     cy.get('dt').should('have.length', 31);
@@ -130,18 +130,18 @@ describe('Skills page user flows', () => {
 
   it('Should open a modal when a skill bar is clicked', () => {
     cy.visit('http://localhost:3000/skills');
-    cy.get('#deception').click({force: true});
+    cy.get('#deception').click({ force: true });
     cy.get('.update-skill-prompt').contains('Update ranks in deception?').should('be.visible');
     cy.get('#deception').should('not.be.visible');
   });
 
   it('Should close the modal by clicking the close button or the background', () => {
     cy.visit('http://localhost:3000/skills');
-    cy.get('#deception').click({force: true});
+    cy.get('#deception').click({ force: true });
     cy.get('.update-skill-prompt').scrollIntoView().contains('Update ranks in deception?').should('be.visible');
     cy.get('button').contains('Close').click();
     cy.get('#deception').should('be.visible');
-    cy.get('#deception').click({force: true});
+    cy.get('#deception').click({ force: true });
     cy.get('.update-skill-prompt').scrollIntoView().contains('Update ranks in deception?').should('be.visible');
     cy.get('.modal-backdrop').contains('Close').click();
     cy.get('#deception').should('be.visible');
@@ -149,45 +149,45 @@ describe('Skills page user flows', () => {
 
   it('Should only show an Add Rank button for skills with less than 5 ranks', () => {
     cy.visit('http://localhost:3000/skills');
-    cy.get('#deception').click({force: true});
+    cy.get('#deception').click({ force: true });
     cy.get('button').contains('Add Rank').should('be.visible');
     cy.get('button').contains('Remove Rank').should('not.exist');
   });
 
   it('Should only show a Remove Rank button for skills with 5 ranks', () => {
     cy.visit('http://localhost:3000/skills');
-    cy.get('#athletics').click({force: true});
+    cy.get('#athletics').click({ force: true });
     cy.get('button').contains('Remove Rank').should('be.visible');
     cy.get('button').contains('Add Rank').should('not.exist');
   });
 
   it('Should show both buttons for skills with 1-4 ranks', () => {
     cy.visit('http://localhost:3000/skills');
-    cy.get('#brawl').click({force: true});
+    cy.get('#brawl').click({ force: true });
     cy.get('button').contains('Remove Rank').should('be.visible');
     cy.get('button').contains('Add Rank').should('be.visible');
   });
 
-  it('Should be able to click the Add Rank button to increase a skill\'s rank', () => {
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+  it("Should be able to click the Add Rank button to increase a skill's rank", () => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'mutateSkill') {
         req.alias = 'mutateSkill';
         req.reply({
           data: {
             updateSkill: {
               coercion: 4,
-              __typename: 'Skill'
-            }
-          }
-        })
+              __typename: 'Skill',
+            },
+          },
+        });
       }
     });
 
     cy.visit('http://localhost:3000/skills');
     cy.get('#coercion').should('have.value', 3);
-    cy.get('#coercion').click({force: true});
+    cy.get('#coercion').click({ force: true });
 
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getSkills') {
         req.alias = 'skillsQuery';
         req.reply({
@@ -227,13 +227,13 @@ describe('Skills page user flows', () => {
                   underworld: 0,
                   vigilance: 2,
                   xenology: 0,
-                  __typename: 'Skill'
-                }
+                  __typename: 'Skill',
+                },
               ],
-              __typename: 'Character'
-            }
-          }
-        })
+              __typename: 'Character',
+            },
+          },
+        });
       }
     });
 
@@ -242,26 +242,26 @@ describe('Skills page user flows', () => {
     cy.get('#coercion').should('have.value', 4);
   });
 
-  it('Should be able to click the Remove Rank button to decrease a skill\'s rank', () => {
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+  it("Should be able to click the Remove Rank button to decrease a skill's rank", () => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'mutateSkill') {
         req.alias = 'mutateSkill';
         req.reply({
           data: {
             updateSkill: {
               coercion: 2,
-              __typename: 'Skill'
-            }
-          }
-        })
+              __typename: 'Skill',
+            },
+          },
+        });
       }
     });
 
     cy.visit('http://localhost:3000/skills');
     cy.get('#coercion').should('have.value', 3);
-    cy.get('#coercion').click({force: true});
-    
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+    cy.get('#coercion').click({ force: true });
+
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getSkills') {
         req.alias = 'skillsQuery';
         req.reply({
@@ -301,16 +301,16 @@ describe('Skills page user flows', () => {
                   underworld: 0,
                   vigilance: 2,
                   xenology: 0,
-                  __typename: 'Skill'
-                }
+                  __typename: 'Skill',
+                },
               ],
-              __typename: 'Character'
-            }
-          }
-        })
+              __typename: 'Character',
+            },
+          },
+        });
       }
     });
-        
+
     cy.get('button').contains('Add Rank').click();
     cy.wait('@skillsQuery');
     cy.get('#coercion').should('have.value', 2);

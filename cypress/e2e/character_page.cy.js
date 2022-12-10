@@ -1,7 +1,6 @@
 describe('Character page user flows', () => {
-
   beforeEach(() => {
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getCharacter') {
         req.alias = 'getCharQuery';
         req.reply({
@@ -21,45 +20,45 @@ describe('Character page user flows', () => {
                     intellect: 2,
                     willpower: 3,
                     charPresence: 1,
-                    __typename: 'Characteristic'
-                  }
+                    __typename: 'Characteristic',
+                  },
                 ],
-                __typename: 'Character'
-              }
-            }
+                __typename: 'Character',
+              },
+            },
           },
           headers: {
             'access-control-allow-origin': '*',
-          }
-        })
+          },
+        });
       }
     });
 
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getAllCharacters') {
         req.alias = 'allCharsQuery';
         req.reply({
           body: {
             data: {
               user: {
-                username: "coolname5",
-                __typename: "User",
+                username: 'coolname5',
+                __typename: 'User',
                 characters: [
-                  { id: "1", name: "Boops McGoops", __typename: "Character" },
-                  { id: "2", name: "Miriax Bibble", __typename: "Character" },
-                  { id: "3", name: "Rein Dodonna", __typename: "Character" },
-                ]
-              }
-            }
+                  { id: '1', name: 'Boops McGoops', __typename: 'Character' },
+                  { id: '2', name: 'Miriax Bibble', __typename: 'Character' },
+                  { id: '3', name: 'Rein Dodonna', __typename: 'Character' },
+                ],
+              },
+            },
           },
           headers: {
             'access-control-allow-origin': '*',
-          }
-        })
+          },
+        });
       }
     });
   });
-  
+
   it('Should be able to visit the character page', () => {
     cy.visit('http://localhost:3000/character');
     cy.get('h1').contains('character');
@@ -70,7 +69,7 @@ describe('Character page user flows', () => {
     cy.get('.icon.medium').first().click();
     cy.url().should('include', '/character');
     cy.get('h1').contains('character');
-  })
+  });
 
   it('Should show a character name, species, career, and specialization', () => {
     cy.visit('http://localhost:3000/character');
