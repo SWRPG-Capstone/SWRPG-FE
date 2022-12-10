@@ -4,7 +4,7 @@ import { useQuery, gql } from '@apollo/client';
 
 const ALL_CHARACTERS = gql`
   query getAllCharacters {
-    user(id: 2) {
+    user(id: 1) {
       username
       characters {
         id
@@ -22,18 +22,22 @@ export const HomePage = ({ setCurrentChar }) => {
 
   const handleClick = (e) => {
     setCurrentChar(e.target.id);
-  }
+  };
 
-  const charOptions = data.user.characters.map(character => {
+  const charOptions = data.user.characters.map((character) => {
     return (
-      <Link to='/character' className='home-link' key={character.id} id={parseInt(character.id)} onClick={handleClick}>{character.name}</Link>
-    )
+      <Link to="/character" className="home-link" key={character.id} id={parseInt(character.id)} onClick={handleClick}>
+        {character.name}
+      </Link>
+    );
   });
 
   return (
-    <section className='home-sheet'>
+    <section className="home-sheet">
       {charOptions}
-      <Link to='/create' className='home-link'>Create a New Character</Link>
+      <Link to="/create" className="home-link">
+        Create a New Character
+      </Link>
     </section>
-  )
-}
+  );
+};

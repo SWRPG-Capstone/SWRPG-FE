@@ -6,8 +6,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import './styles/styles.scss';
 
 const client = new ApolloClient({
-  uri: 'https://swrpg-be.herokuapp.com/graphql',
-  cache: new InMemoryCache()
+  uri: 'https://rails-2swo.onrender.com/graphql',
+  cache: new InMemoryCache(),
 });
 
 ReactDOM.render(
@@ -20,5 +20,3 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root')
 );
-
-

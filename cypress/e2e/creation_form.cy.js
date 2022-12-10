@@ -1,27 +1,26 @@
 describe('Character creation user flows', () => {
-
   beforeEach(() => {
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getAllCharacters') {
         req.alias = 'allCharsQuery';
         req.reply({
           body: {
             data: {
               user: {
-                username: "coolname5",
-                __typename: "User",
+                username: 'coolname5',
+                __typename: 'User',
                 characters: [
-                  { id: "1", name: "Boops McGoops", __typename: "Character" },
-                  { id: "2", name: "Miriax Bibble", __typename: "Character" },
-                  { id: "3", name: "Rein Dodonna", __typename: "Character" },
-                ]
-              }
-            }
+                  { id: '1', name: 'Boops McGoops', __typename: 'Character' },
+                  { id: '2', name: 'Miriax Bibble', __typename: 'Character' },
+                  { id: '3', name: 'Rein Dodonna', __typename: 'Character' },
+                ],
+              },
+            },
           },
           headers: {
             'access-control-allow-origin': '*',
-          }
-        })
+          },
+        });
       }
     });
 
@@ -40,17 +39,17 @@ describe('Character creation user flows', () => {
   });
 
   it('Should be able to fill out the form to create a new character', () => {
-    cy.intercept('POST', 'https://swrpg-be.herokuapp.com/graphql', req => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'createCharDetails') {
         req.alias = 'charDetailsMutation';
         req.reply({
           data: {
             createCharacter: {
               id: '4',
-              __typename: 'Character'
-            }
-          }
-        })
+              __typename: 'Character',
+            },
+          },
+        });
       }
 
       if (req.body.operationName === 'createCharacteristics') {
@@ -65,10 +64,10 @@ describe('Character creation user flows', () => {
               cunning: 3,
               intellect: 2,
               willpower: 1,
-              __typename: 'Characteristic'
-            }
-          }
-        })
+              __typename: 'Characteristic',
+            },
+          },
+        });
       }
 
       if (req.body.operationName === 'createSkills') {
@@ -110,10 +109,10 @@ describe('Character creation user flows', () => {
               underworld: 0,
               vigilance: 0,
               xenology: 0,
-              __typename: 'Skill'
-            }
-          }
-        })
+              __typename: 'Skill',
+            },
+          },
+        });
       }
 
       if (req.body.operationName === 'getCharacter') {
@@ -135,17 +134,17 @@ describe('Character creation user flows', () => {
                     intellect: 2,
                     willpower: 1,
                     charPresence: 3,
-                    __typename: 'Characteristic'
-                  }
+                    __typename: 'Characteristic',
+                  },
                 ],
-                __typename: 'Character'
-              }
-            }
+                __typename: 'Character',
+              },
+            },
           },
           headers: {
             'access-control-allow-origin': '*',
-          }
-        })
+          },
+        });
       }
     });
 
@@ -170,11 +169,11 @@ describe('Character creation user flows', () => {
     cy.get('input[name="willpower"]').clear().type('1').should('have.value', '1');
     cy.get('button').contains('Next').click();
 
-    cy.get('input[name="astrogation"]').clear({force: true}).type('1').should('have.value', '1');
-    cy.get('input[name="athletics"]').clear({force: true}).type('2').should('have.value', '2');
-    cy.get('input[name="charm"]').clear({force: true}).type('3').should('have.value', '3');
-    cy.get('input[name="coordination"]').clear({force: true}).type('4').should('have.value', '4');
-    cy.get('input[name="deception"]').clear({force: true}).type('5').should('have.value', '5');
+    cy.get('input[name="astrogation"]').clear({ force: true }).type('1').should('have.value', '1');
+    cy.get('input[name="athletics"]').clear({ force: true }).type('2').should('have.value', '2');
+    cy.get('input[name="charm"]').clear({ force: true }).type('3').should('have.value', '3');
+    cy.get('input[name="coordination"]').clear({ force: true }).type('4').should('have.value', '4');
+    cy.get('input[name="deception"]').clear({ force: true }).type('5').should('have.value', '5');
     cy.get('button').contains('Submit').click();
 
     cy.get('dt').contains('name');
