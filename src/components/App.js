@@ -1,15 +1,19 @@
-import React, { useEffect, useReducer } from "react";
-import { Route, Redirect, Switch, useLocation } from "react-router-dom";
-import { Header } from './Header'
-import { HomePage } from "./HomePage";
-import { DicePage } from "./DicePage";
-import { SkillsPage } from "./SkillsPage";
-import { CharacterPage } from "./CharacterPage";
-import { NavBar } from "./NavBar";
-import { UserContext } from "../utilities/UserContext";
-import { reducer } from "../utilities/reducer";
-import { FormContainer } from "./FormContainer";
-import { NavigationAnnouncer } from "./NavigationAnnouncer";
+import React, { useEffect, useReducer } from 'react';
+import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
+
+import { CharacterPage } from './CharacterPage';
+import { DicePage } from './DicePage';
+import { FormContainer } from './FormContainer';
+import { HomePage } from './HomePage';
+import { SkillsPage } from './SkillsPage';
+import { RegisterPage } from './RegisterPage';
+
+import { Header } from './Header';
+import { NavBar } from './NavBar';
+import { NavigationAnnouncer } from './NavigationAnnouncer';
+
+import { UserContext } from '../utilities/UserContext';
+import { reducer } from '../utilities/reducer';
 
 const initialState = {
   force: 0,
@@ -20,8 +24,8 @@ const initialState = {
   challenge: 0,
   setback: 0,
   outcome: [],
-  currentChar: null
-}
+  currentChar: null,
+};
 
 export const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -33,21 +37,22 @@ export const App = () => {
   }, [location]);
 
   useEffect(() => {
-    !state.currentChar &&
-      dispatch({ state, action: { type: 'AUTOSET' } })
-  }, [state])
+    !state.currentChar && dispatch({ state, action: { type: 'AUTOSET' } });
+  }, [state]);
 
   const setCurrentChar = (id) => {
-    dispatch({ state, action: { type: 'SETCHARACTER', character: id } })
-  }
-  
+    dispatch({ state, action: { type: 'SETCHARACTER', character: id } });
+  };
 
   return (
-    <UserContext.Provider value={{ state, dispatch }} >
+    <UserContext.Provider value={{ state, dispatch }}>
       <NavigationAnnouncer location={location} />
       <Header />
       <main id="main">
         <Switch>
+          <Route exact path="/register">
+            <RegisterPage />
+          </Route>
           <Route exact path="/home">
             <HomePage currentChar={state.currentChar} setCurrentChar={setCurrentChar} />
           </Route>
@@ -70,7 +75,5 @@ export const App = () => {
       </main>
       {pathname !== '/create' && <NavBar />}
     </UserContext.Provider>
-  )
-}
-
-
+  );
+};
