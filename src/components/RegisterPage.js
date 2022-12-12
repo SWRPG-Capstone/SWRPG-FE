@@ -7,10 +7,15 @@ export const RegisterPage = () => {
     setFormState({ ...formState, [field]: e.target.value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submit!');
+  };
+
   return (
     <section>
       <h2>Register a new account</h2>
-      <form className="char-form">
+      <form className="char-form" onSubmit={handleSubmit}>
         <div className="input-container">
           <label className="char-heading" htmlFor="username">
             username
@@ -29,6 +34,9 @@ export const RegisterPage = () => {
             <input className="char-value" type="text" name="confirmPassword" value={formState.confirmPassword} onChange={(e) => onChange(e, 'confirmPassword')} />
           </label>
         </div>
+        <button className="button large" type="submit">
+          Submit
+        </button>
       </form>
     </section>
   );
