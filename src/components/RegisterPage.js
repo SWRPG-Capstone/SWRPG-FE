@@ -5,11 +5,21 @@ export const RegisterPage = () => {
 
   const onChange = (e, field) => {
     setFormState({ ...formState, [field]: e.target.value });
+    // debounced error checking? make sure passwords match, length is correct...
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Submit!');
+    // Error message for existing username?
+    // If user cannot be created, stay on this page and show an error
+    // If submission is successful, reset the state and route to login
+  };
+
+  const validateUsername = (input) => {
+    if (input.length < 3 || input.length > 24) return false;
+    if (input[0] === ' ' || input[input.length - 1] === ' ') return false;
+    return true;
   };
 
   return (
