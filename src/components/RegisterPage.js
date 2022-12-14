@@ -5,6 +5,7 @@ export const RegisterPage = () => {
   const [formState, setFormState] = useState({ username: '', password: '', confirmPassword: '' });
   const [isTyping, setIsTyping] = useState({ username: false, password: false, confirmPassword: false });
   const debouncedUsername = useDebouncedValue(formState.username, 600);
+  const debouncedPassword = useDebouncedValue(formState.password, 600);
 
   const onChange = (e, field) => {
     setFormState({ ...formState, [field]: e.target.value });
@@ -34,6 +35,7 @@ export const RegisterPage = () => {
     if (input.length < 8 || input.length > 24) return false;
     const validPassRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,24}$/;
     if (!validPassRegex.test(input)) return false;
+    return true;
   };
 
   return (
@@ -52,6 +54,7 @@ export const RegisterPage = () => {
             password
             <input className="char-value" type="text" name="password" value={formState.password} onChange={(e) => onChange(e, 'password')} />
           </label>
+          {isTyping.password && !validatePassword(debouncedPassword) && <span className="inline-error">Password must be between 8 and 24 characters and must contain a lowercase letter, uppercase letter, number, and special character</span>}
         </div>
         <div className="input-container">
           <label className="char-heading" htmlFor="confirmPassword">
