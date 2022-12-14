@@ -6,6 +6,7 @@ export const RegisterPage = () => {
   const [isTyping, setIsTyping] = useState({ username: false, password: false, confirmPassword: false });
   const debouncedUsername = useDebouncedValue(formState.username, 600);
   const debouncedPassword = useDebouncedValue(formState.password, 600);
+  const debouncedConfirm = useDebouncedValue(formState.confirmPassword, 600);
 
   const onChange = (e, field) => {
     setFormState({ ...formState, [field]: e.target.value });
@@ -61,6 +62,7 @@ export const RegisterPage = () => {
             confirm password
             <input className="char-value" type="text" name="confirmPassword" value={formState.confirmPassword} onChange={(e) => onChange(e, 'confirmPassword')} />
           </label>
+          {isTyping.confirmPassword && debouncedConfirm !== formState.password && <span className="inline-error">Passwords must match</span>}
         </div>
         <button className="button large" type="submit">
           Submit
