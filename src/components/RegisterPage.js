@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
+import { useDebouncedValue } from '../utilities/hooks';
 
 export const RegisterPage = () => {
   const [formState, setFormState] = useState({ username: '', password: '', confirmPassword: '' });
+  const [isTyping, setIsTyping] = useState({ username: false, password: false, confirmPassword: false });
+  const debouncedUsername = useDebouncedValue(formState.username, 600);
 
   const onChange = (e, field) => {
     setFormState({ ...formState, [field]: e.target.value });
-    // debounced error checking? make sure passwords match, length is correct...
+
+    if (!isTyping[field]) {
+      setTimeout(() => {
+        setIsTyping({ ...isTyping, [field]: true });
+      }, 600);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -31,6 +39,7 @@ export const RegisterPage = () => {
             username
             <input className="char-value" type="text" name="username" autoFocus value={formState.username} onChange={(e) => onChange(e, 'username')} />
           </label>
+          {isTyping.username && !validateUsername(debouncedUsername) && <span className="inline-error">Username must be between 3 and 24 characters</span>}
         </div>
         <div className="input-container">
           <label className="char-heading" htmlFor="password">
