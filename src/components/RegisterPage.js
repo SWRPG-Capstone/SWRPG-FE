@@ -20,10 +20,15 @@ export const RegisterPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submit!');
-    // Error message for existing username?
-    // If user cannot be created, stay on this page and show an error
-    // If submission is successful, reset the state and route to login
+    if (validateSubmission()) {
+      console.log('Submit!');
+      // Error message for existing username?
+      // If user cannot be created, stay on this page and show an error
+      // If submission is successful, reset the state and route to login
+    } else {
+      setIsTyping({ username: true, password: true, confirmPassword: true });
+      console.log('Submission error');
+    }
   };
 
   const validateUsername = (input) => {
@@ -36,6 +41,14 @@ export const RegisterPage = () => {
     if (input.length < 8 || input.length > 24) return false;
     const validPassRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,24}$/;
     if (!validPassRegex.test(input)) return false;
+    return true;
+  };
+
+  const validateSubmission = () => {
+    if (!validateUsername(formState.username)) return false;
+    if (!validatePassword(formState.password)) return false;
+    if (!validatePassword(formState.confirmPassword)) return false;
+    if (formState.password !== formState.confirmPassword) return false;
     return true;
   };
 
