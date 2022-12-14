@@ -30,6 +30,12 @@ export const RegisterPage = () => {
     return true;
   };
 
+  const validatePassword = (input) => {
+    if (input.length < 8 || input.length > 24) return false;
+    const validPassRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,24}$/;
+    if (!validPassRegex.test(input)) return false;
+  };
+
   return (
     <section>
       <h2>Register a new account</h2>
