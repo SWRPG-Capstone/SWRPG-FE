@@ -34,6 +34,7 @@ export const RegisterPage = () => {
   const validateUsername = (input) => {
     if (input.length < 3 || input.length > 24) return false;
     if (input[0] === ' ' || input[input.length - 1] === ' ') return false;
+
     return true;
   };
 
@@ -41,14 +42,22 @@ export const RegisterPage = () => {
     if (input.length < 8 || input.length > 24) return false;
     const validPassRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,24}$/;
     if (!validPassRegex.test(input)) return false;
+
+    return true;
+  };
+
+  const validatePassConfirm = (input) => {
+    if (!validatePassword(input)) return false;
+    if (input !== formState.password) return false;
+
     return true;
   };
 
   const validateSubmission = () => {
     if (!validateUsername(formState.username)) return false;
     if (!validatePassword(formState.password)) return false;
-    if (!validatePassword(formState.confirmPassword)) return false;
-    if (formState.password !== formState.confirmPassword) return false;
+    if (!validatePassConfirm(formState.confirmPassword)) return false;
+
     return true;
   };
 
@@ -75,7 +84,7 @@ export const RegisterPage = () => {
             confirm password
             <input className="char-value" type="text" name="confirmPassword" value={formState.confirmPassword} onChange={(e) => onChange(e, 'confirmPassword')} />
           </label>
-          {isTyping.confirmPassword && debouncedConfirm !== formState.password && <span className="inline-error">Passwords must match</span>}
+          {isTyping.confirmPassword && !validatePassConfirm(debouncedConfirm) && <span className="inline-error">Passwords must match</span>}
         </div>
         <button className="button large" type="submit">
           Submit
