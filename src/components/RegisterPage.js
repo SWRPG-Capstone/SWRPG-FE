@@ -1,4 +1,6 @@
+import { useMutation } from '@apollo/client';
 import React, { useState } from 'react';
+import { CREATE_USER } from '../graphql/mutations';
 import { useDebouncedValue } from '../utilities/hooks';
 
 export const RegisterPage = () => {
@@ -7,6 +9,15 @@ export const RegisterPage = () => {
   const debouncedUsername = useDebouncedValue(formState.username, 600);
   const debouncedPassword = useDebouncedValue(formState.password, 600);
   const debouncedConfirm = useDebouncedValue(formState.confirmPassword, 600);
+
+  const [createUser, { loading, error }] = useMutation(CREATE_USER, {
+    onCompleted(data) {
+      const newUser = data.createUser.user.username;
+      console.log(`${newUser}, your account was successfully registered!`);
+      // Clear form data
+      // Other stuff, redirect to login?
+    },
+  });
 
   const onChange = (e, field) => {
     setFormState({ ...formState, [field]: e.target.value });
@@ -22,9 +33,9 @@ export const RegisterPage = () => {
     e.preventDefault();
     if (validateSubmission()) {
       console.log('Submit!');
+      createUser({ variables: formState });
       // Error message for existing username?
       // If user cannot be created, stay on this page and show an error
-      // If submission is successful, reset the state and route to login
     } else {
       setIsTyping({ username: true, password: true, confirmPassword: true });
       console.log('Submission error');
@@ -61,6 +72,8 @@ export const RegisterPage = () => {
     return true;
   };
 
+  if (loading) return <p>Submitting...</p>;
+
   return (
     <section>
       <h2>Register a new account</h2>
@@ -90,6 +103,7 @@ export const RegisterPage = () => {
           Submit
         </button>
       </form>
+      {error && <p>A submission error occurred! {error.message}</p>}
     </section>
   );
 };
