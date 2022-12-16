@@ -1,11 +1,11 @@
-import React from "react";
-import { InfoField } from "./InfoField";
-import { Characteristics } from "./Characteristics";
-import { useQuery, gql } from "@apollo/client";
+import React from 'react';
+import { InfoField } from './InfoField';
+import { Characteristics } from './Characteristics';
+import { useQuery, gql } from '@apollo/client';
 
 const CHARACTER = gql`
-  query getCharacter ($id: ID!){
-    character(id: $id){
+  query getCharacter($id: ID!) {
+    character(id: $id) {
       id
       name
       species
@@ -19,16 +19,22 @@ const CHARACTER = gql`
         willpower
         charPresence
       }
-    } 
+    }
   }
-`
+`;
 
 export const CharacterPage = ({ currentChar }) => {
   const { loading, error, data } = useQuery(CHARACTER, {
-    variables: { id: currentChar }
+    variables: { id: currentChar },
   });
 
   if (loading) return 'Loading your data...';
+  if (error && currentChar === null)
+    return (
+      <p className="prompt-msg">
+        Select your character on the <a href="/home">homepage</a>!
+      </p>
+    );
   if (error) return `Error! ${error.message}`;
 
   const character = data.character;
@@ -53,5 +59,5 @@ export const CharacterPage = ({ currentChar }) => {
         <Characteristics characteristics={character.characteristics[0]} />
       </div>
     </section>
-  )
-}
+  );
+};

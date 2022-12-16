@@ -9,7 +9,7 @@
   color: $color-tertiary;
 }
 
-:is(h1, h2, h3, h4, p, li, a, dt, dd, button) { 
+:is(h1, h2, h3, h4, p, li, a, dt, dd, button) {
   @include fonts(medium);
   font-family: $font-primary;
   text-transform: uppercase;
@@ -17,23 +17,27 @@
 }
 
 h1 {
-  @include fonts(massive, $font-weight-bold)
+  @include fonts(massive, $font-weight-bold);
 }
 
 h2 {
-  @include fonts(large)
+  @include fonts(large);
 }
 
 h3 {
-  @include fonts(medium)
+  @include fonts(medium);
 }
 
 p {
-  @include fonts(medium)
+  @include fonts(medium);
 }
 
 label {
   @include fonts(small);
   font-family: $font-primary;
   text-transform: uppercase;
+}
+
+.prompt-msg {
+  text-align: center;
 }
