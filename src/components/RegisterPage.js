@@ -6,16 +6,17 @@ import { useDebouncedValue } from '../utilities/hooks';
 export const RegisterPage = () => {
   const [formState, setFormState] = useState({ username: '', password: '', confirmPassword: '' });
   const [isTyping, setIsTyping] = useState({ username: false, password: false, confirmPassword: false });
+  const [successMessage, setSuccessMessage] = useState(null);
   const debouncedUsername = useDebouncedValue(formState.username, 600);
   const debouncedPassword = useDebouncedValue(formState.password, 600);
   const debouncedConfirm = useDebouncedValue(formState.confirmPassword, 600);
 
   const [createUser, { loading, error }] = useMutation(CREATE_USER, {
     onCompleted(data) {
-      const newUser = data.createUser.user.username;
-      console.log(`${newUser}, your account was successfully registered!`);
-      // Clear form data
-      // Other stuff, redirect to login?
+      const newUser = data.createUser.username;
+      setSuccessMessage(`${newUser}, your account was successfully registered!`);
+      setFormState({ username: '', password: '', confirmPassword: '' });
+      setIsTyping({ username: false, password: false, confirmPassword: false });
     },
   });
 
@@ -32,13 +33,11 @@ export const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateSubmission()) {
-      console.log('Submit!');
       createUser({ variables: formState });
       // Error message for existing username?
       // If user cannot be created, stay on this page and show an error
     } else {
       setIsTyping({ username: true, password: true, confirmPassword: true });
-      console.log('Submission error');
     }
   };
 
@@ -104,6 +103,13 @@ export const RegisterPage = () => {
         </button>
       </form>
       {error && <p>A submission error occurred! {error.message}</p>}
+      {successMessage && (
+        <p>
+          {successMessage}
+          <br />
+          Log in <a href="/home">here</a>
+        </p>
+      )}
     </section>
   );
 };
