@@ -32,4 +32,26 @@ describe('User registration user flows', () => {
     cy.get('.title').contains('register').should('be.visible');
     cy.url().should('include', '/register');
   });
+
+  it('Should be able to fill out the form to register a new user', () => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+      if (req.body.operationName === 'createUser') {
+        req.alias = 'createUserMutation';
+        req.reply({
+          data: {
+            createUser: {
+              username: 'CoolMcCool',
+            },
+          },
+        });
+      }
+    });
+
+    cy.visit('http://localhost:3000/register');
+    cy.get('input[name="username"]').type('CoolMcCool').should('have.value', 'CoolMcCool');
+    cy.get('input[name="password"]').type('Test1234!').should('have.value', 'Test1234!');
+    cy.get('input[name="confirmPassword"]').type('Test1234!').should('have.value', 'Test1234!');
+    cy.get('button').contains('Submit').click();
+    cy.get('p').contains('CoolMcCool, your account was successfully registered!').should('be.visible');
+  });
 });
