@@ -26,4 +26,10 @@ describe('User registration user flows', () => {
 
     cy.visit('http://localhost:3000/');
   });
+
+  it('Should be able to visit the registration page', () => {
+    cy.visit('http://localhost:3000/register');
+    cy.get('.title').contains('register').should('be.visible');
+    cy.url().should('include', '/register');
+  });
 });
