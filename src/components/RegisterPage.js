@@ -74,7 +74,7 @@ export const RegisterPage = () => {
   if (loading) return <p>Submitting...</p>;
 
   return (
-    <section>
+    <section className="registration-page">
       <h2>Register a new account</h2>
       <form className="char-form" onSubmit={handleSubmit}>
         <div className="input-container">
@@ -103,13 +103,7 @@ export const RegisterPage = () => {
         </button>
       </form>
       {error && <p>A submission error occurred! {error.message}</p>}
-      {successMessage && (
-        <p>
-          {successMessage}
-          <br />
-          Log in <a href="/home">here</a>
-        </p>
-      )}
+      {successMessage && <p>{successMessage}</p>}
     </section>
   );
 };
