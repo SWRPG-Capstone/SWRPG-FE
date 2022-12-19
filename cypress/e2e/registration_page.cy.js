@@ -119,4 +119,34 @@ describe('User registration user flows', () => {
     cy.get('input[name="confirmPassword"]').type('&');
     cy.contains('.inline-error', 'Passwords must match').should('not.exist');
   });
+
+  it('Should display an error message for invalid fields if the submit button is clicked', () => {
+    cy.visit('http://localhost:3000/register');
+    cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('not.exist');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('not.exist');
+    cy.contains('.inline-error', 'Passwords must match').should('not.exist');
+    cy.get('button[type="submit"]').click();
+    cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('be.visible');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
+    cy.contains('.inline-error', 'Passwords must match').should('be.visible');
+  });
+
+  it.only('Should not submit the form unless all fields contain valid inputs', () => {
+    cy.visit('http://localhost:3000/register');
+    cy.get('input[name="username"]').type('Coolio');
+    cy.get('input[name="password"]').type('Test1234&');
+    cy.get('button[type="submit"]').click();
+    cy.contains('.inline-error', 'Passwords must match').should('be.visible');
+    cy.contains('p', 'Coolio, your account was successfully registered!').should('not.exist');
+    cy.get('input[name="password"]').clear();
+    cy.get('input[name="confirmPassword"]').type('Test1234&');
+    cy.get('button[type="submit"]').click();
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
+    cy.contains('p', 'Coolio, your account was successfully registered!').should('not.exist');
+    cy.get('input[name="username"]').clear();
+    cy.get('input[name="password"]').type('Test1234&');
+    cy.get('button[type="submit"]').click();
+    cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('be.visible');
+    cy.contains('p', 'your account was successfully registered!').should('not.exist');
+  });
 });
