@@ -54,4 +54,23 @@ describe('User registration user flows', () => {
     cy.get('button').contains('Submit').click();
     cy.get('p').contains('CoolMcCool, your account was successfully registered!').should('be.visible');
   });
+
+  it('Should show an error message if an invalid username is entered', () => {
+    cy.visit('http://localhost:3000/register');
+    cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('not.exist');
+    cy.get('input[name="username"]').type('C');
+    cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('be.visible');
+    cy.get('input[name="username"]').type('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC');
+    cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('be.visible');
+    cy.get('input[name="username"]').clear();
+    cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('be.visible');
+  });
+
+  it('Should remove the error message after a valid username is entered', () => {
+    cy.visit('http://localhost:3000/register');
+    cy.get('input[name="username"]').type('C');
+    cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('be.visible');
+    cy.get('input[name="username"]').type('oolio');
+    cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('not.exist');
+  });
 });
