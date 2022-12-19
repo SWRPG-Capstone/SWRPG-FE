@@ -53,7 +53,7 @@ describe('User registration user flows', () => {
     cy.get('input[name="confirmPassword"]').type('Test1234!').should('have.value', 'Test1234!');
     cy.contains('p', 'CoolMcCool, your account was successfully registered!').should('not.exist');
     cy.get('button').contains('Submit').click();
-    cy.get('p').contains('CoolMcCool, your account was successfully registered!').should('be.visible');
+    cy.contains('p', 'CoolMcCool, your account was successfully registered!').should('be.visible');
   });
 
   it('Should show an error message if an invalid username is entered', () => {
