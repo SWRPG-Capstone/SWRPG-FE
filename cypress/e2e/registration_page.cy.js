@@ -100,4 +100,23 @@ describe('User registration user flows', () => {
     cy.get('input[name="password"]').type('est1234*');
     cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('not.exist');
   });
+
+  it('Should show an error message when an invalid password confirmation is entered', () => {
+    cy.visit('http://localhost:3000/register');
+    cy.contains('.inline-error', 'Passwords must match').should('not.exist');
+    cy.get('input[name="password"]').type('Test1234');
+    cy.get('input[name="confirmPassword"]').type('Test1234');
+    cy.contains('.inline-error', 'Passwords must match').should('be.visible');
+    cy.get('input[name="confirmPassword"]').type('$');
+    cy.contains('.inline-error', 'Passwords must match').should('be.visible');
+  });
+
+  it('Should remove the error message after a valid password confirmation is entered', () => {
+    cy.visit('http://localhost:3000/register');
+    cy.get('input[name="password"]').type('Test1234&');
+    cy.get('input[name="confirmPassword"]').type('Test1234');
+    cy.contains('.inline-error', 'Passwords must match').should('be.visible');
+    cy.get('input[name="confirmPassword"]').type('&');
+    cy.contains('.inline-error', 'Passwords must match').should('not.exist');
+  });
 });
