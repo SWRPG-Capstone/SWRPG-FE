@@ -73,4 +73,31 @@ describe('User registration user flows', () => {
     cy.get('input[name="username"]').type('oolio');
     cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('not.exist');
   });
+
+  it('Should show an error message if an invalid password is entered', () => {
+    cy.visit('http://localhost:3000/register');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('not.exist');
+    cy.get('input[name="password"]').type('T');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
+    cy.get('input[name="password"]').type('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
+    cy.get('input[name="password"]').clear().type('TEST1234$');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
+    cy.get('input[name="password"]').clear().type('test1234!');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
+    cy.get('input[name="password"]').clear().type('TestTest&');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
+    cy.get('input[name="password"]').clear().type('Test1234');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
+    cy.get('input[name="password"]').clear();
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
+  });
+
+  it('Should remove the error message after a valid password is entered', () => {
+    cy.visit('http://localhost:3000/register');
+    cy.get('input[name="password"]').type('T');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
+    cy.get('input[name="password"]').type('est1234*');
+    cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('not.exist');
+  });
 });
