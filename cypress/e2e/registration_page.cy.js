@@ -51,6 +51,7 @@ describe('User registration user flows', () => {
     cy.get('input[name="username"]').type('CoolMcCool').should('have.value', 'CoolMcCool');
     cy.get('input[name="password"]').type('Test1234!').should('have.value', 'Test1234!');
     cy.get('input[name="confirmPassword"]').type('Test1234!').should('have.value', 'Test1234!');
+    cy.contains('p', 'CoolMcCool, your account was successfully registered!').should('not.exist');
     cy.get('button').contains('Submit').click();
     cy.get('p').contains('CoolMcCool, your account was successfully registered!').should('be.visible');
   });
@@ -131,7 +132,7 @@ describe('User registration user flows', () => {
     cy.contains('.inline-error', 'Passwords must match').should('be.visible');
   });
 
-  it.only('Should not submit the form unless all fields contain valid inputs', () => {
+  it('Should not submit the form unless all fields contain valid inputs', () => {
     cy.visit('http://localhost:3000/register');
     cy.get('input[name="username"]').type('Coolio');
     cy.get('input[name="password"]').type('Test1234&');
