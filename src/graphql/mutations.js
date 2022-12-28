@@ -1,5 +1,13 @@
 import { gql } from '@apollo/client';
 
+export const CREATE_USER = gql`
+  mutation createUser($username: String!, $password: String!, $confirmPassword: String!) {
+    createUser(input: { username: $username, password: $password, passwordConfirmation: $confirmPassword }) {
+      username
+    }
+  }
+`;
+
 export const CREATE_DETAILS = gql`
   mutation createCharDetails($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!) {
     createCharacter(input: { userId: "1", name: $name, species: $species, specialization: $specialization, career: $career, age: $age, height: $height, build: $build, hair: $hair, eyes: $eyes }) {

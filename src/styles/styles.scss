@@ -6,7 +6,6 @@ l - Abstracts | Global Variables
 @import './abstracts/typography.scss';
 @import './abstracts/misc.scss';
 
-
 /* ==========================================================================
 ll - Base | Mixins 
 ========================================================================== */
@@ -41,6 +40,7 @@ lV - Layout | Specialized CSS
 @import './layout/NavBar.scss';
 @import './layout/NavigationAnnouncer.scss';
 @import './layout/Orb.scss';
+@import './layout/RegisterPage.scss';
 @import './layout/SkillBar.scss';
 @import './layout/SkillsPage.scss';
 @import './layout/UpdateSkillPrompt.scss';

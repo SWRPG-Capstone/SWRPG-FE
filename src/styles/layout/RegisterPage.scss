@@ -1,0 +1,18 @@
+.registration-page {
+  font-family: $font-primary;
+
+  h2,
+  p {
+    text-align: center;
+  }
+
+  .char-form {
+    padding-bottom: 2rem;
+  }
+}
+
+.inline-error {
+  display: inline-block;
+  text-align: center;
+  width: 20rem;
+}
