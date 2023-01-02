@@ -5,6 +5,7 @@ import { CharacterPage } from './CharacterPage';
 import { DicePage } from './DicePage';
 import { FormContainer } from './FormContainer';
 import { HomePage } from './HomePage';
+import { LoginPage } from './LoginPage';
 import { SkillsPage } from './SkillsPage';
 import { RegisterPage } from './RegisterPage';
 
@@ -50,6 +51,9 @@ export const App = () => {
       <Header />
       <main id="main">
         <Switch>
+          <Route exact path="/login">
+            <LoginPage />
+          </Route>
           <Route exact path="/register">
             <RegisterPage />
           </Route>
