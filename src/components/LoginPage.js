@@ -7,10 +7,15 @@ export const LoginPage = () => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submit!');
+  };
+
   return (
     <section>
       <h2>Log In</h2>
-      <form>
+      <form className="char-form" onSubmit={handleSubmit}>
         <div className="input-container">
           <label className="char-heading" htmlFor="username">
             username
@@ -23,6 +28,9 @@ export const LoginPage = () => {
             <input className="char-value" type="text" name="password" autoFocus value={formState.password} onChange={onChange} />
           </label>
         </div>
+        <button className="button large" type="submit">
+          Submit
+        </button>
       </form>
     </section>
   );
