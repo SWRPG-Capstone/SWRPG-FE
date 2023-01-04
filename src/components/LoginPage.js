@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 export const LoginPage = () => {
   const [formState, setFormState] = useState({ username: '', password: '' });
+  const [submitErrors, setSubmitErrors] = useState({ username: false, password: false });
 
   const onChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -9,6 +10,12 @@ export const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!formState.username.length) {
+      setSubmitErrors({ ...submitErrors, username: true });
+      return;
+    }
+
     console.log('Submit!');
   };
 
@@ -21,6 +28,7 @@ export const LoginPage = () => {
             username
             <input className="char-value" type="text" name="username" autoFocus value={formState.username} onChange={onChange} />
           </label>
+          {submitErrors.username && <span className="inline-error">Please enter a username</span>}
         </div>
         <div className="input-container">
           <label className="char-heading" htmlFor="password">
