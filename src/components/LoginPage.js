@@ -16,6 +16,11 @@ export const LoginPage = () => {
       return;
     }
 
+    if (!formState.password.length) {
+      setSubmitErrors({ ...submitErrors, password: true });
+      return;
+    }
+
     console.log('Submit!');
   };
 
@@ -33,8 +38,9 @@ export const LoginPage = () => {
         <div className="input-container">
           <label className="char-heading" htmlFor="password">
             password
-            <input className="char-value" type="text" name="password" autoFocus value={formState.password} onChange={onChange} />
+            <input className="char-value" type="text" name="password" value={formState.password} onChange={onChange} />
           </label>
+          {submitErrors.password && <span className="inline-error">Please enter a password</span>}
         </div>
         <button className="button large" type="submit">
           Submit
