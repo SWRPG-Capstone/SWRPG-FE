@@ -5,6 +5,13 @@ describe('Log in user flows', () => {
     cy.url().should('include', '/login');
   });
 
+  it('Should contain a link to the registration page', () => {
+    cy.visit('http://localhost:3000/login');
+    cy.get('a').contains('Need to create an account?').should('be.visible');
+    cy.get('a').contains('Need to create an account?').click();
+    cy.get('.title').contains('register').should('be.visible');
+  });
+
   it('Should display an error message after clicking the submit button if a username is not provided', () => {
     cy.visit('http://localhost:3000/login');
     cy.get('.inline-error').should('not.exist');
