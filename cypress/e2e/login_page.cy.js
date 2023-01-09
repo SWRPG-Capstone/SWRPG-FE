@@ -46,4 +46,49 @@ describe('Log in user flows', () => {
     cy.get('button').contains('Submit').click();
     cy.get('.login-error').contains('Incorrect username or password.').should('be.visible');
   });
+
+  it('Should redirect the user to the homepage after a successful login', () => {
+    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+      if (req.body.operationName === 'loginUser') {
+        req.alias = 'loginUserMutation';
+        req.reply({
+          data: {
+            loginUser: {
+              token: 'testToken126178',
+              user: {
+                id: '1',
+              },
+            },
+          },
+        });
+      } else if (req.body.operationName === 'getAllCharacters') {
+        req.alias = 'allCharsQuery';
+        req.reply({
+          body: {
+            data: {
+              user: {
+                username: 'coolname5',
+                __typename: 'User',
+                characters: [
+                  { id: '1', name: 'Boops McGoops', __typename: 'Character' },
+                  { id: '2', name: 'Miriax Bibble', __typename: 'Character' },
+                  { id: '3', name: 'Rein Dodonna', __typename: 'Character' },
+                ],
+              },
+            },
+          },
+          headers: {
+            'access-control-allow-origin': '*',
+          },
+        });
+      }
+    });
+
+    cy.visit('http://localhost:3000/login');
+    cy.get('input[name="username"]').type('CoolMcCool');
+    cy.get('input[name="password"]').type('Test123&');
+    cy.get('button').contains('Submit').click();
+    cy.get('.title').contains('home').should('be.visible');
+    cy.url().should('include', '/home');
+  });
 });
