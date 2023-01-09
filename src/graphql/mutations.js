@@ -1,21 +1,5 @@
 import { gql } from '@apollo/client';
 
-export const CREATE_USER = gql`
-  mutation createUser($username: String!, $password: String!, $confirmPassword: String!) {
-    createUser(input: { username: $username, password: $password, passwordConfirmation: $confirmPassword }) {
-      username
-    }
-  }
-`;
-
-export const CREATE_DETAILS = gql`
-  mutation createCharDetails($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!) {
-    createCharacter(input: { userId: "1", name: $name, species: $species, specialization: $specialization, career: $career, age: $age, height: $height, build: $build, hair: $hair, eyes: $eyes }) {
-      id
-    }
-  }
-`;
-
 export const CREATE_CHARACTERISTICS = gql`
   mutation createCharacteristics($agility: Int!, $brawn: Int!, $characterId: Int!, $charPresence: Int!, $cunning: Int!, $intellect: Int!, $willpower: Int!) {
     createCharacteristic(input: { agility: $agility, brawn: $brawn, characterId: $characterId, charPresence: $charPresence, cunning: $cunning, intellect: $intellect, willpower: $willpower }) {
@@ -26,6 +10,14 @@ export const CREATE_CHARACTERISTICS = gql`
       cunning
       intellect
       willpower
+    }
+  }
+`;
+
+export const CREATE_DETAILS = gql`
+  mutation createCharDetails($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!) {
+    createCharacter(input: { userId: "1", name: $name, species: $species, specialization: $specialization, career: $career, age: $age, height: $height, build: $build, hair: $hair, eyes: $eyes }) {
+      id
     }
   }
 `;
@@ -139,6 +131,25 @@ export const CREATE_SKILLS = gql`
       underworld
       vigilance
       xenology
+    }
+  }
+`;
+
+export const CREATE_USER = gql`
+  mutation createUser($username: String!, $password: String!, $confirmPassword: String!) {
+    createUser(input: { username: $username, password: $password, passwordConfirmation: $confirmPassword }) {
+      username
+    }
+  }
+`;
+
+export const LOGIN_USER = gql`
+  mutation loginUser($username: String!, $password: String!) {
+    loginUser(input: { credentials: { username: $username, password: $password } }) {
+      token
+      user {
+        id
+      }
     }
   }
 `;
