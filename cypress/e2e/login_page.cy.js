@@ -91,4 +91,17 @@ describe('Log in user flows', () => {
     cy.get('.title').contains('home').should('be.visible');
     cy.url().should('include', '/home');
   });
+
+  it('Should redirect other pages to the login page if no user is logged in', () => {
+    cy.visit('http://localhost:3000/home');
+    cy.get('.title').contains('log in').should('be.visible');
+    cy.visit('http://localhost:3000/character');
+    cy.get('.title').contains('log in').should('be.visible');
+    cy.visit('http://localhost:3000/dice');
+    cy.get('.title').contains('log in').should('be.visible');
+    cy.visit('http://localhost:3000/skills');
+    cy.get('.title').contains('log in').should('be.visible');
+    cy.visit('http://localhost:3000/create');
+    cy.get('.title').contains('log in').should('be.visible');
+  });
 });
