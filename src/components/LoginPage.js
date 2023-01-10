@@ -1,9 +1,26 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export const LoginPage = () => {
+export const LoginPage = ({ setToken }) => {
   const [formState, setFormState] = useState({ username: '', password: '' });
   const [submitErrors, setSubmitErrors] = useState({ username: false, password: false });
+
+  // Mutation - login user
+  // If success, save token + user ID and reroute to homepage
+  // If error, display message and don't navigate
+
+  const getFormValidation = () => {
+    const isValid = formState.username.length && formState.password.length ? true : false;
+    const errors = Object.keys(submitErrors).reduce((errors, field) => {
+      formState[field].length ? (errors[field] = false) : (errors[field] = true);
+      return errors;
+    }, {});
+
+    return {
+      isValid: isValid,
+      errors: errors,
+    };
+  };
 
   const onChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -12,17 +29,14 @@ export const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formState.username.length) {
-      setSubmitErrors({ ...submitErrors, username: true });
+    const { isValid, errors } = getFormValidation();
+    setSubmitErrors(errors);
+
+    if (!isValid) {
       return;
     }
 
-    if (!formState.password.length) {
-      setSubmitErrors({ ...submitErrors, password: true });
-      return;
-    }
-
-    console.log('Submit!');
+    console.log('Submitted!');
   };
 
   return (
@@ -32,7 +46,14 @@ export const LoginPage = () => {
         <div className="input-container">
           <label className="char-heading" htmlFor="username">
             username
-            <input className="char-value" type="text" name="username" autoFocus value={formState.username} onChange={onChange} />
+            <input
+              className="char-value"
+              type="text"
+              name="username"
+              autoFocus
+              value={formState.username}
+              onChange={onChange}
+            />
           </label>
           {submitErrors.username && <span className="inline-error">Please enter a username</span>}
         </div>
