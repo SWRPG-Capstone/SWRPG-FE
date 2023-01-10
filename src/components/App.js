@@ -12,9 +12,11 @@ import { RegisterPage } from './RegisterPage';
 import { Header } from './Header';
 import { NavBar } from './NavBar';
 import { NavigationAnnouncer } from './NavigationAnnouncer';
+import { RouteGuard } from './RouteGuard';
 
 import { UserContext } from '../utilities/UserContext';
 import { reducer } from '../utilities/reducer';
+import { useToken } from '../utilities/hooks';
 
 const initialState = {
   force: 0,
@@ -32,6 +34,7 @@ export const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { pathname } = useLocation();
   const location = pathname[1]?.toUpperCase() + pathname.slice(2);
+  const { token, setToken } = useToken();
 
   useEffect(() => {
     document.title = `${location} | SWRPG Companion`;
@@ -52,26 +55,26 @@ export const App = () => {
       <main id="main">
         <Switch>
           <Route exact path="/login">
-            <LoginPage />
+            <LoginPage setToken={setToken} />
           </Route>
           <Route exact path="/register">
             <RegisterPage />
           </Route>
-          <Route exact path="/home">
+          <RouteGuard exact path="/home">
             <HomePage currentChar={state.currentChar} setCurrentChar={setCurrentChar} />
-          </Route>
-          <Route exact path="/character">
+          </RouteGuard>
+          <RouteGuard exact path="/character">
             <CharacterPage currentChar={state.currentChar} />
-          </Route>
-          <Route exact path="/dice">
+          </RouteGuard>
+          <RouteGuard exact path="/dice" token={token}>
             <DicePage />
-          </Route>
-          <Route exact path="/skills">
+          </RouteGuard>
+          <RouteGuard exact path="/skills" token={token}>
             <SkillsPage currentChar={state.currentChar} />
-          </Route>
-          <Route exact path="/create">
+          </RouteGuard>
+          <RouteGuard exact path="/create">
             <FormContainer />
-          </Route>
+          </RouteGuard>
           <Route>
             <Redirect to="/home" />
           </Route>
