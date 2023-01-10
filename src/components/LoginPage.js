@@ -1,9 +1,24 @@
+import { useMutation } from '@apollo/client';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import { LOGIN_USER } from '../graphql/mutations';
 
 export const LoginPage = ({ setToken }) => {
   const [formState, setFormState] = useState({ username: '', password: '' });
   const [submitErrors, setSubmitErrors] = useState({ username: false, password: false });
+
+  const [loginUser, { loading, error }] = useMutation(LOGIN_USER, {
+    onCompleted(data) {
+      const token = data.loginUser.token;
+      const id = data.loginUser.user.id;
+
+      // Async function?
+      // set token
+      // set user ID
+      // After both are set, route to homepage
+    },
+  });
 
   // Mutation - login user
   // If success, save token + user ID and reroute to homepage
