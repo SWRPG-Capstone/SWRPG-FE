@@ -28,6 +28,7 @@ const initialState = {
   setback: 0,
   outcome: [],
   currentChar: null,
+  currentUser: null,
 };
 
 export const App = () => {
@@ -48,6 +49,10 @@ export const App = () => {
     dispatch({ state, action: { type: 'SETCHARACTER', character: id } });
   };
 
+  const setCurrentUser = (id) => {
+    dispatch({ state, action: { type: 'SETUSER', userID: id } });
+  };
+
   return (
     <UserContext.Provider value={{ state, dispatch }}>
       <NavigationAnnouncer location={location} />
@@ -55,7 +60,7 @@ export const App = () => {
       <main id="main">
         <Switch>
           <Route exact path="/login">
-            <LoginPage setToken={setToken} />
+            <LoginPage token={token} setToken={setToken} setCurrentUser={setCurrentUser} />
           </Route>
           <Route exact path="/register">
             <RegisterPage />
