@@ -1,28 +1,38 @@
 import { useMutation } from '@apollo/client';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { LOGIN_USER } from '../graphql/mutations';
+import { UserContext } from '../utilities/UserContext';
 
-export const LoginPage = ({ setToken }) => {
+export const LoginPage = ({ token, setToken, setCurrentUser }) => {
   const [formState, setFormState] = useState({ username: '', password: '' });
   const [submitErrors, setSubmitErrors] = useState({ username: false, password: false });
-
-  const [loginUser, { loading, error }] = useMutation(LOGIN_USER, {
-    onCompleted(data) {
-      const token = data.loginUser.token;
-      const id = data.loginUser.user.id;
-
-      // Async function?
-      // set token
-      // set user ID
-      // After both are set, route to homepage
-    },
-  });
+  const userContext = useContext(UserContext);
 
   // Mutation - login user
   // If success, save token + user ID and reroute to homepage
   // If error, display message and don't navigate
+  const [loginUser, { loading, error }] = useMutation(LOGIN_USER, {
+    onCompleted(data) {
+      const token = data.loginUser.token;
+      const id = parseInt(data.loginUser.user.id);
+
+      // set token
+      setToken(token);
+      // set user ID
+      setCurrentUser(id);
+    },
+  });
+
+  useEffect(() => {
+    const userID = userContext.state.currentUser;
+
+    if (token && userID) {
+      // navigate
+      console.log('Time to navigate');
+    }
+  }, [token, userContext.state.currentUser]);
 
   const getFormValidation = () => {
     const isValid = formState.username.length && formState.password.length ? true : false;
@@ -52,7 +62,10 @@ export const LoginPage = ({ setToken }) => {
     }
 
     console.log('Submitted!');
+    loginUser({ variables: formState });
   };
+
+  if (loading) return <p>Submitting...</p>;
 
   return (
     <section>
@@ -82,6 +95,7 @@ export const LoginPage = ({ setToken }) => {
         <button className="button large" type="submit">
           Submit
         </button>
+        {error && <p>Incorrect username or password.</p>}
       </form>
       <Link to="/register">Need to create an account?</Link>
     </section>
