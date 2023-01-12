@@ -8,6 +8,7 @@ import { UserContext } from '../utilities/UserContext';
 export const LoginPage = ({ token, setToken, setCurrentUser }) => {
   const [formState, setFormState] = useState({ username: '', password: '' });
   const [submitErrors, setSubmitErrors] = useState({ username: false, password: false });
+  const [invalidLogin, setInvalidLogin] = useState(false);
   const userContext = useContext(UserContext);
 
   // Mutation - login user
@@ -15,12 +16,15 @@ export const LoginPage = ({ token, setToken, setCurrentUser }) => {
   // If error, display message and don't navigate
   const [loginUser, { loading, error }] = useMutation(LOGIN_USER, {
     onCompleted(data) {
+      if (data.loginUser === null) {
+        setInvalidLogin(true);
+        return;
+      }
+
       const token = data.loginUser.token;
       const id = parseInt(data.loginUser.user.id);
 
-      // set token
       setToken(token);
-      // set user ID
       setCurrentUser(id);
     },
   });
@@ -53,6 +57,8 @@ export const LoginPage = ({ token, setToken, setCurrentUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (invalidLogin) setInvalidLogin(false);
 
     const { isValid, errors } = getFormValidation();
     setSubmitErrors(errors);
@@ -95,8 +101,9 @@ export const LoginPage = ({ token, setToken, setCurrentUser }) => {
         <button className="button large" type="submit">
           Submit
         </button>
-        {error && <p>Incorrect username or password.</p>}
+        {invalidLogin && <p className="login-error">Incorrect username or password.</p>}
       </form>
+      {error && <p>A submission error occurred, please try again later.</p>}
       <Link to="/register">Need to create an account?</Link>
     </section>
   );
