@@ -41,9 +41,10 @@ export const App = () => {
     document.title = `${location} | SWRPG Companion`;
   }, [location]);
 
-  useEffect(() => {
-    !state.currentChar && dispatch({ state, action: { type: 'AUTOSET' } });
-  }, [state]);
+  // Need to rework, check if character matches current user
+  // useEffect(() => {
+  //   !state.currentChar && dispatch({ state, action: { type: 'AUTOSET' } });
+  // }, [state]);
 
   const setCurrentChar = (id) => {
     dispatch({ state, action: { type: 'SETCHARACTER', character: id } });
@@ -66,7 +67,7 @@ export const App = () => {
             <RegisterPage />
           </Route>
           <RouteGuard exact path="/home" token={token}>
-            <HomePage currentChar={state.currentChar} setCurrentChar={setCurrentChar} />
+            <HomePage currentUser={state.currentUser} setCurrentChar={setCurrentChar} />
           </RouteGuard>
           <RouteGuard exact path="/character" token={token}>
             <CharacterPage currentChar={state.currentChar} />
