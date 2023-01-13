@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { LOGIN_USER } from '../graphql/mutations';
 import { UserContext } from '../utilities/UserContext';
@@ -10,6 +10,7 @@ export const LoginPage = ({ token, setToken, setCurrentUser }) => {
   const [submitErrors, setSubmitErrors] = useState({ username: false, password: false });
   const [invalidLogin, setInvalidLogin] = useState(false);
   const userContext = useContext(UserContext);
+  let history = useHistory();
 
   // Mutation - login user
   // If success, save token + user ID and reroute to homepage
@@ -33,10 +34,9 @@ export const LoginPage = ({ token, setToken, setCurrentUser }) => {
     const userID = userContext.state.currentUser;
 
     if (token && userID) {
-      // navigate
-      console.log('Time to navigate');
+      history.push('/home');
     }
-  }, [token, userContext.state.currentUser]);
+  }, [history, token, userContext.state.currentUser]);
 
   const getFormValidation = () => {
     const isValid = formState.username.length && formState.password.length ? true : false;
