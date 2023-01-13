@@ -65,10 +65,10 @@ export const App = () => {
           <Route exact path="/register">
             <RegisterPage />
           </Route>
-          <RouteGuard exact path="/home">
+          <RouteGuard exact path="/home" token={token}>
             <HomePage currentChar={state.currentChar} setCurrentChar={setCurrentChar} />
           </RouteGuard>
-          <RouteGuard exact path="/character">
+          <RouteGuard exact path="/character" token={token}>
             <CharacterPage currentChar={state.currentChar} />
           </RouteGuard>
           <RouteGuard exact path="/dice" token={token}>
@@ -77,7 +77,7 @@ export const App = () => {
           <RouteGuard exact path="/skills" token={token}>
             <SkillsPage currentChar={state.currentChar} />
           </RouteGuard>
-          <RouteGuard exact path="/create">
+          <RouteGuard exact path="/create" token={token}>
             <FormContainer />
           </RouteGuard>
           <Route>
