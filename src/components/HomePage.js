@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 
 const ALL_CHARACTERS = gql`
-  query getAllCharacters {
-    user(id: 1) {
+  query getAllCharacters($id: ID!) {
+    user(id: $id) {
       username
       characters {
         id
@@ -14,8 +14,8 @@ const ALL_CHARACTERS = gql`
   }
 `;
 
-export const HomePage = ({ setCurrentChar }) => {
-  const { loading, error, data } = useQuery(ALL_CHARACTERS);
+export const HomePage = ({ currentUser, setCurrentChar }) => {
+  const { loading, error, data } = useQuery(ALL_CHARACTERS, { variables: { id: currentUser } });
 
   if (loading) return 'Loading your data...';
   if (error) return `Error! ${error.message}`;
