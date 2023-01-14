@@ -46,6 +46,10 @@ export const App = () => {
   //   !state.currentChar && dispatch({ state, action: { type: 'AUTOSET' } });
   // }, [state]);
 
+  useEffect(() => {
+    if (!state.currentUser) dispatch({ state, action: { type: 'AUTOSETUSER' } });
+  }, [state]);
+
   const setCurrentChar = (id) => {
     dispatch({ state, action: { type: 'SETCHARACTER', character: id } });
   };
