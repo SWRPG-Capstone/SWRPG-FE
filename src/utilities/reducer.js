@@ -21,10 +21,19 @@ export const reducer = (state, { action }) => {
       };
     case 'SETUSER':
       const { userID } = action;
+      localStorage.setItem('swuser', userID);
       return {
         ...state,
         currentUser: userID,
       };
+    case 'AUTOSETUSER':
+      const prevUser = JSON.parse(localStorage.getItem('swuser'));
+      return prevUser
+        ? {
+            ...state,
+            currentUser: prevUser,
+          }
+        : state;
     case 'AUTOSET':
       const token = JSON.parse(localStorage.getItem('token'));
       return token
