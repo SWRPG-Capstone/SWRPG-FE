@@ -1,11 +1,15 @@
-import React, { useReducer, useState } from "react";
-import { FormSkills } from "./FormSkills";
-import { FormCharacteristics } from "./FormCharacteristics";
-import { FormCharDetails } from "./FormCharDetails";
-import { formReducer } from "../utilities/formReducer";
+import React, { useContext, useEffect, useReducer, useState } from 'react';
+
+import { FormSkills } from './FormSkills';
+import { FormCharacteristics } from './FormCharacteristics';
+import { FormCharDetails } from './FormCharDetails';
+
+import { formReducer } from '../utilities/formReducer';
+import { UserContext } from '../utilities/UserContext';
 
 const initialFormState = {
   details: {
+    userID: '',
     name: '',
     species: '',
     specialization: '',
@@ -22,7 +26,7 @@ const initialFormState = {
     charPresence: 1,
     cunning: 1,
     intellect: 1,
-    willpower: 1
+    willpower: 1,
   },
   skills: {
     astrogation: 0,
@@ -58,13 +62,23 @@ const initialFormState = {
     underworld: 0,
     vigilance: 0,
     xenology: 0,
-  }
-}
+  },
+};
 
 export const FormContainer = () => {
-  const [count, setCount] = useState(0)
-  const handleCount = () => setCount(count + 1)
+  const [count, setCount] = useState(0);
+  const handleCount = () => setCount(count + 1);
   const [formState, formDispatch] = useReducer(formReducer, initialFormState);
+  const userContext = useContext(UserContext);
+
+  useEffect(() => {
+    formDispatch({
+      type: 'handle text input',
+      page: 'details',
+      field: 'userID',
+      value: `${userContext.state.currentUser}`,
+    });
+  }, [userContext.state.currentUser]);
 
   const onChange = (e, type, page) => {
     formDispatch({
@@ -73,13 +87,15 @@ export const FormContainer = () => {
       field: e.target.name,
       value: e.target.value,
     });
-  }
+  };
 
   return (
     <section className="form-container">
       {count === 0 && <FormCharDetails setCount={handleCount} onChange={onChange} formState={formState.details} />}
-      {count === 1 && <FormCharacteristics setCount={handleCount} onChange={onChange} formState={formState.characteristics} />}
+      {count === 1 && (
+        <FormCharacteristics setCount={handleCount} onChange={onChange} formState={formState.characteristics} />
+      )}
       {count === 2 && <FormSkills setCount={handleCount} onChange={onChange} formState={formState} />}
     </section>
-  )
-}
+  );
+};
