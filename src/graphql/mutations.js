@@ -1,8 +1,26 @@
 import { gql } from '@apollo/client';
 
 export const CREATE_CHARACTERISTICS = gql`
-  mutation createCharacteristics($agility: Int!, $brawn: Int!, $characterId: Int!, $charPresence: Int!, $cunning: Int!, $intellect: Int!, $willpower: Int!) {
-    createCharacteristic(input: { agility: $agility, brawn: $brawn, characterId: $characterId, charPresence: $charPresence, cunning: $cunning, intellect: $intellect, willpower: $willpower }) {
+  mutation createCharacteristics(
+    $agility: Int!
+    $brawn: Int!
+    $characterId: Int!
+    $charPresence: Int!
+    $cunning: Int!
+    $intellect: Int!
+    $willpower: Int!
+  ) {
+    createCharacteristic(
+      input: {
+        agility: $agility
+        brawn: $brawn
+        characterId: $characterId
+        charPresence: $charPresence
+        cunning: $cunning
+        intellect: $intellect
+        willpower: $willpower
+      }
+    ) {
       agility
       brawn
       characterId
@@ -14,9 +32,34 @@ export const CREATE_CHARACTERISTICS = gql`
   }
 `;
 
+// Add ID variable
 export const CREATE_DETAILS = gql`
-  mutation createCharDetails($name: String!, $species: String!, $specialization: String!, $career: String!, $age: Int!, $height: String!, $build: String!, $hair: String!, $eyes: String!) {
-    createCharacter(input: { userId: "1", name: $name, species: $species, specialization: $specialization, career: $career, age: $age, height: $height, build: $build, hair: $hair, eyes: $eyes }) {
+  mutation createCharDetails(
+    $userID: String!
+    $name: String!
+    $species: String!
+    $specialization: String!
+    $career: String!
+    $age: Int!
+    $height: String!
+    $build: String!
+    $hair: String!
+    $eyes: String!
+  ) {
+    createCharacter(
+      input: {
+        userId: $userID
+        name: $name
+        species: $species
+        specialization: $specialization
+        career: $career
+        age: $age
+        height: $height
+        build: $build
+        hair: $hair
+        eyes: $eyes
+      }
+    ) {
       id
     }
   }
