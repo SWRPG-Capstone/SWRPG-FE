@@ -12,7 +12,9 @@
 }
 
 .inline-error {
+  color: $color-accent-primary;
   display: inline-block;
+  font-family: $font-primary;
   text-align: center;
   width: 20rem;
 }
