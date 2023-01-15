@@ -1,5 +1,6 @@
 describe('Dice page user flows', () => {
   beforeEach(() => {
+    cy.login('CoolMcCool', 'Test123&');
     cy.visit('http://localhost:3000/dice');
   });
 
@@ -43,4 +44,4 @@ describe('Dice page user flows', () => {
     cy.get('article[class="roll-log"]').contains('You rolled 1 ability die');
     cy.get('article[class="roll-log"]').contains('You rolled 1 difficulty die');
   });
-})
+});
