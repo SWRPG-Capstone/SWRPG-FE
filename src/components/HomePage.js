@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 
 const ALL_CHARACTERS = gql`
@@ -17,6 +17,7 @@ const ALL_CHARACTERS = gql`
 export const HomePage = ({ currentUser, setCurrentChar }) => {
   const { loading, error, data } = useQuery(ALL_CHARACTERS, { variables: { id: currentUser } });
 
+  if (!currentUser) return <Redirect to="/login" />;
   if (loading) return 'Loading your data...';
   if (error) return `Error! ${error.message}`;
 
