@@ -1,0 +1,20 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  a {
+    text-transform: none;
+    text-align: center;
+  }
+
+  .char-form {
+    padding-bottom: 2rem;
+  }
+
+  .login-error {
+    padding-top: 2rem;
+    text-transform: none;
+    color: $color-accent-primary;
+  }
+}
