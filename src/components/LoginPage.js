@@ -12,9 +12,6 @@ export const LoginPage = ({ token, setToken, setCurrentUser }) => {
   const userContext = useContext(UserContext);
   let history = useHistory();
 
-  // Mutation - login user
-  // If success, save token + user ID and reroute to homepage
-  // If error, display message and don't navigate
   const [loginUser, { loading, error }] = useMutation(LOGIN_USER, {
     onCompleted(data) {
       if (data.loginUser === null) {
@@ -67,15 +64,13 @@ export const LoginPage = ({ token, setToken, setCurrentUser }) => {
       return;
     }
 
-    console.log('Submitted!');
     loginUser({ variables: formState });
   };
 
   if (loading) return <p>Submitting...</p>;
 
   return (
-    <section>
-      <h2>Log In</h2>
+    <section className="login-page">
       <form className="char-form" onSubmit={handleSubmit}>
         <div className="input-container">
           <label className="char-heading" htmlFor="username">
