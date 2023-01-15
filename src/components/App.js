@@ -36,6 +36,7 @@ export const App = () => {
   const { pathname } = useLocation();
   const location = pathname[1]?.toUpperCase() + pathname.slice(2);
   const { token, setToken } = useToken();
+  const navHiddenRoutes = ['/create', '/login', '/register'];
 
   useEffect(() => {
     document.title = `${location} | SWRPG Companion`;
@@ -90,7 +91,7 @@ export const App = () => {
           </Route>
         </Switch>
       </main>
-      {pathname !== '/create' && <NavBar />}
+      {navHiddenRoutes.includes(pathname) ? null : <NavBar />}
     </UserContext.Provider>
   );
 };
