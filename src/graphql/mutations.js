@@ -32,7 +32,6 @@ export const CREATE_CHARACTERISTICS = gql`
   }
 `;
 
-// Add ID variable
 export const CREATE_DETAILS = gql`
   mutation createCharDetails(
     $userID: String!
