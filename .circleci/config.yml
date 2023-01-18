@@ -2,16 +2,15 @@ version: 2.1
 
 orbs:
   cypress: cypress-io/cypress@1
-  # heroku: circleci/heroku@0
 
 workflows:
   test-and-deploy:
     jobs:
-    - cypress/install:
+      - cypress/install:
           name: Install dependencies
 
       - cypress/run:
-      name: Run tests
+          name: Run tests
           requires:
             - Install dependencies
           parallel: true
@@ -20,9 +19,3 @@ workflows:
           yarn: true
           start: npm start
           wait-on: 'http://localhost:3000'
-      # - heroku/deploy-via-git:
-      #     requires:
-      #       - cypress/run
-      #     filters:
-      #       branches:
-      #         only: main
