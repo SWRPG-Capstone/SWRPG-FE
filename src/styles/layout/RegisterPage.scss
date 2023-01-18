@@ -6,6 +6,11 @@
     text-align: center;
   }
 
+  p,
+  a {
+    text-transform: none;
+  }
+
   .char-form {
     padding-bottom: 2rem;
   }
