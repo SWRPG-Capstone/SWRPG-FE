@@ -12,5 +12,5 @@ workflows:
           parallel: true
           parallelism: 4
           store_artifacts: true
-          start: npm start
+          start: yarn start
           wait-on: 'http://localhost:3000'
