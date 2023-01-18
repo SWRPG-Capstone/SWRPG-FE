@@ -6,16 +6,11 @@ orbs:
 workflows:
   test-and-deploy:
     jobs:
-      - cypress/install:
-          name: Install dependencies
-
       - cypress/run:
           name: Run tests
-          requires:
-            - Install dependencies
+          yarn: true
           parallel: true
           parallelism: 4
           store_artifacts: true
-          yarn: true
           start: npm start
           wait-on: 'http://localhost:3000'
