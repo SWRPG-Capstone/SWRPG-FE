@@ -8,6 +8,8 @@ workflows:
   test-and-deploy:
     jobs:
       - cypress/run:
+          parallel: true
+          parallelism: 4
           store_artifacts: true
           yarn: true
           start: npm start
