@@ -4,11 +4,14 @@ orbs:
   cypress: cypress-io/cypress@2
 
 workflows:
-  test-and-deploy:
+  test:
     jobs:
+      - cypress/install
       - cypress/run:
-          name: Run tests
+          name: 'end-to-end tests'
           yarn: true
+          requires:
+            - cypress/install
           parallel: true
           parallelism: 4
           store_artifacts: true
