@@ -6,7 +6,7 @@ orbs:
 workflows:
   test:
     jobs:
-      - cypress/install
+      - cypress/install:
           yarn: true
       - cypress/run:
           name: 'end-to-end tests'
