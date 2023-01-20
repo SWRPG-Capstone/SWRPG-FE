@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { CREATE_USER } from '../graphql/mutations';
 import { useDebouncedValue } from '../utilities/hooks';
 
@@ -80,23 +81,51 @@ export const RegisterPage = () => {
         <div className="input-container">
           <label className="char-heading" htmlFor="username">
             username
-            <input className="char-value" type="text" name="username" autoFocus value={formState.username} onChange={(e) => onChange(e, 'username')} />
+            <input
+              className="char-value"
+              type="text"
+              name="username"
+              autoFocus
+              value={formState.username}
+              onChange={(e) => onChange(e, 'username')}
+            />
           </label>
-          {isTyping.username && !validateUsername(debouncedUsername) && <span className="inline-error">Username must be between 3 and 24 characters</span>}
+          {isTyping.username && !validateUsername(debouncedUsername) && (
+            <span className="inline-error">Username must be between 3 and 24 characters</span>
+          )}
         </div>
         <div className="input-container">
           <label className="char-heading" htmlFor="password">
             password
-            <input className="char-value" type="text" name="password" value={formState.password} onChange={(e) => onChange(e, 'password')} />
+            <input
+              className="char-value"
+              type="text"
+              name="password"
+              value={formState.password}
+              onChange={(e) => onChange(e, 'password')}
+            />
           </label>
-          {isTyping.password && !validatePassword(debouncedPassword) && <span className="inline-error">Password must be between 8 and 24 characters and must contain a lowercase letter, uppercase letter, number, and special character</span>}
+          {isTyping.password && !validatePassword(debouncedPassword) && (
+            <span className="inline-error">
+              Password must be between 8 and 24 characters and must contain a lowercase letter, uppercase letter,
+              number, and special character
+            </span>
+          )}
         </div>
         <div className="input-container">
           <label className="char-heading" htmlFor="confirmPassword">
             confirm password
-            <input className="char-value" type="text" name="confirmPassword" value={formState.confirmPassword} onChange={(e) => onChange(e, 'confirmPassword')} />
+            <input
+              className="char-value"
+              type="text"
+              name="confirmPassword"
+              value={formState.confirmPassword}
+              onChange={(e) => onChange(e, 'confirmPassword')}
+            />
           </label>
-          {isTyping.confirmPassword && !validatePassConfirm(debouncedConfirm) && <span className="inline-error">Passwords must match</span>}
+          {isTyping.confirmPassword && !validatePassConfirm(debouncedConfirm) && (
+            <span className="inline-error">Passwords must match</span>
+          )}
         </div>
         <button className="button large" type="submit">
           Submit
@@ -104,6 +133,11 @@ export const RegisterPage = () => {
       </form>
       {error && <p>A submission error occurred! {error.message}</p>}
       {successMessage && <p>{successMessage}</p>}
+      <p>
+        Already have an account?
+        <br />
+        <Link to="/login">Log in here.</Link>
+      </p>
     </section>
   );
 };

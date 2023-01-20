@@ -1,20 +1,22 @@
 version: 2.1
 
 orbs:
-  cypress: cypress-io/cypress@1
-  # heroku: circleci/heroku@0
+  cypress: cypress-io/cypress@2.2.0
 
 workflows:
-  test-and-deploy:
+  test:
     jobs:
+      # - cypress/install:
+      #     yarn: true
+      #     executor: cypress/base-14
       - cypress/run:
-          store_artifacts: true
+          name: 'TestE2E'
           yarn: true
-          start: npm start
+          executor: cypress/base-14
+          # requires:
+          #   - cypress/install
+          # parallel: true
+          # parallelism: 4
+          store_artifacts: true
+          start: yarn start
           wait-on: 'http://localhost:3000'
-      # - heroku/deploy-via-git:
-      #     requires:
-      #       - cypress/run
-      #     filters:
-      #       branches:
-      #         only: main

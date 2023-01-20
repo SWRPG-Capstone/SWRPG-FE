@@ -6,13 +6,20 @@
     text-align: center;
   }
 
+  p,
+  a {
+    text-transform: none;
+  }
+
   .char-form {
     padding-bottom: 2rem;
   }
 }
 
 .inline-error {
+  color: $color-accent-primary;
   display: inline-block;
+  font-family: $font-primary;
   text-align: center;
   width: 20rem;
 }

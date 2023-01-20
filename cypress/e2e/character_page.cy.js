@@ -1,5 +1,7 @@
 describe('Character page user flows', () => {
   beforeEach(() => {
+    cy.login('CoolMcCool', 'Test123&');
+
     cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getCharacter') {
         req.alias = 'getCharQuery';
