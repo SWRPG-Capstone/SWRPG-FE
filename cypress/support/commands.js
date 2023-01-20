@@ -22,5 +22,6 @@ Cypress.Commands.add('login', (username, password) => {
     cy.get('input[name="password"]').type(password);
     cy.get('button').contains('Submit').click();
     cy.get('.title').contains('home').should('be.visible');
+    cy.get('.nav-msg').should('have.focus');
   });
 });
