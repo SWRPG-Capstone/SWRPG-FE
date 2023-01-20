@@ -24,11 +24,11 @@ describe('User registration user flows', () => {
       }
     });
 
-    cy.visit('http://localhost:3000/');
+    cy.visit('http://localhost:3000/register');
+    cy.get('.nav-msg').should('have.focus');
   });
 
   it('Should be able to visit the registration page', () => {
-    cy.visit('http://localhost:3000/register');
     cy.get('.title').contains('register').should('be.visible');
     cy.url().should('include', '/register');
   });
@@ -47,7 +47,6 @@ describe('User registration user flows', () => {
       }
     });
 
-    cy.visit('http://localhost:3000/register');
     cy.get('input[name="username"]').type('CoolMcCool').should('have.value', 'CoolMcCool');
     cy.get('input[name="password"]').type('Test1234!').should('have.value', 'Test1234!');
     cy.get('input[name="confirmPassword"]').type('Test1234!').should('have.value', 'Test1234!');
@@ -57,7 +56,6 @@ describe('User registration user flows', () => {
   });
 
   it('Should show an error message if an invalid username is entered', () => {
-    cy.visit('http://localhost:3000/register');
     cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('not.exist');
     cy.get('input[name="username"]').type('C');
     cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('be.visible');
@@ -68,7 +66,6 @@ describe('User registration user flows', () => {
   });
 
   it('Should remove the error message after a valid username is entered', () => {
-    cy.visit('http://localhost:3000/register');
     cy.get('input[name="username"]').type('C');
     cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('be.visible');
     cy.get('input[name="username"]').type('oolio');
@@ -76,7 +73,6 @@ describe('User registration user flows', () => {
   });
 
   it('Should show an error message if an invalid password is entered', () => {
-    cy.visit('http://localhost:3000/register');
     cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('not.exist');
     cy.get('input[name="password"]').type('T');
     cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
@@ -95,7 +91,6 @@ describe('User registration user flows', () => {
   });
 
   it('Should remove the error message after a valid password is entered', () => {
-    cy.visit('http://localhost:3000/register');
     cy.get('input[name="password"]').type('T');
     cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('be.visible');
     cy.get('input[name="password"]').type('est1234*');
@@ -103,7 +98,6 @@ describe('User registration user flows', () => {
   });
 
   it('Should show an error message when an invalid password confirmation is entered', () => {
-    cy.visit('http://localhost:3000/register');
     cy.contains('.inline-error', 'Passwords must match').should('not.exist');
     cy.get('input[name="password"]').type('Test1234');
     cy.get('input[name="confirmPassword"]').type('Test1234');
@@ -113,7 +107,6 @@ describe('User registration user flows', () => {
   });
 
   it('Should remove the error message after a valid password confirmation is entered', () => {
-    cy.visit('http://localhost:3000/register');
     cy.get('input[name="password"]').type('Test1234&');
     cy.get('input[name="confirmPassword"]').type('Test1234');
     cy.contains('.inline-error', 'Passwords must match').should('be.visible');
@@ -122,7 +115,6 @@ describe('User registration user flows', () => {
   });
 
   it('Should display an error message for invalid fields if the submit button is clicked', () => {
-    cy.visit('http://localhost:3000/register');
     cy.contains('.inline-error', 'Username must be between 3 and 24 characters').should('not.exist');
     cy.contains('.inline-error', 'Password must be between 8 and 24 characters').should('not.exist');
     cy.contains('.inline-error', 'Passwords must match').should('not.exist');
@@ -133,7 +125,6 @@ describe('User registration user flows', () => {
   });
 
   it('Should not submit the form unless all fields contain valid inputs', () => {
-    cy.visit('http://localhost:3000/register');
     cy.get('input[name="username"]').type('Coolio');
     cy.get('input[name="password"]').type('Test1234&');
     cy.get('button[type="submit"]').contains('Submit').click();
