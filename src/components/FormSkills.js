@@ -1,6 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+
+import { FormField } from './FormField';
+
 import { CREATE_DETAILS, CREATE_CHARACTERISTICS, CREATE_SKILLS } from '../graphql/mutations';
 import { UserContext } from '../utilities/UserContext';
 
@@ -60,6 +63,22 @@ export const FormSkills = ({ onChange, formState }) => {
       });
     }
   };
+
+  const formFields = Object.keys(formState.skills).map((name) => {
+    return (
+      <FormField
+        key={name}
+        label={uniqueLabels[name] || name}
+        name={name}
+        type="number"
+        min="0"
+        max="5"
+        value={formState.skills[name]}
+        onChange={(e) => onChange(e, 'handle number input', 'skills')}
+        autoFocus={name === 'astrogation' ? true : false}
+      />
+    );
+  });
 
   if (detailsLoading || charsLoading || skillsLoading) return <p>Submitting...</p>;
   if (detailsError || charsError || skillsError) return <p>A submission error occurred!</p>;
