@@ -12,7 +12,7 @@ workflows:
       - cypress/run:
           name: 'TestE2E'
           yarn: true
-          executor: cypress/base-14
+          executor: cypress/default
           # requires:
           #   - cypress/install
           # parallel: true
