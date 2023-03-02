@@ -31,6 +31,7 @@ export const FormCharDetails = ({ setCount, onChange, formState }) => {
     return (
       <FormField
         key={name}
+        label={name}
         name={name}
         type={fieldType}
         value={formState[name]}
