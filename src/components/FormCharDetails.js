@@ -35,6 +35,7 @@ export const FormCharDetails = ({ setCount, onChange, formState }) => {
         type={fieldType}
         value={formState[name]}
         onChange={(e) => onChange(e, `handle ${fieldType} input`, 'details')}
+        autoFocus={name === 'name' ? true : false}
       />
     );
   });
