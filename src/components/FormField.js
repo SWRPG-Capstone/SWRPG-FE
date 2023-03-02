@@ -1,16 +1,9 @@
-export const FormField = () => {
+export const FormField = ({ name, type, value, onChange }) => {
   return (
     <div className="input-container">
-      <label className="char-heading" htmlFor="name">
-        name
-        <input
-          className="char-value"
-          type="text"
-          name="name"
-          value={formState.name}
-          onChange={(e) => onChange(e, 'handle text input', 'details')}
-          autoFocus
-        />
+      <label className="char-heading" htmlFor={name}>
+        {name}
+        <input className="char-value" type={type} name={name} value={value} onChange={onChange} />
       </label>
     </div>
   );
