@@ -6,7 +6,7 @@ export const FormCharacteristics = ({ setCount, onChange, formState }) => {
 
   const validateForm = () => {
     return Object.keys(formState).reduce((valid, stat) => {
-      if (stat !== 'characterId' && (formState[stat] < 1 || formState[stat] > 5 || !formState[stat])) valid = false;
+      if (formState[stat] < 1 || formState[stat] > 5 || isNaN(formState[stat])) valid = false;
       return valid;
     }, true);
   };
