@@ -9,5 +9,4 @@ workflows:
       - cypress/run:
           name: 'TestE2E'
           package-manager: yarn
-          executor: cypress/default
           start-command: yarn start
