@@ -8,6 +8,14 @@ export const FormSkills = ({ onChange, formState }) => {
   const history = useHistory();
   const [validated, setValidated] = useState(null);
   const { state: userState, dispatch: userDispatch } = useContext(UserContext);
+  const uniqueLabels = {
+    coreWorlds: 'core worlds',
+    outerRim: 'outer rim',
+    piloting: 'piloting planetary',
+    pilotingSpace: 'piloting space',
+    rangedHeavy: 'ranged heavy',
+    rangedLight: 'ranged light',
+  };
 
   const [createCharacteristics, { loading: charsLoading, error: charsError }] = useMutation(CREATE_CHARACTERISTICS);
 
