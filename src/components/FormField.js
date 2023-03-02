@@ -1,8 +1,8 @@
-export const FormField = ({ name, type, value, onChange, autoFocus, min, max }) => {
+export const FormField = ({ label, name, type, value, onChange, autoFocus, min, max }) => {
   return (
     <div className="input-container">
       <label className="char-heading" htmlFor={name}>
-        {name}
+        {label}
         <input
           className="char-value"
           type={type}
