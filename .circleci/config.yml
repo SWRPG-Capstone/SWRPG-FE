@@ -1,22 +1,12 @@
 version: 2.1
 
 orbs:
-  cypress: cypress-io/cypress@2.2.0
+  cypress: cypress-io/cypress@3
 
 workflows:
   test:
     jobs:
-      # - cypress/install:
-      #     yarn: true
-      #     executor: cypress/base-14
       - cypress/run:
           name: 'TestE2E'
-          yarn: true
-          executor: cypress/base-14
-          # requires:
-          #   - cypress/install
-          # parallel: true
-          # parallelism: 4
-          store_artifacts: true
-          start: yarn start
-          wait-on: 'http://localhost:3000'
+          package-manager: yarn
+          start-command: yarn start
