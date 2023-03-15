@@ -2,7 +2,7 @@ describe('Skills page user flows', () => {
   beforeEach(() => {
     cy.login('CoolMcCool', 'Test123&');
 
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getCharacter') {
         req.alias = 'getCharQuery';
         req.reply({
@@ -36,7 +36,7 @@ describe('Skills page user flows', () => {
       }
     });
 
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getAllCharacters') {
         req.alias = 'allCharsQuery';
         req.reply({
@@ -60,7 +60,7 @@ describe('Skills page user flows', () => {
       }
     });
 
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getSkills') {
         req.alias = 'skillsQuery';
         req.reply({
@@ -171,7 +171,7 @@ describe('Skills page user flows', () => {
   });
 
   it("Should be able to click the Add Rank button to increase a skill's rank", () => {
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'mutateSkill') {
         req.alias = 'mutateSkill';
         req.reply({
@@ -189,7 +189,7 @@ describe('Skills page user flows', () => {
     cy.get('#coercion').should('have.value', 3);
     cy.get('#coercion').click({ force: true });
 
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getSkills') {
         req.alias = 'skillsQuery';
         req.reply({
@@ -245,7 +245,7 @@ describe('Skills page user flows', () => {
   });
 
   it("Should be able to click the Remove Rank button to decrease a skill's rank", () => {
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'mutateSkill') {
         req.alias = 'mutateSkill';
         req.reply({
@@ -263,7 +263,7 @@ describe('Skills page user flows', () => {
     cy.get('#coercion').should('have.value', 3);
     cy.get('#coercion').click({ force: true });
 
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getSkills') {
         req.alias = 'skillsQuery';
         req.reply({

@@ -2,7 +2,7 @@ describe('Home page user flows', () => {
   beforeEach(() => {
     cy.login('CoolMcCool', 'Test123&');
 
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getAllCharacters') {
         req.alias = 'allCharsQuery';
         req.reply({
@@ -46,7 +46,7 @@ describe('Home page user flows', () => {
   });
 
   it('If a user has no saved characters, only the create new character button is displayed', () => {
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getAllCharacters') {
         req.alias = 'allCharsQuery';
         req.reply({
@@ -72,7 +72,7 @@ describe('Home page user flows', () => {
   });
 
   it("Can click a character's name to view them on the character page", () => {
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getCharacter') {
         req.alias = 'getCharQuery';
         req.reply({

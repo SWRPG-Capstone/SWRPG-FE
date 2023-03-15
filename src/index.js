@@ -6,7 +6,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import './styles/styles.scss';
 
 const client = new ApolloClient({
-  uri: 'https://rails-2swo.onrender.com/graphql',
+  uri: 'https://swrpg-be-v2.onrender.com/graphql',
   cache: new InMemoryCache(),
 });
 

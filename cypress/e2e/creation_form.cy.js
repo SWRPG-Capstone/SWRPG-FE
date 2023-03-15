@@ -2,7 +2,7 @@ describe('Character creation user flows', () => {
   beforeEach(() => {
     cy.login('CoolMcCool', 'Test123&');
 
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getAllCharacters') {
         req.alias = 'allCharsQuery';
         req.reply({
@@ -41,7 +41,7 @@ describe('Character creation user flows', () => {
   });
 
   it('Should be able to fill out the form to create a new character', () => {
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'createCharDetails') {
         req.alias = 'charDetailsMutation';
         req.reply({
