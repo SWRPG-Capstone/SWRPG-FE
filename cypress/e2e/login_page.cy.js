@@ -28,7 +28,7 @@ describe('Log in user flows', () => {
   });
 
   it('Should display an error message if invalid login credentials are submitted', () => {
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'loginUser') {
         req.alias = 'loginUserMutation';
         req.reply({
@@ -47,7 +47,7 @@ describe('Log in user flows', () => {
   });
 
   it('Should redirect the user to the homepage after a successful login', () => {
-    cy.intercept('POST', 'https://rails-2swo.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'loginUser') {
         req.alias = 'loginUserMutation';
         req.reply({
