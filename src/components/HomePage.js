@@ -1,18 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
-const ALL_CHARACTERS = gql`
-  query getAllCharacters($id: ID!) {
-    user(id: $id) {
-      username
-      characters {
-        id
-        name
-      }
-    }
-  }
-`;
+import { ALL_CHARACTERS } from '../graphql/queries';
 
 export const HomePage = ({ currentUser, setCurrentChar }) => {
   const { loading, error, data } = useQuery(ALL_CHARACTERS, { variables: { id: currentUser } });

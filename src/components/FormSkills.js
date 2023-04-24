@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { FormField } from './FormField';
 
 import { CREATE_DETAILS, CREATE_CHARACTERISTICS, CREATE_SKILLS } from '../graphql/mutations';
+import { ALL_CHARACTERS } from '../graphql/queries';
 import { UserContext } from '../utilities/UserContext';
 
 export const FormSkills = ({ onChange, formState }) => {
@@ -26,6 +27,7 @@ export const FormSkills = ({ onChange, formState }) => {
     onCompleted() {
       history.push('/character');
     },
+    refetchQueries: [{ query: ALL_CHARACTERS }, 'getAllCharacters'],
   });
 
   const [createCharDetails, { loading: detailsLoading, error: detailsError }] = useMutation(CREATE_DETAILS, {
