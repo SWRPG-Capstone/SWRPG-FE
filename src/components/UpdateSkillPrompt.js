@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { formatName } from '../utilities/utilities';
-import { UserContext } from "../utilities/UserContext";
+import { UserContext } from '../utilities/UserContext';
 import { SKILLS } from './SkillsPage';
+import { DialogModal } from './DialogModal';
 
 export const UpdateSkillPrompt = ({ skill, skillID, ranks, isOpen, closeModal }) => {
-
   const MUTATE_SKILL = gql`
     mutation mutateSkill ($id: Int!, $characterID: Int!, $ranks: Int!){
       updateSkill(input: {
@@ -23,46 +23,33 @@ export const UpdateSkillPrompt = ({ skill, skillID, ranks, isOpen, closeModal })
   const increaseVars = {
     id: parseInt(skillID),
     characterID: parseInt(userContext.state.currentChar),
-    ranks: (ranks + 1)
-  }
+    ranks: ranks + 1,
+  };
 
   const decreaseVars = {
     id: parseInt(skillID),
     characterID: parseInt(userContext.state.currentChar),
-    ranks: (ranks - 1)
-  }
+    ranks: ranks - 1,
+  };
 
   const [increaseSkill] = useMutation(MUTATE_SKILL, {
     variables: increaseVars,
-    refetchQueries: [
-      SKILLS
-    ]
+    refetchQueries: [SKILLS],
   });
 
   const [decreaseSkill] = useMutation(MUTATE_SKILL, {
     variables: decreaseVars,
-    refetchQueries: [
-      SKILLS
-    ]
+    refetchQueries: [SKILLS],
   });
 
   const addButton = ranks < 5 && <button onClick={() => increaseSkill()}>Add Rank</button>;
   const removeButton = ranks > 0 && <button onClick={() => decreaseSkill()}>Remove Rank</button>;
 
   return (
-    <>
-    {
-      isOpen ? 
-      <div className='modal-backdrop' onClick={() => closeModal()}>
-        <section className='update-skill-prompt'>
-          <h2>Update ranks in {formatName(skill)}?</h2>
-          {addButton}
-          {removeButton}
-          <button onClick={() => closeModal()}>Close</button>
-        </section>
-      </div>
-      : null
-    }
-    </>
-  )
-}
+    <DialogModal isOpen={isOpen} closeModal={closeModal}>
+      <h2 className="skill-modal-heading">Update ranks in {formatName(skill)}?</h2>
+      {addButton}
+      {removeButton}
+    </DialogModal>
+  );
+};
