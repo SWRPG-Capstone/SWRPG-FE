@@ -11,10 +11,14 @@ export const DialogModal = ({ isOpen, closeModal, children }) => {
     }
   }, [isOpen]);
 
+  const preventClose = (e) => e.stopPropagation();
+
   return (
     <dialog className="dialog-modal" ref={ref} onClick={closeModal}>
-      {children}
-      <button onClick={closeModal}>Close</button>
+      <section className="modal-content" onClick={preventClose}>
+        {children}
+        <button onClick={closeModal}>Close</button>
+      </section>
     </dialog>
   );
 };
