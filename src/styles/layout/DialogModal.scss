@@ -1,7 +1,6 @@
 .dialog-modal {
-  @include flex(column, center);
   background-color: $color-primary;
-  padding: 2rem;
+  padding: 0;
   border-radius: $border-radius-primary;
   border: $border-primary;
   box-shadow: $box-shadow-primary;
@@ -19,4 +18,9 @@
 .dialog-modal::backdrop {
   background-color: $color-background-primary;
   opacity: 50%;
+}
+
+.modal-content {
+  @include flex(column, center);
+  padding: 2rem;
 }
