@@ -1,0 +1,22 @@
+.dialog-modal {
+  @include flex(column, center);
+  background-color: $color-primary;
+  padding: 2rem;
+  border-radius: $border-radius-primary;
+  border: $border-primary;
+  box-shadow: $box-shadow-primary;
+
+  button {
+    transition: all 0.2s;
+
+    &:hover {
+      color: $color-accent-secondary;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.dialog-modal::backdrop {
+  background-color: $color-background-primary;
+  opacity: 50%;
+}
