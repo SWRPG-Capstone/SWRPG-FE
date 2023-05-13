@@ -12,8 +12,8 @@ export const DialogModal = ({ isOpen, closeModal, children }) => {
   }, [isOpen]);
 
   return (
-    <dialog ref={ref} onClick={closeModal}>
-      <div>{children}</div>
+    <dialog className="dialog-modal" ref={ref} onClick={closeModal}>
+      {children}
       <button onClick={closeModal}>Close</button>
     </dialog>
   );
