@@ -14,7 +14,7 @@ export const DialogModal = ({ isOpen, closeModal, children }) => {
   const preventClose = (e) => e.stopPropagation();
 
   return (
-    <dialog className="dialog-modal" ref={ref} onClick={closeModal}>
+    <dialog className="dialog-modal" ref={ref} onCancel={closeModal} onClick={closeModal}>
       <section className="modal-content" onClick={preventClose}>
         {children}
         <button onClick={closeModal}>Close</button>
