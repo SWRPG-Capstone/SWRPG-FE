@@ -35,11 +35,17 @@ export const UpdateSkillPrompt = ({ skill, skillID, ranks, isOpen, closeModal })
   const [increaseSkill] = useMutation(MUTATE_SKILL, {
     variables: increaseVars,
     refetchQueries: [SKILLS],
+    onCompleted() {
+      closeModal();
+    },
   });
 
   const [decreaseSkill] = useMutation(MUTATE_SKILL, {
     variables: decreaseVars,
     refetchQueries: [SKILLS],
+    onCompleted() {
+      closeModal();
+    },
   });
 
   const addButton = ranks < 5 && <button onClick={() => increaseSkill()}>Add Rank</button>;
