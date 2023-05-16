@@ -52,7 +52,7 @@ export const UpdateSkillPrompt = ({ skill, skillID, ranks, isOpen, closeModal })
   const removeButton = ranks > 0 && <button onClick={() => decreaseSkill()}>Remove Rank</button>;
 
   return (
-    <DialogModal isOpen={isOpen} closeModal={closeModal}>
+    <DialogModal id={`${skill}-modal`} isOpen={isOpen} closeModal={closeModal}>
       <h2 className="skill-modal-heading">Update ranks in {formatName(skill)}?</h2>
       {addButton}
       {removeButton}

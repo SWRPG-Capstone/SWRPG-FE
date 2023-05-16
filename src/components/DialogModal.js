@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const DialogModal = ({ isOpen, closeModal, children }) => {
+export const DialogModal = ({ id, isOpen, closeModal, children }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const DialogModal = ({ isOpen, closeModal, children }) => {
   const preventClose = (e) => e.stopPropagation();
 
   return (
-    <dialog className="dialog-modal" ref={ref} onCancel={closeModal} onClick={closeModal}>
+    <dialog id={id} className="dialog-modal" ref={ref} onCancel={closeModal} onClick={closeModal}>
       <section className="modal-content" onClick={preventClose}>
         {children}
         <button onClick={closeModal}>Close</button>
