@@ -133,41 +133,41 @@ describe('Skills page user flows', () => {
   it('Should open a modal when a skill bar is clicked', () => {
     cy.visit('http://localhost:3000/skills');
     cy.get('#deception').click({ force: true });
-    cy.get('.update-skill-prompt').contains('Update ranks in deception?').should('be.visible');
+    cy.get('.dialog-modal').contains('Update ranks in deception?').should('be.visible');
     cy.get('#deception').should('not.be.visible');
   });
 
   it('Should close the modal by clicking the close button or the background', () => {
     cy.visit('http://localhost:3000/skills');
     cy.get('#deception').click({ force: true });
-    cy.get('.update-skill-prompt').scrollIntoView().contains('Update ranks in deception?').should('be.visible');
-    cy.get('button').contains('Close').click();
+    cy.get('.dialog-modal').contains('Update ranks in deception?').should('be.visible');
+    cy.get('#deception-modal').contains('Close').click();
     cy.get('#deception').should('be.visible');
     cy.get('#deception').click({ force: true });
-    cy.get('.update-skill-prompt').scrollIntoView().contains('Update ranks in deception?').should('be.visible');
-    cy.get('.modal-backdrop').contains('Close').click();
+    cy.get('.dialog-modal').contains('Update ranks in deception?').should('be.visible');
+    cy.get('#deception-modal').click(0, -10);
     cy.get('#deception').should('be.visible');
   });
 
   it('Should only show an Add Rank button for skills with less than 5 ranks', () => {
     cy.visit('http://localhost:3000/skills');
     cy.get('#deception').click({ force: true });
-    cy.get('button').contains('Add Rank').should('be.visible');
-    cy.get('button').contains('Remove Rank').should('not.exist');
+    cy.get('#deception-modal').contains('Add Rank').should('be.visible');
+    cy.get('#deception-modal').contains('Remove Rank').should('not.exist');
   });
 
   it('Should only show a Remove Rank button for skills with 5 ranks', () => {
     cy.visit('http://localhost:3000/skills');
     cy.get('#athletics').click({ force: true });
-    cy.get('button').contains('Remove Rank').should('be.visible');
-    cy.get('button').contains('Add Rank').should('not.exist');
+    cy.get('#athletics-modal').contains('Remove Rank').should('be.visible');
+    cy.get('#athletics-modal').contains('Add Rank').should('not.exist');
   });
 
   it('Should show both buttons for skills with 1-4 ranks', () => {
     cy.visit('http://localhost:3000/skills');
     cy.get('#brawl').click({ force: true });
-    cy.get('button').contains('Remove Rank').should('be.visible');
-    cy.get('button').contains('Add Rank').should('be.visible');
+    cy.get('#brawl-modal').contains('Remove Rank').should('be.visible');
+    cy.get('#brawl-modal').contains('Add Rank').should('be.visible');
   });
 
   it("Should be able to click the Add Rank button to increase a skill's rank", () => {
@@ -239,7 +239,7 @@ describe('Skills page user flows', () => {
       }
     });
 
-    cy.get('button').contains('Add Rank').click();
+    cy.get('#coercion-modal').contains('Add Rank').click();
     cy.wait('@skillsQuery');
     cy.get('#coercion').should('have.value', 4);
   });
@@ -313,7 +313,7 @@ describe('Skills page user flows', () => {
       }
     });
 
-    cy.get('button').contains('Add Rank').click();
+    cy.get('#coercion-modal').contains('Add Rank').click();
     cy.wait('@skillsQuery');
     cy.get('#coercion').should('have.value', 2);
   });

@@ -1,35 +1,3 @@
-.update-skill-prompt {
-  @include flex(column, center);
-  position: absolute;
-  z-index: 2;
-  top: 10%;
-  background-color: $color-primary;
-  padding: 2rem;
-  border-radius: $border-radius-primary;
-  border: $border-primary;
-  box-shadow: $box-shadow-primary;
-
-  h2 {
-    margin-bottom: 10px;
-  }
-
-  button {
-    transition: all 0.2s;
-
-    &:hover {
-      color: $color-accent-secondary;
-      transform: translateY(-1px);
-    }
-  }
-}
-
-.modal-backdrop {
-  @include flex(column, center);
-  background-color: $color-background-primary;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
+.skill-modal-heading {
+  margin-bottom: 10px;
 }
