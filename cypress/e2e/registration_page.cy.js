@@ -1,6 +1,6 @@
 describe('User registration user flows', () => {
   beforeEach(() => {
-    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-vqy4.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getAllCharacters') {
         req.alias = 'allCharsQuery';
         req.reply({
@@ -34,7 +34,7 @@ describe('User registration user flows', () => {
   });
 
   it('Should be able to fill out the form to register a new user', () => {
-    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-vqy4.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'createUser') {
         req.alias = 'createUserMutation';
         req.reply({

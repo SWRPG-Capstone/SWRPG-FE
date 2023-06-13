@@ -2,7 +2,7 @@ describe('Character page user flows', () => {
   beforeEach(() => {
     cy.login('CoolMcCool', 'Test123&');
 
-    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-vqy4.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getCharacter') {
         req.alias = 'getCharQuery';
         req.reply({
@@ -36,7 +36,7 @@ describe('Character page user flows', () => {
       }
     });
 
-    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-vqy4.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'getAllCharacters') {
         req.alias = 'allCharsQuery';
         req.reply({
