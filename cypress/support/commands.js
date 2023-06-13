@@ -1,6 +1,6 @@
 Cypress.Commands.add('login', (username, password) => {
   cy.session([username, password], () => {
-    cy.intercept('POST', 'https://swrpg-be-v2.onrender.com/graphql', (req) => {
+    cy.intercept('POST', 'https://swrpg-be-vqy4.onrender.com/graphql', (req) => {
       if (req.body.operationName === 'loginUser') {
         req.alias = 'loginUserMutation';
         req.reply({
