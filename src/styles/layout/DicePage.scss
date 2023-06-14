@@ -1,6 +1,6 @@
 .dice-sheet {
-	@include flex(column, start);
-	height: 100%;
+  @include flex(column, start);
+  height: 100%;
 
   @include device(desktop) {
     align-items: initial;
@@ -22,96 +22,95 @@
   }
 }
 
-
 .dice-field {
-	min-height: 100%;
-  scrollbar-width: none;
-	overflow-x: hidden;
-  overflow-y: scroll;
+  min-height: 100%;
+  overflow-x: hidden;
+  // scrollbar-width: none; // Not supported in Safari
+  // overflow-y: scroll; // Unnecessary?
 
   @include device(desktop) {
     width: 40%;
   }
 
-	.dice-headings {
-		@include flex(row, space-between);
+  .dice-headings {
+    @include flex(row, space-between);
 
-		> h3 {
-			@include fonts(giant, $font-weight-bold);
-			color: $color-white;
-		}
-	}	
+    > h3 {
+      @include fonts(giant, $font-weight-bold);
+      color: $color-white;
+    }
+  }
 }
 
 .dice-log {
-	position: absolute;
-	z-index: 4;
-	inset-block: 5rem;
-	height: 70vh;
-	background: $color-transparent-secondary;
-	box-shadow: $box-shadow-primary;
-	transition: 1s opacity;
+  position: absolute;
+  z-index: 4;
+  inset-block: 5rem;
+  height: 70vh;
+  background: $color-transparent-secondary;
+  box-shadow: $box-shadow-primary;
+  transition: 1s opacity;
   top: 0;
 
-	&.hidden {
-		opacity: 0;
-		z-index: 3;
-	}
+  &.hidden {
+    opacity: 0;
+    z-index: 3;
+  }
 }
 
 .open-log-button {
-	@include fonts(massive, $font-weight-bold);
-	@include flex(row, center);
-	z-index: 5;
-	color: $color-secondary;
-	text-shadow: $text-shadow-primary;
-	border: $border-primary;
-	border-radius: $border-radius-primary;
-	background-color: $color-secondary;
-	box-shadow: $box-shadow-primary;
-	padding-inline: 2.5rem;
+  @include fonts(massive, $font-weight-bold);
+  @include flex(row, center);
+  z-index: 5;
+  color: $color-secondary;
+  text-shadow: $text-shadow-primary;
+  border: $border-primary;
+  border-radius: $border-radius-primary;
+  background-color: $color-secondary;
+  box-shadow: $box-shadow-primary;
+  padding-inline: 2.5rem;
   position: relative;
-	height: 5rem;
-	margin-bottom: 1rem;
-	transition: color 750ms ease-in-out, background 100ms ease-in, text-shadow 500ms ease-in-out;
+  height: 5rem;
+  margin-bottom: 1rem;
+  transition: color 750ms ease-in-out, background 100ms ease-in, text-shadow 500ms ease-in-out;
 
-	&:hover {
-		color: $color-accent-secondary;
-	}
+  &:hover {
+    color: $color-accent-secondary;
+  }
 
-	&:active  {
-		color: $color-accent-secondary;
-		transform: scale(.95);
-	}
+  &:active {
+    color: $color-accent-secondary;
+    transform: scale(0.95);
+  }
 
-	&.active {
-		background: unset;
-		border-color: transparent;
-		box-shadow: unset;
-		color: $color-accent-secondary;
-	}
+  &.active {
+    background: unset;
+    border-color: transparent;
+    box-shadow: unset;
+    color: $color-accent-secondary;
+  }
 }
 
 .roll-log {
-	@include flex(column, space-evenly);
-	position: relative;
-	width: 100%;
-	height: 100%;
-  
-	&::after {
-		content: '';
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		background: $color-transparent-secondary;
-		border: 1.5rem solid $color-background-secondary;
-		filter: $blur-quaternary;
-		z-index: 6;
-	}
+  @include flex(column, space-evenly);
+  position: relative;
+  width: 100%;
+  height: 100%;
 
-	.entries {
-		text-align: center;
-		padding-inline: 1rem;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: $color-transparent-secondary;
+    border: 1.5rem solid $color-background-secondary;
+    filter: $blur-quaternary;
+    z-index: 6;
+  }
+
+  .entries {
+    text-align: center;
+    padding-inline: 1rem;
     height: 80%;
     margin-top: 0;
     overflow-y: scroll;
@@ -119,9 +118,9 @@
     top: 6%;
     position: inherit;
     list-style-type: none;
-		width: 100%;
-		z-index: 8;
-	}
+    width: 100%;
+    z-index: 8;
+  }
 
   .log-entry {
     margin-bottom: 1rem;
