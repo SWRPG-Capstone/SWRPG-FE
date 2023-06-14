@@ -12,11 +12,13 @@
   &.small {
     margin: 0 0.5rem;
     min-width: 2rem;
+    min-height: 2rem;
   }
 
   &.medium {
     margin: 1rem 1rem;
     min-width: 3rem;
+    min-height: 3rem;
   }
 
   &.large {
@@ -24,6 +26,7 @@
     transition-delay: 100ms;
     margin: 0 0rem 1rem;
     min-width: 4.5rem;
+    min-height: 4.5rem;
   }
 
   .icon {
